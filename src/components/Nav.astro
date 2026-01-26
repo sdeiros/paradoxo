@@ -1,0 +1,175 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">
+      <img
+        src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769383694/Logo_Branca_2_sm0bvy.png"
+        alt="Paradoxo"
+      />
+    </a>
+
+    <div class="menu-wrapper">
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="menu" id="menu">
+        <a href="/" class={currentPath === "/" ? "active" : ""}>Home</a>
+        <a href="/sobre" class={currentPath === "/sobre" ? "active" : ""}
+          >Sobre</a
+        >
+        <a href="/agenda" class={currentPath === "/agenda" ? "active" : ""}
+          >Agenda</a
+        >
+        <a href="/amigos" class={currentPath === "/amigos" ? "active" : ""}
+          >Amigos</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    background: #c50066;
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    text-decoration: none;
+    display: block;
+    line-height: 0;
+  }
+
+  .logo img {
+    height: 50px;
+    width: auto;
+  }
+
+  .menu-wrapper {
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 44px;
+    height: 44px;
+    position: relative;
+  }
+
+  .menu-toggle span {
+    width: 30px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: #c5006600;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    min-width: 200px;
+    width: max-content;
+    max-width: 90vw;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 400;
+    padding: 0.4rem 1rem;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .menu a:last-child {
+    border-bottom: none;
+  }
+
+  .menu a:hover {
+    font-weight: 500;
+  }
+
+  .menu a.active {
+    font-weight: 700;
+    font-size: 1.128rem;
+  }
+
+  @media (max-width: 480px) {
+    .menu {
+      min-width: 160px;
+    }
+
+    .menu a {
+      font-size: 1rem;
+      padding: 0.875rem 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const menu = document.getElementById("menu");
+
+  menuToggle?.addEventListener("click", () => {
+    menu?.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+  });
+
+  // Close menu when clicking a link
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu?.classList.remove("active");
+      menuToggle?.classList.remove("active");
+    });
+  });
+</script>

@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Paradoxo - Arte que Nasce do Território">
+  <section class="hero">
+    <div class="container">
+      <h1>
+        Arte que Nasce do Território,<br/>
+        Cresce em Comunidade.
+      </h1>
+      <p class="subtitle">
+        Um Espaço Independente de Arte e Cultura na Zona Norte do Rio de Janeiro.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    background: #C50066;
+    min-height: calc(100vh - 12vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: left;
+  }
+
+  .container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 600;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    color: white;
+    font-weight: 300;
+    opacity: 0.95;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: calc(100vh - 15vh);
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

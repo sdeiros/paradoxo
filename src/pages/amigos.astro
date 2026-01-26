@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Amigos - Paradoxo">
+  <section class="page-content">
+    <div class="container">
+      <h1>Amigos do Paradoxo</h1>
+      <div class="content">
+        <p>
+          Conheça nossos parceiros, colaboradores e apoiadores que tornam possível a existência
+          deste espaço cultural na Zona Norte do Rio de Janeiro.
+        </p>
+        
+        <div class="friends-grid">
+          <div class="friend-card">
+            <div class="friend-icon">🎨</div>
+            <h3>Coletivo Cores Locais</h3>
+            <p>Grupo de artistas da comunidade que promove a arte urbana e grafite.</p>
+          </div>
+
+          <div class="friend-card">
+            <div class="friend-icon">📚</div>
+            <h3>Biblioteca Popular da Usina</h3>
+            <p>Espaço comunitário de leitura e troca de livros.</p>
+          </div>
+
+          <div class="friend-card">
+            <div class="friend-icon">🎭</div>
+            <h3>Cia Teatral do Norte</h3>
+            <p>Companhia de teatro que leva arte e cultura para toda a região.</p>
+          </div>
+
+          <div class="friend-card">
+            <div class="friend-icon">🎵</div>
+            <h3>Escola de Música Raízes</h3>
+            <p>Escola que ensina música para crianças e jovens da comunidade.</p>
+          </div>
+
+          <div class="friend-card">
+            <div class="friend-icon">🌱</div>
+            <h3>Horta Comunitária Verde Vida</h3>
+            <p>Projeto de agricultura urbana e sustentabilidade.</p>
+          </div>
+
+          <div class="friend-card">
+            <div class="friend-icon">🎬</div>
+            <h3>Cineclube do Subúrbio</h3>
+            <p>Exibições de cinema e debates sobre audiovisual.</p>
+          </div>
+        </div>
+
+        <div class="cta">
+          <h2>Seja um Amigo</h2>
+          <p>
+            Quer fazer parte dessa rede de apoio cultural? Entre em contato conosco e descubra
+            como você pode contribuir com o Paradoxo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-content {
+    min-height: calc(100vh - 200px);
+    padding: 4rem 2rem;
+    background: #f8f8f8;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: #2b1a3d;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .content > p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #333;
+    max-width: 800px;
+  }
+
+  .friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .friend-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+
+  .friend-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .friend-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .friend-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2b1a3d;
+    margin-bottom: 0.75rem;
+  }
+
+  .friend-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .cta {
+    background: linear-gradient(135deg, #d91b7f 0%, #e91e8c 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .cta h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .cta p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .friends-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

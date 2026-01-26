@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Sobre - Paradoxo">
+  <section class="page-content">
+    <div class="container">
+      <h1>Sobre o Paradoxo</h1>
+      <div class="content">
+        <p>
+          O Paradoxo é um espaço independente de arte e cultura localizado na Zona Norte do Rio de Janeiro,
+          mais especificamente na Usina. Nosso objetivo é fomentar a arte que nasce do território e cresce
+          em comunidade.
+        </p>
+        <p>
+          Acreditamos que a arte é uma ferramenta poderosa de transformação social e que cada comunidade
+          tem suas próprias histórias e talentos a serem celebrados.
+        </p>
+        <p>
+          Através de exposições, oficinas e eventos culturais, criamos um espaço de encontro e troca
+          entre artistas e a comunidade local.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-content {
+    min-height: calc(100vh - 200px);
+    padding: 4rem 2rem;
+    background: #f8f8f8;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: #2b1a3d;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #333;
+  }
+</style>

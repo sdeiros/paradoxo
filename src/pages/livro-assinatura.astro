@@ -1,0 +1,299 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Livro de Assinatura - Paradoxo">
+  <main>
+    <section class="form-section">
+      <div class="container">
+        <div class="form-wrapper">
+          <h1>Livro de Assinatura Digital</h1>
+          <p class="subtitle">Deixe sua mensagem para o Paradoxo</p>
+
+          <form id="assinaturaForm" class="form">
+            <div class="form-group">
+              <label for="nome">Seu nome *</label>
+              <input 
+                type="text" 
+                id="nome" 
+                name="nome" 
+                required 
+                placeholder="Digite seu nome completo"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="contato">Forma de contato *</label>
+              <input 
+                type="text" 
+                id="contato" 
+                name="contato" 
+                required 
+                placeholder="E-mail, telefone ou Instagram"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="gostou">O que você gostou?</label>
+              <textarea 
+                id="gostou" 
+                name="gostou" 
+                rows="3"
+                placeholder="Conte o que mais chamou sua atenção..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="mensagem">Quer deixar uma mensagem?</label>
+              <textarea 
+                id="mensagem" 
+                name="mensagem" 
+                rows="4"
+                placeholder="Deixe sua mensagem para nós..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="falar">Quer falar com a gente sobre algo?</label>
+              <textarea 
+                id="falar" 
+                name="falar" 
+                rows="3"
+                placeholder="Conte o que você gostaria de conversar..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="pergunta">Quer perguntar alguma coisa?</label>
+              <textarea 
+                id="pergunta" 
+                name="pergunta" 
+                rows="3"
+                placeholder="Faça sua pergunta..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              Enviar Assinatura
+            </button>
+          </form>
+
+          <div id="successMessage" class="success-message">
+            <h2>Obrigado!</h2>
+            <p>Sua mensagem foi registrada com sucesso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    min-height: calc(100vh - 100px);
+  }
+
+  .form-section {
+    background: #C50066;
+    padding: 4rem 2rem;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .form-wrapper {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  h1 {
+    color: #C50066;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  input,
+  textarea {
+    padding: 0.875rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #C50066;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .submit-btn {
+    background: #C50066;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+  }
+
+  .submit-btn:hover {
+    background: #a3004f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 0, 102, 0.3);
+  }
+
+  .success-message {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .success-message.show {
+    display: block;
+  }
+
+  .success-message h2 {
+    color: #C50066;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .success-message p {
+    color: #666;
+    font-size: 1.125rem;
+  }
+
+  @media (max-width: 640px) {
+    .form-wrapper {
+      padding: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('assinaturaForm') as HTMLFormElement;
+  const successMessage = document.getElementById('successMessage');
+  const submitBtn = form?.querySelector('.submit-btn') as HTMLButtonElement;
+
+  // CONFIGURAÇÃO - URL do Google Apps Script
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxGEoqHhr97hBOX1qxSfdUwgXwgqiKSYpNb8HD3wxUeDEZpIPoOx3rda6X58O6wbLyb/exec';
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    // Adicionar timestamp
+    const timestamp = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+
+    const dataCompleta = {
+      ...data,
+      timestamp
+    };
+
+    console.log('[v0] Preparando envio dos dados:', dataCompleta);
+    console.log('[v0] URL do Apps Script:', APPS_SCRIPT_URL);
+
+    // Desabilitar botão durante envio
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+    }
+
+    try {
+      console.log('[v0] Enviando requisição...');
+      
+      // Usar no-cors porque Apps Script não suporta CORS preflight
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataCompleta)
+      });
+
+      console.log('[v0] Dados enviados para Google Sheets');
+
+      // Mostrar mensagem de sucesso
+      form.style.display = 'none';
+      successMessage?.classList.add('show');
+
+      // Reset após 4 segundos
+      setTimeout(() => {
+        form.reset();
+        form.style.display = 'flex';
+        successMessage?.classList.remove('show');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar Assinatura';
+        }
+      }, 4000);
+
+    } catch (error) {
+      console.error('[v0] Erro ao enviar:', error);
+      alert('Erro ao enviar. Tente novamente.');
+      
+      // Reabilitar botão
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar Assinatura';
+      }
+    }
+  });
+</script>
+</Layout>
