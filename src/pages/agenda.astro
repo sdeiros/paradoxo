@@ -11,43 +11,32 @@ import Layout from '../layouts/Layout.astro';
           Confira nossa programação cultural com exposições, oficinas, apresentações e eventos
           que acontecem no Paradoxo.
         </p>
+
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="todos">
+            Todos
+          </button>
+          <button class="filter-btn" data-filter="Roda de Conversa">
+            Rodas de Conversa
+          </button>
+          <button class="filter-btn" data-filter="Exposição">
+            Exposições
+          </button>
+          <button class="filter-btn" data-filter="Oficina">
+            Oficinas
+          </button>
+        </div>
         
-        <div class="events">
-          <div class="event-card">
-            <div class="event-date">
-              <span class="day">15</span>
-              <span class="month">FEV</span>
-            </div>
-            <div class="event-info">
-              <h3>Exposição: Cores do Território</h3>
-              <p>Abertura da exposição coletiva com artistas locais</p>
-              <span class="time">18h às 21h</span>
-            </div>
-          </div>
+        <div id="loadingMessage" class="loading">
+          Carregando eventos...
+        </div>
 
-          <div class="event-card">
-            <div class="event-date">
-              <span class="day">22</span>
-              <span class="month">FEV</span>
-            </div>
-            <div class="event-info">
-              <h3>Oficina: Pintura em Tecido</h3>
-              <p>Aprenda técnicas de estamparia manual</p>
-              <span class="time">14h às 17h</span>
-            </div>
-          </div>
-
-          <div class="event-card">
-            <div class="event-date">
-              <span class="day">01</span>
-              <span class="month">MAR</span>
-            </div>
-            <div class="event-info">
-              <h3>Sarau Cultural</h3>
-              <p>Noite de poesia, música e arte</p>
-              <span class="time">19h às 22h</span>
-            </div>
-          </div>
+        <div id="errorMessage" class="error-message" style="display: none;">
+          Não foi possível carregar os eventos. Por favor, tente novamente mais tarde.
+        </div>
+        
+        <div id="eventsContainer" class="events">
+          <!-- Os eventos serão carregados dinamicamente aqui -->
         </div>
       </div>
     </div>
@@ -57,33 +46,83 @@ import Layout from '../layouts/Layout.astro';
 <style>
   .page-content {
     min-height: calc(100vh - 200px);
-    padding: 4rem 2rem;
-    background: #f8f8f8;
+    padding: 2.5rem 0;
+    background: #C50066;
   }
 
   .container {
-    max-width: 1000px;
+    max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
+    padding: 0 1rem;
   }
 
   h1 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    color: #2b1a3d;
-    margin-bottom: 2rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1rem;
     letter-spacing: -0.02em;
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0rem;
   }
 
   .content > p {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: white;
+  }
+
+  .filter-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+  }
+
+  .filter-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+  }
+
+  .filter-btn:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background: white;
+    border-color: white;
+    color: #C50066;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: white;
     font-size: 1.125rem;
-    line-height: 1.7;
-    color: #333;
+  }
+
+  .error-message {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #c33;
+    color: #c33;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
   }
 
   .events {
@@ -93,7 +132,14 @@ import Layout from '../layouts/Layout.astro';
     margin-top: 1rem;
   }
 
-  .event-card {
+  .events.empty {
+    text-align: center;
+    padding: 3rem;
+    color: white;
+  }
+
+  /* Estilos globais para elementos criados dinamicamente */
+  :global(.event-card) {
     background: white;
     border-radius: 12px;
     padding: 2rem;
@@ -103,13 +149,13 @@ import Layout from '../layouts/Layout.astro';
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .event-card:hover {
+  :global(.event-card:hover) {
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   }
 
-  .event-date {
-    background: #d91b7f;
+  :global(.event-date) {
+    background: #C50066;
     color: white;
     border-radius: 8px;
     padding: 1rem;
@@ -120,36 +166,44 @@ import Layout from '../layouts/Layout.astro';
     min-width: 80px;
   }
 
-  .day {
+  :global(.day) {
     font-size: 2rem;
     font-weight: 800;
     line-height: 1;
   }
 
-  .month {
+  :global(.month) {
     font-size: 0.875rem;
     font-weight: 600;
     margin-top: 0.25rem;
+    text-transform: uppercase;
   }
 
-  .event-info {
+  :global(.event-info) {
     flex: 1;
+    min-width: 0;
+    overflow: hidden;
   }
 
-  .event-info h3 {
+  :global(.event-info h3) {
     font-size: 1.5rem;
     font-weight: 700;
     color: #2b1a3d;
     margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
-  .event-info p {
+  :global(.event-info p) {
     font-size: 1rem;
     color: #666;
     margin-bottom: 0.75rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
-  .time {
+  :global(.time) {
     display: inline-block;
     background: #f0f0f0;
     padding: 0.25rem 0.75rem;
@@ -159,21 +213,268 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 500;
   }
 
+  :global(.event-badge) {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.badge-roda) {
+    background: #e8f4f8;
+    color: #0369a1;
+  }
+
+  :global(.badge-exposicao) {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  :global(.badge-oficina) {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  :global(.event-card.past-event) {
+    opacity: 0.5;
+  }
+
+  :global(.event-card.past-event:hover) {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .page-content {
+      padding: 3rem 0;
+    }
+
+    .container {
+      padding: 1.5rem 1rem;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+    }
+  }
+
   @media (max-width: 640px) {
-    .event-card {
+    .filter-buttons {
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 0.5rem;
+    }
+
+    .filter-buttons::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    :global(.event-card) {
       flex-direction: column;
       gap: 1rem;
     }
 
-    .event-date {
+    :global(.event-date) {
       flex-direction: row;
       gap: 0.5rem;
       width: 100%;
       padding: 0.75rem;
     }
 
-    .day {
+    :global(.day) {
       font-size: 1.5rem;
     }
   }
 </style>
+
+<script>
+  // CONFIGURAÇÃO - URL do Google Apps Script
+  const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyZ2AspxfwOajpcyfdaypDWVJCy5bbUkSDGipHQl0F2e4HIwv_KcAGa_TZTZCCrlNXYbw/exec';
+  
+  interface Event {
+    nome: string;
+    descricao: string;
+    data: string;
+    status: 'Roda de Conversa' | 'Exposição' | 'Oficina';
+  }
+
+  const eventsContainer = document.getElementById('eventsContainer');
+  const loadingMessage = document.getElementById('loadingMessage');
+  const errorMessage = document.getElementById('errorMessage');
+  
+  let allEvents: Event[] = [];
+  let currentFilter = 'todos';
+
+  // Função para formatar a data
+  function formatDate(dateString: string) {
+    try {
+      const date = new Date(dateString);
+      const day = date.getDate().toString().padStart(2, '0');
+      const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+      const month = months[date.getMonth()];
+      return { day, month };
+    } catch (e) {
+      return { day: '??', month: '???' };
+    }
+  }
+
+  // Função para obter a classe do badge
+  function getBadgeClass(status: string): string {
+    const normalized = status.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    
+    if (normalized.includes('roda')) return 'badge-roda';
+    if (normalized.includes('exposicao') || normalized.includes('exposição')) return 'badge-exposicao';
+    if (normalized.includes('oficina')) return 'badge-oficina';
+    
+    return 'badge-roda'; // default
+  }
+
+  // Função para verificar se o evento já passou
+  function isPastEvent(dateString: string): boolean {
+    const eventDate = new Date(dateString);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return eventDate < today;
+  }
+
+  // Função para criar card de evento
+  function createEventCard(event: Event): string {
+    const { day, month } = formatDate(event.data);
+    const badgeClass = getBadgeClass(event.status);
+    const pastClass = isPastEvent(event.data) ? ' past-event' : '';
+    
+    return `
+      <div class="event-card${pastClass}" data-status="${event.status}">
+        <div class="event-date">
+          <span class="day">${day}</span>
+          <span class="month">${month}</span>
+        </div>
+        <div class="event-info">
+          <span class="event-badge ${badgeClass}">${event.status}</span>
+          <h3>${event.nome}</h3>
+          <p>${event.descricao}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  // Função para renderizar eventos filtrados
+  function renderEvents(filter: string) {
+    if (!eventsContainer || allEvents.length === 0) return;
+
+    let filteredEvents = allEvents;
+
+    if (filter !== 'todos') {
+      filteredEvents = allEvents.filter(event => {
+        const normalized = event.status.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        const filterNormalized = filter.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return normalized.includes(filterNormalized) || event.status === filter;
+      });
+    }
+
+    if (filteredEvents.length === 0) {
+      eventsContainer.innerHTML = '<p class="empty">Nenhum evento encontrado para este filtro.</p>';
+      eventsContainer.classList.add('empty');
+    } else {
+      // Separar eventos futuros e passados
+      const futureEvents = filteredEvents.filter(event => !isPastEvent(event.data));
+      const pastEvents = filteredEvents.filter(event => isPastEvent(event.data));
+
+      // Renderizar eventos futuros primeiro, depois os passados
+      const allHTML = [
+        ...futureEvents.map(createEventCard),
+        ...pastEvents.map(createEventCard)
+      ].join('');
+
+      eventsContainer.innerHTML = allHTML;
+      eventsContainer.classList.remove('empty');
+    }
+  }
+
+  // Carregar eventos
+  async function loadEvents() {
+    try {
+      const response = await fetch(GOOGLE_SHEETS_URL);
+      
+      if (!response.ok) {
+        throw new Error('Erro ao buscar dados');
+      }
+      
+      const data = await response.json();
+
+      if (loadingMessage) {
+        loadingMessage.style.display = 'none';
+      }
+
+      if (!data.events || data.events.length === 0) {
+        if (eventsContainer) {
+          eventsContainer.innerHTML = '<p class="empty">Nenhum evento agendado no momento.</p>';
+          eventsContainer.classList.add('empty');
+        }
+        return;
+      }
+
+      // Ordenar eventos por data e armazenar
+      allEvents = data.events.sort((a: Event, b: Event) => {
+        return new Date(a.data).getTime() - new Date(b.data).getTime();
+      });
+
+      // Renderizar eventos com filtro atual
+      renderEvents(currentFilter);
+
+    } catch (error) {
+      if (loadingMessage) {
+        loadingMessage.style.display = 'none';
+      }
+      
+      if (errorMessage) {
+        errorMessage.style.display = 'block';
+      }
+
+      // Fallback: mostrar eventos de exemplo
+      if (eventsContainer) {
+        eventsContainer.innerHTML = `
+          <p style="text-align: center; color: #999; padding: 2rem;">
+            Configure a URL do Google Sheets na variável GOOGLE_SHEETS_URL
+          </p>
+        `;
+      }
+    }
+  }
+
+  // Configurar botões de filtro
+  function setupFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter') || 'todos';
+        
+        // Atualizar estado dos botões
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Atualizar filtro e renderizar
+        currentFilter = filter;
+        renderEvents(currentFilter);
+      });
+    });
+  }
+
+  // Carregar eventos ao carregar a página
+  loadEvents();
+  setupFilters();
+</script>

@@ -1,0 +1,310 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Colaboração - Paradoxo">
+  <main>
+    <section class="colaboracao-section">
+      <div class="container">
+        <div class="colaboracao-wrapper">
+          <h1>Colabore com o Paradoxo</h1>
+          <p class="subtitle">Sua contribuição faz a diferença!</p>
+
+          <div class="content">
+            <p>
+              O Paradoxo é um espaço cultural independente que existe graças ao apoio da comunidade.
+              Sua colaboração ajuda a manter nossas atividades e levar arte e cultura para todos.
+            </p>
+
+            <div class="pix-section">
+              <h2>PIX para doação</h2>
+              <div class="pix-info">
+                <div class="pix-key">
+                  <label>Chave PIX:</label>
+                  <div class="key-display">
+                    <span id="pixKey">paradoxo@email.com</span>
+                    <button id="copyBtn" class="copy-btn" title="Copiar chave PIX">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="pix-qr">
+                  <div class="qr-placeholder">
+                    <p>QR Code PIX</p>
+                    <span>Escaneie para doar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="outras-formas">
+              <h3>Outras formas de colaborar</h3>
+              <ul>
+                <li>Participe de nossas oficinas e eventos</li>
+                <li>Divulgue nosso trabalho nas redes sociais</li>
+                <li>Seja voluntário em nossas atividades</li>
+                <li>Doe materiais para nossas oficinas</li>
+              </ul>
+            </div>
+
+            <a href="/livro-assinatura" class="back-btn">Voltar ao livro de assinatura</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    min-height: calc(100vh - 100px);
+  }
+
+  .colaboracao-section {
+    background: #C50066;
+    padding: 4rem 2rem;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .colaboracao-wrapper {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  h1 {
+    color: #C50066;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .content > p {
+    color: #333;
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+
+  .pix-section {
+    background: #f8f8f8;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  .pix-section h2 {
+    color: #C50066;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .pix-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .pix-key {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pix-key label {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .key-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+  }
+
+  .key-display span {
+    flex: 1;
+    font-family: monospace;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .copy-btn {
+    background: #C50066;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover {
+    background: #a3004f;
+  }
+
+  .copy-btn.copied {
+    background: #10b981;
+  }
+
+  .pix-qr {
+    display: flex;
+    justify-content: center;
+  }
+
+  .qr-placeholder {
+    background: white;
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #C50066;
+    text-align: center;
+  }
+
+  .qr-placeholder p {
+    color: #C50066;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .qr-placeholder span {
+    color: #666;
+    font-size: 0.875rem;
+  }
+
+  .outras-formas {
+    padding: 1.5rem;
+    background: #f8f8f8;
+    border-radius: 8px;
+  }
+
+  .outras-formas h3 {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .outras-formas ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .outras-formas li {
+    color: #555;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .outras-formas li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #C50066;
+    font-weight: 700;
+  }
+
+  .back-btn {
+    display: inline-block;
+    background: white;
+    color: #C50066;
+    border: 2px solid #C50066;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .back-btn:hover {
+    background: #C50066;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 0, 102, 0.3);
+  }
+
+  @media (max-width: 640px) {
+    .colaboracao-wrapper {
+      padding: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .pix-section {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  const copyBtn = document.getElementById('copyBtn');
+  const pixKey = document.getElementById('pixKey');
+
+  copyBtn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(pixKey?.textContent || '');
+      
+      copyBtn.classList.add('copied');
+      const originalHTML = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      
+      setTimeout(() => {
+        copyBtn.classList.remove('copied');
+        copyBtn.innerHTML = originalHTML;
+      }, 2000);
+    } catch (err) {
+      console.error('[v0] Erro ao copiar:', err);
+      alert('Chave copiada!');
+    }
+  });
+</script>
+</Layout>

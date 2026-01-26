@@ -81,6 +81,9 @@ import Layout from '../layouts/Layout.astro';
           <div id="successMessage" class="success-message">
             <h2>Obrigado!</h2>
             <p>Sua mensagem foi registrada com sucesso.</p>
+            <a href="/colaboracao" class="colaborar-btn">
+              Colaborar com o Paradoxo
+            </a>
           </div>
         </div>
       </div>
@@ -206,6 +209,25 @@ import Layout from '../layouts/Layout.astro';
   .success-message p {
     color: #666;
     font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .colaborar-btn {
+    display: inline-block;
+    background: #C50066;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+
+  .colaborar-btn:hover {
+    background: #a3004f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 0, 102, 0.3);
   }
 
   @media (max-width: 640px) {
@@ -272,17 +294,6 @@ import Layout from '../layouts/Layout.astro';
       // Mostrar mensagem de sucesso
       form.style.display = 'none';
       successMessage?.classList.add('show');
-
-      // Reset após 4 segundos
-      setTimeout(() => {
-        form.reset();
-        form.style.display = 'flex';
-        successMessage?.classList.remove('show');
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Enviar Assinatura';
-        }
-      }, 4000);
 
     } catch (error) {
       console.error('[v0] Erro ao enviar:', error);
