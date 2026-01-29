@@ -1,167 +1,469 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Amigos - Paradoxo">
-  <section class="page-content">
+<Layout title="Amigos do Paradoxo">
+  <section class="hero">
     <div class="container">
-      <h1>Amigos do Paradoxo</h1>
-      <div class="content">
+      <h1 class="hero-title">
+        Você já se perguntou como a<br />
+        Arte pode <span class="highlight"
+          >Transformar Vidas e<br />
+          Comunidades</span
+        >?
+      </h1>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="content">
+    <div class="container">
+      <h2 class="content-title">A ARTE ACONTECE EM REDE</h2>
+
+      <div class="content-text">
         <p>
-          Conheça nossos parceiros, colaboradores e apoiadores que tornam possível a existência
-          deste espaço cultural na Zona Norte do Rio de Janeiro.
+          Ser <a href="#" class="link">Amigo do Paradoxo</a> é caminhar junto com
+          um espaço independente que acredita na arte como ferramenta de encontro,
+          cuidado e transformação.
         </p>
-        
-        <div class="friends-grid">
-          <div class="friend-card">
-            <div class="friend-icon">🎨</div>
-            <h3>Coletivo Cores Locais</h3>
-            <p>Grupo de artistas da comunidade que promove a arte urbana e grafite.</p>
-          </div>
 
-          <div class="friend-card">
-            <div class="friend-icon">📚</div>
-            <h3>Biblioteca Popular da Usina</h3>
-            <p>Espaço comunitário de leitura e troca de livros.</p>
-          </div>
+        <p>
+          O apoio dos Amigos viabiliza exposições, oficinas, encontros e a
+          manutenção de um espaço acessível para artistas e comunidade na Zona
+          Norte do Rio de Janeiro. Cada contribuição fortalece a continuidade do
+          Paradoxo e garante que a arte siga acontecendo de forma livre, diversa
+          e próxima das pessoas.
+        </p>
 
-          <div class="friend-card">
-            <div class="friend-icon">🎭</div>
-            <h3>Cia Teatral do Norte</h3>
-            <p>Companhia de teatro que leva arte e cultura para toda a região.</p>
-          </div>
+        <p>
+          Ao se tornar Amigo, você apoia não apenas um espaço, mas uma rede de
+          artistas, cujos sonhos estão se tornando reais.
+        </p>
+      </div>
+    </div>
+  </section>
 
-          <div class="friend-card">
-            <div class="friend-icon">🎵</div>
-            <h3>Escola de Música Raízes</h3>
-            <p>Escola que ensina música para crianças e jovens da comunidade.</p>
-          </div>
+  <section class="pricing">
+    <div class="container">
+      <h2 class="pricing-title">COMO APOIAR O PARADOXO?</h2>
+      <p class="pricing-subtitle">
+        Escolha como você pode fazer a diferença e ajudar a arte a florescer em
+        nossa comunidade.
+      </p>
 
-          <div class="friend-card">
-            <div class="friend-icon">🌱</div>
-            <h3>Horta Comunitária Verde Vida</h3>
-            <p>Projeto de agricultura urbana e sustentabilidade.</p>
+      <div class="pricing-grid">
+        <!-- Plan 1 -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <h3 class="plan-name">Fomentador<br />de Eventos</h3>
           </div>
-
-          <div class="friend-card">
-            <div class="friend-icon">🎬</div>
-            <h3>Cineclube do Subúrbio</h3>
-            <p>Exibições de cinema e debates sobre audiovisual.</p>
+          <ul class="benefits-list">
+            <li>Brindes em Nossos Eventos.</li>
+            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+            <li>Desconto de 10% em Exposições e Oficinas.</li>
+            <li>Isenção da Taxa de Inscrição em Exposições.</li>
+          </ul>
+          <div class="price-wrapper">
+            <span class="price-label">Mensal</span>
+            <span class="price">R$50</span>
           </div>
+          <button class="btn btn-primary">Apoiar Este Plano</button>
         </div>
 
-        <div class="cta">
-          <h2>Seja um Amigo</h2>
-          <p>
-            Quer fazer parte dessa rede de apoio cultural? Entre em contato conosco e descubra
-            como você pode contribuir com o Paradoxo.
-          </p>
+        <!-- Plan 2 -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <h3 class="plan-name">Semeador Criativo</h3>
+          </div>
+          <ul class="benefits-list">
+            <li>Brindes em Nossos Eventos.</li>
+            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+            <li>Desconto de 5% em Exposições e Oficinas.</li>
+          </ul>
+          <div class="price-wrapper">
+            <span class="price-label">Mensal</span>
+            <span class="price">R$15</span>
+          </div>
+          <button class="btn btn-secondary">Apoiar Este Plano</button>
         </div>
+
+        <!-- Plan 3 -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <h3 class="plan-name">Impulsionador<br />de Cultura</h3>
+          </div>
+          <ul class="benefits-list">
+            <li>Brindes em Nossos Eventos.</li>
+            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+            <li>Desconto de 10% em Exposições e Oficinas.</li>
+          </ul>
+          <div class="price-wrapper">
+            <span class="price-label">Mensal</span>
+            <span class="price">R$20</span>
+          </div>
+          <button class="btn btn-secondary">Apoiar Este Plano</button>
+        </div>
+
+        <!-- Plan 4 -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <h3 class="plan-name">Mobilizador<br />de Sonhos</h3>
+          </div>
+          <ul class="benefits-list">
+            <li>Brindes em Nossos Eventos.</li>
+            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+            <li>Desconto de 10% em Exposições e Oficinas.</li>
+            <li>Isenção da Taxa de Inscrição em Exposições.</li>
+            <li>Isenção da Taxa de Inscrição em Chamadas Abertas.</li>
+            <li>Desconto de 20% em Exposições e Oficinas.</li>
+          </ul>
+          <div class="price-wrapper">
+            <span class="price-label">Mensal</span>
+            <span class="price">R$70</span>
+          </div>
+          <button class="btn btn-secondary">Apoiar Este Plano</button>
+        </div>
+
+        <!-- Plan 5 -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <h3 class="plan-name">Guardião da<br />Causa</h3>
+          </div>
+          <ul class="benefits-list">
+            <li>Brindes em Nossos Eventos.</li>
+            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+            <li>Desconto de 10% em Exposições e Oficinas.</li>
+            <li>Isenção da Taxa de Inscrição em Exposições.</li>
+            <li>Isenção da Taxa de Inscrição em Chamadas Abertas.</li>
+            <li>Desconto de 50% em Exposições Individuais.</li>
+            <li>Desconto de 30% em Oficinas.</li>
+            <li>Reconhecimento em nossos Materiais.</li>
+          </ul>
+          <div class="price-wrapper">
+            <span class="price-label">Mensal</span>
+            <span class="price">R$100</span>
+          </div>
+          <button class="btn btn-secondary">Apoiar Este Plano</button>
+        </div>
+      </div>
+
+      <p class="pricing-note">
+        Os benefícios completos dos planos Mobilizador e Guardião são liberados
+        após 12 meses de apoio contínuo. Regra pensada para sustentar projetos e
+        artistas.
+      </p>
+
+      <!-- Free Contribution -->
+      <div class="free-contribution">
+        <h3 class="free-title">Contribuição Livre</h3>
+        <p class="free-subtitle">
+          Contribua com o valor que fizer sentido para você
+        </p>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .page-content {
-    min-height: calc(100vh - 200px);
-    padding: 4rem 2rem;
-    background: #f8f8f8;
+  body {
+    line-height: 1.6;
+    color: #fff;
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 100vw;
     margin: 0 auto;
+    padding: 0 2rem;
   }
 
-  h1 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    color: #2b1a3d;
-    margin-bottom: 2rem;
-    letter-spacing: -0.02em;
+  /* Header */
+  .header {
+    background-color: #c50066;
+    padding: 1.5rem 0;
+    position: relative;
   }
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+  /* Hero Section */
+  .hero {
+    background-color: #c50066;
+    padding: 8rem 4rem 6rem 4rem; 
+    min-height: 500px;
+    align-items: left;
+    text-align: left;
   }
 
-  .content > p {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: #333;
-    max-width: 800px;
-  }
-
-  .friends-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .friend-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s, box-shadow 0.2s;
-    text-align: center;
-  }
-
-  .friend-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  }
-
-  .friend-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  .friend-card h3 {
-    font-size: 1.25rem;
+  .hero-title {
+    width: 100%;
+    font-size: 3.5rem;
     font-weight: 700;
-    color: #2b1a3d;
-    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    letter-spacing: -1px;
   }
 
-  .friend-card p {
-    font-size: 1rem;
-    color: #666;
+  .highlight {
+    color: #ffed00;
+  }
+
+  /* Content Section */
+  .content {
+    background-color: #ffffff;
+    padding: 4rem 0;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    margin-top: -2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .content-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  .content-text {
+    max-width: 100%;
+    color: #000;
+    font-size: 1.125rem;
     line-height: 1.6;
   }
 
-  .cta {
-    background: linear-gradient(135deg, #d91b7f 0%, #e91e8c 100%);
-    color: white;
-    padding: 3rem;
-    border-radius: 12px;
-    text-align: center;
-    margin-top: 2rem;
+  .content-text p {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
   }
 
-  .cta h2 {
-    font-size: 2rem;
+  .link {
+    color: #0066cc;
+    text-decoration: none;
     font-weight: 800;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  .pricing {
+    background-color: #ffffff;
+    padding: 0rem;
+  }
+
+  .pricing-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0rem;
+    letter-spacing: -0.5px;
+  }
+
+  .pricing-subtitle {
+    color: #000;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-card {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
     margin-bottom: 1rem;
   }
 
-  .cta p {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    max-width: 700px;
-    margin: 0 auto;
+  .plan-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0rem;
+    margin-top: 0rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    line-height: 1;
   }
 
+  .benefits-list {
+    list-style: none;
+    margin-bottom: 1rem;
+    margin-top: 0rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-grow: 1;
+  }
+
+  .benefits-list li {
+    color: #000;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    text-align: right;
+    padding-right: 0.5rem;
+    line-height: 1;
+    margin-bottom: 0rem;
+  }
+
+  .price-label {
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: 400;
+    margin-bottom: 0rem;
+  }
+
+  .price {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: #000;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 0 0 1rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background-color: #e91e8c;
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background-color: #d1187a;
+  }
+
+  .btn-secondary {
+    background-color: #4d9fff;
+    color: #fff;
+  }
+
+  .btn-secondary:hover {
+    background-color: #3a8aed;
+  }
+
+  .pricing-note {
+    color: #000;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: left;
+    margin: 1rem 0;
+    line-height: 1.6;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .free-contribution {
+    background: #0059ff;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    margin-top: 0rem;
+  }
+
+  .free-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0rem;
+  }
+
+  .free-subtitle {
+    font-size: 1.125rem;
+    color: #fff;
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
-    .friends-grid {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .content-title {
+      font-size: 1.5rem;
+    }
+
+    .pricing-title {
+      font-size: 2rem;
+    }
+
+    .pricing-grid {
       grid-template-columns: 1fr;
     }
 
-    .cta {
-      padding: 2rem 1.5rem;
+    .logo-text {
+      font-size: 1.5rem;
+    }
+
+    .logo-subtitle {
+      font-size: 0.4rem;
+    }
+
+    .container {
+      padding: 0 1.5rem;
+    }
+
+    .hero {
+      padding: 4rem 0 3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.8rem;
+    }
+
+    .content-title {
+      font-size: 1.25rem;
+    }
+
+    .pricing-title {
+      font-size: 1.5rem;
+    }
+
+    .pricing-subtitle {
+      font-size: 1rem;
+    }
+
+    .free-title {
+      font-size: 1.5rem;
+    }
+
+    .free-subtitle {
+      font-size: 1rem;
     }
   }
 </style>
