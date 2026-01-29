@@ -62,6 +62,7 @@ import Layout from "../layouts/Layout.astro";
             <li>Participação em Sorteios de Trabalhos Artísticos.</li>
             <li>Desconto de 10% em Exposições e Oficinas.</li>
             <li>Isenção da Taxa de Inscrição em Exposições.</li>
+            <li>Reconhecimento em nossos Materiais.</li>
           </ul>
           <div class="price-wrapper">
             <span class="price-label">Mensal</span>
@@ -79,6 +80,7 @@ import Layout from "../layouts/Layout.astro";
             <li>Brindes em Nossos Eventos.</li>
             <li>Participação em Sorteios de Trabalhos Artísticos.</li>
             <li>Desconto de 5% em Exposições e Oficinas.</li>
+            <li>Reconhecimento em nossos Materiais.</li>
           </ul>
           <div class="price-wrapper">
             <span class="price-label">Mensal</span>
@@ -96,6 +98,7 @@ import Layout from "../layouts/Layout.astro";
             <li>Brindes em Nossos Eventos.</li>
             <li>Participação em Sorteios de Trabalhos Artísticos.</li>
             <li>Desconto de 10% em Exposições e Oficinas.</li>
+            <li>Reconhecimento em nossos Materiais.</li>
           </ul>
           <div class="price-wrapper">
             <span class="price-label">Mensal</span>
@@ -116,6 +119,7 @@ import Layout from "../layouts/Layout.astro";
             <li>Isenção da Taxa de Inscrição em Exposições.</li>
             <li>Isenção da Taxa de Inscrição em Chamadas Abertas.</li>
             <li>Desconto de 20% em Exposições e Oficinas.</li>
+            <li>Reconhecimento em nossos Materiais.</li>
           </ul>
           <div class="price-wrapper">
             <span class="price-label">Mensal</span>
@@ -186,7 +190,7 @@ import Layout from "../layouts/Layout.astro";
   /* Hero Section */
   .hero {
     background-color: #c50066;
-    padding: 8rem 4rem 6rem 4rem; 
+    padding: 8rem 4rem 6rem 4rem;
     min-height: 500px;
     align-items: left;
     text-align: left;
@@ -407,63 +411,202 @@ import Layout from "../layouts/Layout.astro";
   }
 
   /* Responsive */
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    .hero {
+      padding: 6rem 3rem 4rem 3rem;
+    }
+
     .hero-title {
-      font-size: 2.5rem;
-    }
-
-    .content-title {
-      font-size: 1.5rem;
-    }
-
-    .pricing-title {
-      font-size: 2rem;
+      font-size: 3rem;
     }
 
     .pricing-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
+  }
 
-    .logo-text {
-      font-size: 1.5rem;
-    }
-
-    .logo-subtitle {
-      font-size: 0.4rem;
-    }
-
+  @media (max-width: 768px) {
     .container {
       padding: 0 1.5rem;
     }
 
     .hero {
-      padding: 4rem 0 3rem;
+      padding: 4rem 2rem 3rem 2rem;
+      min-height: 400px;
     }
-  }
 
-  @media (max-width: 480px) {
     .hero-title {
-      font-size: 1.8rem;
+      font-size: 2.25rem;
+    }
+
+    .content {
+      padding: 3rem 0;
+      margin-top: -1.5rem;
     }
 
     .content-title {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .content-text {
+      font-size: 1rem;
+    }
+
+    .pricing {
+      padding: 0rem;
     }
 
     .pricing-title {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
     }
 
     .pricing-subtitle {
       font-size: 1rem;
     }
 
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .plan-name {
+      font-size: 1.8rem;
+    }
+
+    .benefits-list li {
+      font-size: 0.85rem;
+    }
+
+    .price {
+      font-size: 2.5rem;
+    }
+
+    .pricing-note {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .hero {
+      padding: 3rem 1rem 2rem 1rem;
+      min-height: 350px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    .content {
+      padding: 2rem 0;
+      margin-top: -1rem;
+      border-top-left-radius: 1.5rem;
+      border-top-right-radius: 1.5rem;
+    }
+
+    .content-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .content-text {
+      font-size: 0.95rem;
+    }
+
+    .content-text p {
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-subtitle {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-grid {
+      gap: 1rem;
+    }
+
+    .pricing-card {
+      border-radius: 0.75rem;
+    }
+
+    .plan-name {
+      font-size: 1.6rem;
+      padding: 0.75rem;
+    }
+
+    .benefits-list {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .benefits-list li {
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .price-wrapper {
+      padding-right: 0.75rem;
+    }
+
+    .price-label {
+      font-size: 1rem;
+    }
+
+    .price {
+      font-size: 2.2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      border-radius: 0 0 0.75rem 0.75rem;
+    }
+
+    .pricing-note {
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .free-contribution {
+      border-radius: 0.75rem;
+      padding: 1rem;
+    }
+
     .free-title {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
 
     .free-subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero-title {
+      font-size: 1.5rem;
+    }
+
+    .content-title {
+      font-size: 1.1rem;
+    }
+
+    .plan-name {
+      font-size: 1.4rem;
+    }
+
+    .price {
+      font-size: 2rem;
     }
   }
 </style>
