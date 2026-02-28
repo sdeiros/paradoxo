@@ -1,0 +1,467 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export const exposicoes = [
+  {
+    slug: "sauna",
+    titulo: "Sauna Gay Satanista",
+    artista: "Manny Bernabé",
+    periodo: "Fevereiro — Março 2026",
+    status: "Em cartaz",
+    tipo: "Coletiva",
+    descricao:
+      "Uma exploração visual das conexões entre território, memória e identidade na Zona Norte do Rio de Janeiro. A série reúne doze pinturas em acrílica sobre tela que percorrem a paisagem urbana e humana do bairro.",
+    descricaoLonga:
+      "Uma exploração visual das conexões entre território, memória e identidade na Zona Norte do Rio de Janeiro. A série reúne doze pinturas em acrílica sobre tela que percorrem a paisagem urbana e humana do bairro.\n\nCada obra parte de um ponto de vista específico do território — uma esquina, uma janela, um vão entre prédios — e transforma esse fragmento em campo de investigação sobre como a cidade é habitada e como o habitante transforma a cidade.\n\nO trabalho foi produzido ao longo de quatro meses de imersão no espaço do Paradoxo, com pesquisa de campo pela Zona Norte e sessões abertas de pintura ao vivo.",
+    imagem:
+      "https://res.cloudinary.com/ddpvact5z/image/upload/v1769562903/A_exposi%C3%A7%C3%A3o_acabou_mas_cada_hist%C3%B3ria_que_a_gente_viveu_juntos_fica._Gratid%C3%A3o_a_todos_que_senti_3_r3fcbm.webp",
+  },
+  {
+    slug: "pesadelo",
+    titulo: "Pesadelo",
+    artista: "Teste",
+    periodo: "Outubro — Novembro 2025",
+    status: "encerrada",
+    tipo: "Coletiva",
+    descricao: "teste",
+    descricaoLonga: "teste",
+    imagem:
+      "https://res.cloudinary.com/ddpvact5z/image/upload/v1769562992/WhatsApp_Image_2026-01-14_at_23.21.12_hnuefe.jpg",
+  },
+  {
+    slug: "queereres",
+    titulo: "Queereres",
+    artista: "AUTORES VARIADOS",
+    periodo: "Agosto — Setembro 2024",
+    status: "encerrada",
+    tipo: "COLETIVA",
+    descricao: "teste",
+    descricaoLonga: "teste",
+    imagem:
+      "https://res.cloudinary.com/ddpvact5z/image/upload/v1772301565/WhatsApp_Image_2026-02-28_at_14.59.14_fpyswo.jpg",
+  },
+  {
+    slug: "homens-de-axe",
+    titulo: "Homens de Axé — Lançamento Editorial & Exposição Fotográfica",
+    artista: "Vários Artistas",
+    periodo: "Outubro 2023",
+    status: "encerrada",
+    tipo: "Coletiva",
+    descricao: "teste",
+    descricaoLonga: "teste",
+    imagem:
+      "https://res.cloudinary.com/ddpvact5z/image/upload/v1769562990/Passeio_de_fim_de_semana_em_paqueta_riodejaneiro_janlud.jpg",
+  },
+];
+---
+
+<Layout title="Exposições - Paradoxo Casa Atelier">
+  <section class="hero">
+    <div class="hero-container">
+      <h1>
+        Exposições:<br />
+        Arte que Acontece<br />
+        no Espaço e no Tempo.
+      </h1>
+    </div>
+  </section>
+
+  <section class="content-wrapper">
+    <div class="content-section">
+      <div class="container">
+        <p class="intro">
+          Desde 2022, o Paradoxo Casa Atelier apresentou dezenas de exposições
+          individuais e coletivas. Cada mostra é um momento de encontro entre
+          artistas, obras e público — uma experiência que só existe aqui, neste
+          espaço e neste território.
+        </p>
+
+        <!-- Lista de exposições -->
+        <div class="exposicoes-lista">
+          {
+            exposicoes.map((expo, i) => (
+              <a
+                href={`/exposicoes/${expo.slug}`}
+                class={`expo-card${i % 2 === 1 ? " reversed" : ""}`}
+              >
+                <div class="expo-imagem">
+                  <img src={expo.imagem} alt={expo.titulo} loading="lazy" />
+                  <span class={`expo-status ${expo.status}`}>
+                    {expo.status === "encerrada" ? "Encerrada" : "Em cartaz"}
+                  </span>
+                </div>
+                <div class="expo-info">
+                  <div class="expo-meta">
+                    <span class="expo-tipo">{expo.tipo}</span>
+                    <span class="expo-periodo">{expo.periodo}</span>
+                  </div>
+                  <h3 class="expo-titulo">{expo.titulo}</h3>
+                  <p class="expo-artista">{expo.artista}</p>
+                  <p class="expo-descricao">{expo.descricao}</p>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+
+        <!-- CTA final -->
+        <div class="cta-section">
+          <h2>Quer Fazer Parte?</h2>
+          <p>
+            Apoie o Paradoxo como Amigo e contribua para que mais exposições,
+            oficinas e encontros continuem acontecendo na Zona Norte do Rio.
+          </p>
+          <a href="/amigos" class="cta-btn">Ser Amigo do Paradoxo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  body {
+    line-height: 1.6;
+    color: #000;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Hero */
+  .hero {
+    background-color: #c50066;
+    padding: 8rem 0 6rem 0;
+    min-height: 500px;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hero h1 {
+    color: #fff;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin: 0;
+    max-width: 820px;
+  }
+
+  /* Content wrapper */
+  .content-wrapper {
+    background-color: #c50066;
+    padding-top: 0;
+  }
+
+  .content-section {
+    background: #fff;
+    border-radius: 2rem 2rem 0 0;
+    margin-top: -2rem;
+    position: relative;
+    z-index: 1;
+    padding: 4rem 0;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #000;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+  }
+
+  /* Lista de exposições */
+  .exposicoes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .expo-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    border: 2px solid #000;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .expo-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .expo-card.reversed {
+    direction: rtl;
+  }
+
+  .expo-card.reversed > * {
+    direction: ltr;
+  }
+
+  .expo-imagem {
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+  }
+
+  .expo-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .expo-card:hover .expo-imagem img {
+    transform: scale(1.03);
+  }
+
+  .expo-status {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .expo-status.encerrada {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+  }
+
+  .expo-status.em-cartaz {
+    background: #c50066;
+    color: #fff;
+  }
+
+  .expo-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .expo-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .expo-tipo {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #c50066;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .expo-periodo {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666;
+  }
+
+  .expo-titulo {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .expo-artista {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c50066;
+    margin: 0 0 1rem 0;
+  }
+
+  .expo-descricao {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: #000;
+    border-radius: 1rem;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.5px;
+  }
+
+  .cta-section p {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0 auto 2rem auto;
+    max-width: 600px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #c50066;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.875rem 2.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: #a3005a;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero {
+      padding: 6rem 0 4rem 0;
+    }
+    .hero h1 {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .expo-card,
+    .expo-card.reversed {
+      grid-template-columns: 1fr;
+      direction: ltr;
+    }
+    .expo-imagem {
+      min-height: 260px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1.5rem;
+    }
+    .hero {
+      padding: 4rem 0 3rem 0;
+      min-height: 400px;
+    }
+    .hero-container {
+      padding: 0 1.5rem;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+    }
+    .content-section {
+      padding: 3rem 0;
+    }
+    .intro {
+      font-size: 1rem;
+    }
+    .chamada-destaque {
+      padding: 2rem;
+    }
+    .chamada-destaque h2 {
+      font-size: 1.5rem;
+    }
+    .chamada-destaque p {
+      font-size: 1rem;
+    }
+    .section-heading {
+      font-size: 1.5rem;
+    }
+    .expo-titulo {
+      font-size: 1.5rem;
+    }
+    .cta-section {
+      padding: 2rem;
+    }
+    .cta-section h2 {
+      font-size: 1.5rem;
+    }
+    .cta-section p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+    .hero {
+      padding: 3rem 0 2rem 0;
+      min-height: 350px;
+    }
+    .hero-container {
+      padding: 0 1rem;
+    }
+    .hero h1 {
+      font-size: 1.75rem;
+      letter-spacing: -0.5px;
+    }
+    .content-section {
+      padding: 2rem 0;
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+    .intro {
+      font-size: 0.95rem;
+    }
+    .chamada-destaque {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+    }
+    .chamada-destaque h2 {
+      font-size: 1.25rem;
+    }
+    .expo-info {
+      padding: 1.25rem;
+    }
+    .expo-titulo {
+      font-size: 1.3rem;
+    }
+    .cta-section {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+    }
+    .cta-section h2 {
+      font-size: 1.25rem;
+    }
+    .cta-section p {
+      font-size: 0.9rem;
+    }
+    .cta-btn {
+      padding: 0.75rem 2rem;
+      font-size: 0.95rem;
+    }
+  }
+</style>

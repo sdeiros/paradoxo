@@ -25,6 +25,18 @@ import Layout from '../layouts/Layout.astro';
           <button class="filter-btn" data-filter="Oficina">
             Oficinas
           </button>
+          <button class="filter-btn" data-filter="Karaokê">
+            Karaokê
+          </button>
+          <button class="filter-btn" data-filter="Meditação">
+            Meditação
+          </button>
+          <button class="filter-btn" data-filter="Teatro">
+            Teatro
+          </button>
+          <button class="filter-btn" data-filter="Outros">
+            Outros
+          </button>
         </div>
         
         <div id="loadingMessage" class="loading">
@@ -238,6 +250,26 @@ import Layout from '../layouts/Layout.astro';
     color: #15803d;
   }
 
+  :global(.badge-karaoke) {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  :global(.badge-meditacao) {
+    background: #ede9fe;
+    color: #6d28d9;
+  }
+
+  :global(.badge-teatro) {
+    background: #fff7ed;
+    color: #c2410c;
+  }
+
+  :global(.badge-outros) {
+    background: #f1f5f9;
+    color: #475569;
+  }
+
   :global(.event-card.past-event) {
     opacity: 0.5;
   }
@@ -332,8 +364,11 @@ import Layout from '../layouts/Layout.astro';
     nome: string;
     descricao: string;
     data: string;
-    status: 'Roda de Conversa' | 'Exposição' | 'Oficina';
+    status: 'Roda de Conversa' | 'Exposição' | 'Oficina' | 'Karaokê' | 'Meditação' | 'Teatro' | 'Outros';
   }
+
+  const CACHE_KEY = 'paradoxo_agenda_events';
+  const CACHE_TTL = 5 * 60 * 1000; // 5 minutos
 
   const eventsContainer = document.getElementById('eventsContainer');
   const loadingMessage = document.getElementById('loadingMessage');
@@ -360,10 +395,14 @@ import Layout from '../layouts/Layout.astro';
     const normalized = status.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     
     if (normalized.includes('roda')) return 'badge-roda';
-    if (normalized.includes('exposicao') || normalized.includes('exposição')) return 'badge-exposicao';
+    if (normalized.includes('exposicao')) return 'badge-exposicao';
     if (normalized.includes('oficina')) return 'badge-oficina';
+    if (normalized.includes('karaoke')) return 'badge-karaoke';
+    if (normalized.includes('meditacao')) return 'badge-meditacao';
+    if (normalized.includes('teatro')) return 'badge-teatro';
+    if (normalized.includes('outros')) return 'badge-outros';
     
-    return 'badge-roda'; // default
+    return 'badge-outros'; // default
   }
 
   // Função para verificar se o evento já passou
@@ -437,8 +476,34 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 
+  // Carregar do cache local para exibição imediata
+  function loadFromCache(): boolean {
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (!cached) return false;
+      const { events, timestamp } = JSON.parse(cached);
+      const age = Date.now() - timestamp;
+      if (age > CACHE_TTL || !events?.length) return false;
+      allEvents = events;
+      if (loadingMessage) loadingMessage.style.display = 'none';
+      renderEvents(currentFilter);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  // Salvar no cache local
+  function saveToCache(events: Event[]) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ events, timestamp: Date.now() }));
+    } catch { /* sem suporte a localStorage */ }
+  }
+
   // Carregar eventos
   async function loadEvents() {
+    const hadCache = loadFromCache();
+
     try {
       const response = await fetch(GOOGLE_SHEETS_URL);
       
@@ -453,7 +518,7 @@ import Layout from '../layouts/Layout.astro';
       }
 
       if (!data.events || data.events.length === 0) {
-        if (eventsContainer) {
+        if (!hadCache && eventsContainer) {
           eventsContainer.innerHTML = '<p class="empty">Nenhum evento agendado no momento.</p>';
           eventsContainer.classList.add('empty');
         }
@@ -465,6 +530,8 @@ import Layout from '../layouts/Layout.astro';
         return new Date(a.data).getTime() - new Date(b.data).getTime();
       });
 
+      saveToCache(allEvents);
+
       // Renderizar eventos com filtro atual
       renderEvents(currentFilter);
 
@@ -472,18 +539,18 @@ import Layout from '../layouts/Layout.astro';
       if (loadingMessage) {
         loadingMessage.style.display = 'none';
       }
-      
-      if (errorMessage) {
-        errorMessage.style.display = 'block';
-      }
 
-      // Fallback: mostrar eventos de exemplo
-      if (eventsContainer) {
-        eventsContainer.innerHTML = `
-          <p style="text-align: center; color: #999; padding: 2rem;">
-            Configure a URL do Google Sheets na variável GOOGLE_SHEETS_URL
-          </p>
-        `;
+      if (!hadCache) {
+        if (errorMessage) {
+          errorMessage.style.display = 'block';
+        }
+        if (eventsContainer) {
+          eventsContainer.innerHTML = `
+            <p style="text-align: center; color: #999; padding: 2rem;">
+              Configure a URL do Google Sheets na variável GOOGLE_SHEETS_URL
+            </p>
+          `;
+        }
       }
     }
   }

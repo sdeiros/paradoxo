@@ -51,104 +51,117 @@ import Layout from "../layouts/Layout.astro";
         nossa comunidade.
       </p>
 
-      <div class="pricing-grid">
-        <!-- Plan 1 -->
-        <div class="pricing-card">
-          <div class="card-header">
-            <h3 class="plan-name">Fomentador<br />de Eventos</h3>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-btn--prev" id="prevBtn" aria-label="Anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <div class="carousel-track">
+          <div class="pricing-grid" id="pricingGrid">
+           <!-- Plan 3 -->
+            <div class="pricing-card">
+              <div class="card-header">
+                <h3 class="plan-name">Fomentador<br />de Eventos</h3>
+              </div>
+              <ul class="benefits-list">
+                <li>Brindes em Nossos Eventos.</li>
+                <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+                <li>Desconto de 10% em Exposições e Oficinas.</li>
+                <li>Isenção da Taxa de Inscrição em Exposições.</li>
+                <li>Reconhecimento em nossos Materiais.</li>
+              </ul>
+              <div class="price-wrapper">
+                <span class="price-label">Mensal</span>
+                <span class="price">R$50</span>
+              </div>
+              <button class="btn btn-primary">Apoiar Este Plano</button>
+            </div>
+
+            <!-- Plan 1 -->
+            <div class="pricing-card">
+              <div class="card-header">
+                <h3 class="plan-name">Semeador<br />Criativo</h3>
+              </div>
+              <ul class="benefits-list">
+                <li>Brindes em Nossos Eventos.</li>
+                <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+                <li>Desconto de 5% em Exposições e Oficinas.</li>
+                <li>Reconhecimento em nossos Materiais.</li>
+              </ul>
+              <div class="price-wrapper">
+                <span class="price-label">Mensal</span>
+                <span class="price">R$15</span>
+              </div>
+              <button class="btn btn-secondary">Apoiar Este Plano</button>
+            </div>
+
+            <!-- Plan 2 -->
+            <div class="pricing-card">
+              <div class="card-header">
+                <h3 class="plan-name">Impulsionador<br />de Cultura</h3>
+              </div>
+              <ul class="benefits-list">
+                <li>Brindes em Nossos Eventos.</li>
+                <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+                <li>Desconto de 10% em Exposições e Oficinas.</li>
+                <li>Reconhecimento em nossos Materiais.</li>
+              </ul>
+              <div class="price-wrapper">
+                <span class="price-label">Mensal</span>
+                <span class="price">R$20</span>
+              </div>
+              <button class="btn btn-secondary">Apoiar Este Plano</button>
+            </div>
+
+            <!-- Plan 4 -->
+            <div class="pricing-card">
+              <div class="card-header">
+                <h3 class="plan-name">Mobilizador<br />de Sonhos</h3>
+              </div>
+              <ul class="benefits-list">
+                <li>Brindes em Nossos Eventos.</li>
+                <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+                <li>Desconto de 10% em Exposições e Oficinas.</li>
+                <li>Isenção da Taxa de Inscrição em Exposições.</li>
+                <li>Isenção da Taxa de Inscrição em Chamadas Abertas.</li>
+                <li>Desconto de 20% em Exposições e Oficinas.</li>
+                <li>Reconhecimento em nossos Materiais.</li>
+              </ul>
+              <div class="price-wrapper">
+                <span class="price-label">Mensal</span>
+                <span class="price">R$70</span>
+              </div>
+              <button class="btn btn-secondary">Apoiar Este Plano</button>
+            </div>
+
+            <!-- Plan 5 -->
+            <div class="pricing-card">
+              <div class="card-header">
+                <h3 class="plan-name">Guardião da<br />Causa</h3>
+              </div>
+              <ul class="benefits-list">
+                <li>Brindes em Nossos Eventos.</li>
+                <li>Participação em Sorteios de Trabalhos Artísticos.</li>
+                <li>Desconto de 10% em Exposições e Oficinas.</li>
+                <li>Isenção da Taxa de Inscrição em Exposições.</li>
+                <li>Isenção da Taxa de Inscrição em Chamadas Abertas.</li>
+                <li>Desconto de 50% em Exposições Individuais.</li>
+                <li>Desconto de 30% em Oficinas.</li>
+                <li>Reconhecimento em nossos Materiais.</li>
+              </ul>
+              <div class="price-wrapper">
+                <span class="price-label">Mensal</span>
+                <span class="price">R$100</span>
+              </div>
+              <button class="btn btn-secondary">Apoiar Este Plano</button>
+            </div>
+
           </div>
-          <ul class="benefits-list">
-            <li>Brindes em Nossos Eventos.</li>
-            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
-            <li>Desconto de 10% em Exposições e Oficinas.</li>
-            <li>Isenção da Taxa de Inscrição em Exposições.</li>
-            <li>Reconhecimento em nossos Materiais.</li>
-          </ul>
-          <div class="price-wrapper">
-            <span class="price-label">Mensal</span>
-            <span class="price">R$50</span>
-          </div>
-          <button class="btn btn-primary">Apoiar Este Plano</button>
         </div>
 
-        <!-- Plan 2 -->
-        <div class="pricing-card">
-          <div class="card-header">
-            <h3 class="plan-name">Semeador Criativo</h3>
-          </div>
-          <ul class="benefits-list">
-            <li>Brindes em Nossos Eventos.</li>
-            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
-            <li>Desconto de 5% em Exposições e Oficinas.</li>
-            <li>Reconhecimento em nossos Materiais.</li>
-          </ul>
-          <div class="price-wrapper">
-            <span class="price-label">Mensal</span>
-            <span class="price">R$15</span>
-          </div>
-          <button class="btn btn-secondary">Apoiar Este Plano</button>
-        </div>
-
-        <!-- Plan 3 -->
-        <div class="pricing-card">
-          <div class="card-header">
-            <h3 class="plan-name">Impulsionador<br />de Cultura</h3>
-          </div>
-          <ul class="benefits-list">
-            <li>Brindes em Nossos Eventos.</li>
-            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
-            <li>Desconto de 10% em Exposições e Oficinas.</li>
-            <li>Reconhecimento em nossos Materiais.</li>
-          </ul>
-          <div class="price-wrapper">
-            <span class="price-label">Mensal</span>
-            <span class="price">R$20</span>
-          </div>
-          <button class="btn btn-secondary">Apoiar Este Plano</button>
-        </div>
-
-        <!-- Plan 4 -->
-        <div class="pricing-card">
-          <div class="card-header">
-            <h3 class="plan-name">Mobilizador<br />de Sonhos</h3>
-          </div>
-          <ul class="benefits-list">
-            <li>Brindes em Nossos Eventos.</li>
-            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
-            <li>Desconto de 10% em Exposições e Oficinas.</li>
-            <li>Isenção da Taxa de Inscrição em Exposições.</li>
-            <li>Isenção da Taxa de Inscrição em Chamadas Abertas.</li>
-            <li>Desconto de 20% em Exposições e Oficinas.</li>
-            <li>Reconhecimento em nossos Materiais.</li>
-          </ul>
-          <div class="price-wrapper">
-            <span class="price-label">Mensal</span>
-            <span class="price">R$70</span>
-          </div>
-          <button class="btn btn-secondary">Apoiar Este Plano</button>
-        </div>
-
-        <!-- Plan 5 -->
-        <div class="pricing-card">
-          <div class="card-header">
-            <h3 class="plan-name">Guardião da<br />Causa</h3>
-          </div>
-          <ul class="benefits-list">
-            <li>Brindes em Nossos Eventos.</li>
-            <li>Participação em Sorteios de Trabalhos Artísticos.</li>
-            <li>Desconto de 10% em Exposições e Oficinas.</li>
-            <li>Isenção da Taxa de Inscrição em Exposições.</li>
-            <li>Isenção da Taxa de Inscrição em Chamadas Abertas.</li>
-            <li>Desconto de 50% em Exposições Individuais.</li>
-            <li>Desconto de 30% em Oficinas.</li>
-            <li>Reconhecimento em nossos Materiais.</li>
-          </ul>
-          <div class="price-wrapper">
-            <span class="price-label">Mensal</span>
-            <span class="price">R$100</span>
-          </div>
-          <button class="btn btn-secondary">Apoiar Este Plano</button>
-        </div>
+        <button class="carousel-btn carousel-btn--next" id="nextBtn" aria-label="Próximo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
 
       <p class="pricing-note">
@@ -158,12 +171,12 @@ import Layout from "../layouts/Layout.astro";
       </p>
 
       <!-- Free Contribution -->
-      <div class="free-contribution">
+      <a href="/colaboracao" class="free-contribution">
         <h3 class="free-title">Contribuição Livre</h3>
         <p class="free-subtitle">
           Contribua com o valor que fizer sentido para você
         </p>
-      </div>
+      </a>
     </div>
   </section>
 </Layout>
@@ -175,24 +188,16 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .container {
-    max-width: 100vw;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-  }
-
-  /* Header */
-  .header {
-    background-color: #c50066;
-    padding: 1.5rem 0;
-    position: relative;
   }
 
   /* Hero Section */
   .hero {
     background-color: #c50066;
-    padding: 8rem 4rem 6rem 4rem;
+    padding: 8rem 0 6rem 0;
     min-height: 500px;
-    align-items: left;
     text-align: left;
   }
 
@@ -249,115 +254,173 @@ import Layout from "../layouts/Layout.astro";
     text-decoration: underline;
   }
 
+  /* Pricing Section */
   .pricing {
     background-color: #ffffff;
-    padding: 0rem;
+    padding: 2rem 0 3rem 0;
   }
 
   .pricing-title {
     font-size: 2rem;
     font-weight: 700;
     color: #000;
-    margin-bottom: 0rem;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.5px;
   }
 
   .pricing-subtitle {
     color: #000;
     font-size: 1.125rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-weight: 600;
   }
 
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+  /* Carousel */
+  .carousel-wrapper {
+    position: relative;
     margin-bottom: 2rem;
   }
 
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
+    z-index: 10;
+  }
+
+  .carousel-btn--prev {
+    left: 0.5rem;
+  }
+
+  .carousel-btn--next {
+    right: 0.5rem;
+  }
+
+  .carousel-btn:hover {
+    background: #c50066;
+    color: #fff;
+    border-color: #c50066;
+  }
+
+  /* Track hides overflow so cards don't bleed outside */
+  .carousel-track {
+    overflow: hidden;
+  }
+
+  .pricing-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    align-items: stretch;
+    padding-bottom: 4px; /* espaço para sombra no hover não ser cortada */
+  }
+
+  .pricing-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Cards */
   .pricing-card {
     background: #fff;
     border: 2px solid #000;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .pricing-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 
   .card-header {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .plan-name {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-weight: 700;
     color: #000;
-    margin-bottom: 0rem;
-    margin-top: 0rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1rem;
-    line-height: 1;
+    margin: 0;
+    padding: 1rem 1rem 0 1rem;
+    line-height: 1.05;
   }
 
   .benefits-list {
     list-style: none;
-    margin-bottom: 1rem;
-    margin-top: 0rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    margin: 0 0 1rem 0;
+    padding: 0.5rem 1rem 0 1rem;
     flex-grow: 1;
   }
 
   .benefits-list li {
     color: #000;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
+    margin-bottom: 0.45rem;
+    line-height: 1.35;
+    padding-left: 0.85rem;
+    position: relative;
+  }
+
+  .benefits-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #c50066;
+    font-weight: 700;
   }
 
   .price-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: right;
+    align-items: flex-end;
     text-align: right;
-    padding-right: 0.5rem;
+    padding: 0 0.75rem 0.25rem 0.75rem;
     line-height: 1;
-    margin-bottom: 0rem;
   }
 
   .price-label {
-    font-size: 1.2rem;
-    color: #000;
+    font-size: 1rem;
+    color: #555;
     font-weight: 400;
-    margin-bottom: 0rem;
   }
 
   .price {
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     font-weight: 700;
-    margin-bottom: 0.4rem;
     color: #000;
+    margin-bottom: 0.5rem;
   }
 
   .btn {
     width: 100%;
     padding: 0.875rem 1.5rem;
     border: none;
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 0 0 0.875rem 0.875rem;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    margin-top: auto;
   }
 
   .btn-primary {
@@ -380,48 +443,52 @@ import Layout from "../layouts/Layout.astro";
 
   .pricing-note {
     color: #000;
-    margin-bottom: 1.5rem;
     font-weight: 600;
     text-align: left;
-    margin: 1rem 0;
+    margin: 0 0 1.5rem 0;
     line-height: 1.6;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 0.95rem;
   }
 
   .free-contribution {
+    display: block;
     background: #0059ff;
     border-radius: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
     text-align: left;
-    margin-top: 0rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .free-contribution:hover {
+    background: #0047cc;
   }
 
   .free-title {
     font-size: 2rem;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 0rem;
+    margin: 0 0 0.25rem 0;
   }
 
   .free-subtitle {
     font-size: 1.125rem;
     color: #fff;
+    margin: 0;
   }
 
   /* Responsive */
   @media (max-width: 1024px) {
     .hero {
-      padding: 6rem 3rem 4rem 3rem;
+      padding: 6rem 0 4rem 0;
     }
 
     .hero-title {
       font-size: 3rem;
     }
 
-    .pricing-grid {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    .pricing-card {
+      flex: 0 0 240px;
     }
   }
 
@@ -431,7 +498,7 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .hero {
-      padding: 4rem 2rem 3rem 2rem;
+      padding: 4rem 0 3rem 0;
       min-height: 400px;
     }
 
@@ -452,10 +519,6 @@ import Layout from "../layouts/Layout.astro";
       font-size: 1rem;
     }
 
-    .pricing {
-      padding: 0rem;
-    }
-
     .pricing-title {
       font-size: 1.75rem;
     }
@@ -464,25 +527,16 @@ import Layout from "../layouts/Layout.astro";
       font-size: 1rem;
     }
 
-    .pricing-grid {
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
+    .pricing-card {
+      flex: 0 0 calc(85vw - 3rem);
     }
 
     .plan-name {
-      font-size: 1.8rem;
-    }
-
-    .benefits-list li {
-      font-size: 0.85rem;
+      font-size: 1.7rem;
     }
 
     .price {
-      font-size: 2.5rem;
-    }
-
-    .pricing-note {
-      font-size: 0.95rem;
+      font-size: 2.3rem;
     }
   }
 
@@ -492,7 +546,7 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .hero {
-      padding: 3rem 1rem 2rem 1rem;
+      padding: 3rem 0 2rem 0;
       min-height: 350px;
     }
 
@@ -510,67 +564,58 @@ import Layout from "../layouts/Layout.astro";
 
     .content-title {
       font-size: 1.25rem;
-      margin-bottom: 0.75rem;
     }
 
     .content-text {
       font-size: 0.95rem;
     }
 
-    .content-text p {
-      margin-bottom: 1.25rem;
-    }
-
     .pricing-title {
       font-size: 1.4rem;
-      margin-bottom: 0.5rem;
     }
 
     .pricing-subtitle {
       font-size: 0.95rem;
-      margin-bottom: 1.5rem;
     }
 
     .pricing-grid {
-      gap: 1rem;
+      gap: 0.875rem;
     }
 
     .pricing-card {
+      flex: 0 0 calc(100vw - 5rem);
       border-radius: 0.75rem;
     }
 
     .plan-name {
-      font-size: 1.6rem;
-      padding: 0.75rem;
+      font-size: 1.5rem;
+      padding: 0.75rem 0.75rem 0 0.75rem;
     }
 
     .benefits-list {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      margin-bottom: 0.75rem;
+      padding: 0.4rem 0.75rem 0 0.75rem;
     }
 
     .benefits-list li {
-      font-size: 0.8rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.82rem;
     }
 
     .price-wrapper {
-      padding-right: 0.75rem;
+      padding: 0 0.75rem 0.25rem 0.75rem;
     }
 
     .price-label {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .price {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
 
     .btn {
       padding: 0.75rem 1.25rem;
       font-size: 0.95rem;
-      border-radius: 0 0 0.75rem 0.75rem;
+      border-radius: 0 0 0.625rem 0.625rem;
     }
 
     .pricing-note {
@@ -597,16 +642,44 @@ import Layout from "../layouts/Layout.astro";
       font-size: 1.5rem;
     }
 
-    .content-title {
-      font-size: 1.1rem;
-    }
-
     .plan-name {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
     }
 
     .price {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
   }
 </style>
+
+<script>
+  const grid = document.getElementById('pricingGrid') as HTMLElement;
+  const prevBtn = document.getElementById('prevBtn') as HTMLButtonElement;
+  const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
+
+  let currentIndex = 0;
+
+  function getCards(): HTMLElement[] {
+    return Array.from(grid.querySelectorAll('.pricing-card')) as HTMLElement[];
+  }
+
+  function getCardWidth(): number {
+    const cards = getCards();
+    if (!cards.length) return 260;
+    const gap = parseFloat(getComputedStyle(grid).gap) || 20;
+    return cards[0].offsetWidth + gap;
+  }
+
+  function scrollToIndex(index: number): void {
+    const count = getCards().length;
+    currentIndex = ((index % count) + count) % count;
+    grid.scrollTo({ left: currentIndex * getCardWidth(), behavior: 'smooth' });
+  }
+
+  nextBtn.addEventListener('click', () => scrollToIndex(currentIndex + 1));
+  prevBtn.addEventListener('click', () => scrollToIndex(currentIndex - 1));
+
+  grid.addEventListener('scrollend', () => {
+    currentIndex = Math.round(grid.scrollLeft / getCardWidth());
+  });
+</script>
