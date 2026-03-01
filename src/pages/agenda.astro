@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Agenda - Paradoxo">
@@ -8,45 +8,34 @@ import Layout from '../layouts/Layout.astro';
       <h1>Agenda</h1>
       <div class="content">
         <p>
-          Confira nossa programação cultural com exposições, oficinas, apresentações e eventos
-          que acontecem no Paradoxo.
+          Confira nossa programação cultural com exposições, oficinas,
+          apresentações e eventos que acontecem no Paradoxo.
         </p>
 
         <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="todos">
-            Todos
-          </button>
-          <button class="filter-btn" data-filter="Roda de Conversa">
-            Rodas de Conversa
-          </button>
+          <button class="filter-btn active" data-filter="todos"> Todos </button>
           <button class="filter-btn" data-filter="Exposição">
             Exposições
           </button>
-          <button class="filter-btn" data-filter="Oficina">
-            Oficinas
+          <button class="filter-btn" data-filter="Oficina"> Oficinas </button>
+          <button class="filter-btn" data-filter="Roda de Conversa">
+            Rodas de Conversa
           </button>
-          <button class="filter-btn" data-filter="Karaokê">
-            Karaokê
-          </button>
+          <button class="filter-btn" data-filter="Karaokê"> Karaokê </button>
           <button class="filter-btn" data-filter="Meditação">
             Meditação
           </button>
-          <button class="filter-btn" data-filter="Teatro">
-            Teatro
-          </button>
-          <button class="filter-btn" data-filter="Outros">
-            Outros
-          </button>
-        </div>
-        
-        <div id="loadingMessage" class="loading">
-          Carregando eventos...
+          <button class="filter-btn" data-filter="Teatro"> Teatro </button>
+          <button class="filter-btn" data-filter="Outros"> Outros </button>
         </div>
 
+        <div id="loadingMessage" class="loading">Carregando eventos...</div>
+
         <div id="errorMessage" class="error-message" style="display: none;">
-          Não foi possível carregar os eventos. Por favor, tente novamente mais tarde.
+          Não foi possível carregar os eventos. Por favor, tente novamente mais
+          tarde.
         </div>
-        
+
         <div id="eventsContainer" class="events">
           <!-- Os eventos serão carregados dinamicamente aqui -->
         </div>
@@ -59,7 +48,7 @@ import Layout from '../layouts/Layout.astro';
   .page-content {
     min-height: calc(100vh - 12vh);
     padding: 4rem 0;
-    background: #C50066;
+    background: #c50066;
   }
 
   .container {
@@ -118,7 +107,7 @@ import Layout from '../layouts/Layout.astro';
   .filter-btn.active {
     background: white;
     border-color: white;
-    color: #C50066;
+    color: #c50066;
   }
 
   .loading {
@@ -157,7 +146,9 @@ import Layout from '../layouts/Layout.astro';
     padding: 2rem;
     display: flex;
     gap: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
   }
 
   :global(.event-card:hover) {
@@ -166,7 +157,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   :global(.event-date) {
-    background: #C50066;
+    background: #c50066;
     color: white;
     border-radius: 8px;
     padding: 1rem;
@@ -275,18 +266,19 @@ import Layout from '../layouts/Layout.astro';
   }
 
   :global(.event-card.today-event) {
-    border: 3px solid #FFD700;
+    border: 3px solid #ffd700;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
     animation: pulse-border 2s ease-in-out infinite;
   }
 
   :global(.event-card.today-event .event-date) {
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
     animation: glow 2s ease-in-out infinite;
   }
 
   @keyframes pulse-border {
-    0%, 100% {
+    0%,
+    100% {
       box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
     }
     50% {
@@ -295,7 +287,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   @keyframes glow {
-    0%, 100% {
+    0%,
+    100% {
       box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
     50% {
@@ -358,51 +351,75 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
   // CONFIGURAÇÃO - URL do Google Apps Script
-  const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyZ2AspxfwOajpcyfdaypDWVJCy5bbUkSDGipHQl0F2e4HIwv_KcAGa_TZTZCCrlNXYbw/exec';
-  
+  const GOOGLE_SHEETS_URL =
+    "https://script.google.com/macros/s/AKfycbyZ2AspxfwOajpcyfdaypDWVJCy5bbUkSDGipHQl0F2e4HIwv_KcAGa_TZTZCCrlNXYbw/exec";
+
   interface Event {
     nome: string;
     descricao: string;
     data: string;
-    status: 'Roda de Conversa' | 'Exposição' | 'Oficina' | 'Karaokê' | 'Meditação' | 'Teatro' | 'Outros';
+    status:
+      | "Roda de Conversa"
+      | "Exposição"
+      | "Oficina"
+      | "Karaokê"
+      | "Meditação"
+      | "Teatro"
+      | "Outros";
   }
 
-  const CACHE_KEY = 'paradoxo_agenda_events';
+  const CACHE_KEY = "paradoxo_agenda_events";
   const CACHE_TTL = 5 * 60 * 1000; // 5 minutos
 
-  const eventsContainer = document.getElementById('eventsContainer');
-  const loadingMessage = document.getElementById('loadingMessage');
-  const errorMessage = document.getElementById('errorMessage');
-  
+  const eventsContainer = document.getElementById("eventsContainer");
+  const loadingMessage = document.getElementById("loadingMessage");
+  const errorMessage = document.getElementById("errorMessage");
+
   let allEvents: Event[] = [];
-  let currentFilter = 'todos';
+  let currentFilter = "todos";
 
   // Função para formatar a data
   function formatDate(dateString: string) {
     try {
       const date = new Date(dateString);
-      const day = date.getDate().toString().padStart(2, '0');
-      const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+      const day = date.getDate().toString().padStart(2, "0");
+      const months = [
+        "JAN",
+        "FEV",
+        "MAR",
+        "ABR",
+        "MAI",
+        "JUN",
+        "JUL",
+        "AGO",
+        "SET",
+        "OUT",
+        "NOV",
+        "DEZ",
+      ];
       const month = months[date.getMonth()];
       return { day, month };
     } catch (e) {
-      return { day: '??', month: '???' };
+      return { day: "??", month: "???" };
     }
   }
 
   // Função para obter a classe do badge
   function getBadgeClass(status: string): string {
-    const normalized = status.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    
-    if (normalized.includes('roda')) return 'badge-roda';
-    if (normalized.includes('exposicao')) return 'badge-exposicao';
-    if (normalized.includes('oficina')) return 'badge-oficina';
-    if (normalized.includes('karaoke')) return 'badge-karaoke';
-    if (normalized.includes('meditacao')) return 'badge-meditacao';
-    if (normalized.includes('teatro')) return 'badge-teatro';
-    if (normalized.includes('outros')) return 'badge-outros';
-    
-    return 'badge-outros'; // default
+    const normalized = status
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    if (normalized.includes("roda")) return "badge-roda";
+    if (normalized.includes("exposicao")) return "badge-exposicao";
+    if (normalized.includes("oficina")) return "badge-oficina";
+    if (normalized.includes("karaoke")) return "badge-karaoke";
+    if (normalized.includes("meditacao")) return "badge-meditacao";
+    if (normalized.includes("teatro")) return "badge-teatro";
+    if (normalized.includes("outros")) return "badge-outros";
+
+    return "badge-outros"; // default
   }
 
   // Função para verificar se o evento já passou
@@ -426,8 +443,8 @@ import Layout from '../layouts/Layout.astro';
   function createEventCard(event: Event): string {
     const { day, month } = formatDate(event.data);
     const badgeClass = getBadgeClass(event.status);
-    const pastClass = isPastEvent(event.data) ? ' past-event' : '';
-    
+    const pastClass = isPastEvent(event.data) ? " past-event" : "";
+
     return `
       <div class="event-card${pastClass}" data-status="${event.status}">
         <div class="event-date">
@@ -449,30 +466,41 @@ import Layout from '../layouts/Layout.astro';
 
     let filteredEvents = allEvents;
 
-    if (filter !== 'todos') {
-      filteredEvents = allEvents.filter(event => {
-        const normalized = event.status.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        const filterNormalized = filter.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    if (filter !== "todos") {
+      filteredEvents = allEvents.filter((event) => {
+        const normalized = event.status
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        const filterNormalized = filter
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
         return normalized.includes(filterNormalized) || event.status === filter;
       });
     }
 
     if (filteredEvents.length === 0) {
-      eventsContainer.innerHTML = '<p class="empty">Nenhum evento encontrado para este filtro.</p>';
-      eventsContainer.classList.add('empty');
+      eventsContainer.innerHTML =
+        '<p class="empty">Nenhum evento encontrado para este filtro.</p>';
+      eventsContainer.classList.add("empty");
     } else {
       // Separar eventos futuros e passados
-      const futureEvents = filteredEvents.filter(event => !isPastEvent(event.data));
-      const pastEvents = filteredEvents.filter(event => isPastEvent(event.data));
+      const futureEvents = filteredEvents.filter(
+        (event) => !isPastEvent(event.data),
+      );
+      const pastEvents = filteredEvents.filter((event) =>
+        isPastEvent(event.data),
+      );
 
       // Renderizar eventos futuros primeiro, depois os passados
       const allHTML = [
         ...futureEvents.map(createEventCard),
-        ...pastEvents.map(createEventCard)
-      ].join('');
+        ...pastEvents.map(createEventCard),
+      ].join("");
 
       eventsContainer.innerHTML = allHTML;
-      eventsContainer.classList.remove('empty');
+      eventsContainer.classList.remove("empty");
     }
   }
 
@@ -485,7 +513,7 @@ import Layout from '../layouts/Layout.astro';
       const age = Date.now() - timestamp;
       if (age > CACHE_TTL || !events?.length) return false;
       allEvents = events;
-      if (loadingMessage) loadingMessage.style.display = 'none';
+      if (loadingMessage) loadingMessage.style.display = "none";
       renderEvents(currentFilter);
       return true;
     } catch {
@@ -496,8 +524,13 @@ import Layout from '../layouts/Layout.astro';
   // Salvar no cache local
   function saveToCache(events: Event[]) {
     try {
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ events, timestamp: Date.now() }));
-    } catch { /* sem suporte a localStorage */ }
+      localStorage.setItem(
+        CACHE_KEY,
+        JSON.stringify({ events, timestamp: Date.now() }),
+      );
+    } catch {
+      /* sem suporte a localStorage */
+    }
   }
 
   // Carregar eventos
@@ -506,21 +539,22 @@ import Layout from '../layouts/Layout.astro';
 
     try {
       const response = await fetch(GOOGLE_SHEETS_URL);
-      
+
       if (!response.ok) {
-        throw new Error('Erro ao buscar dados');
+        throw new Error("Erro ao buscar dados");
       }
-      
+
       const data = await response.json();
 
       if (loadingMessage) {
-        loadingMessage.style.display = 'none';
+        loadingMessage.style.display = "none";
       }
 
       if (!data.events || data.events.length === 0) {
         if (!hadCache && eventsContainer) {
-          eventsContainer.innerHTML = '<p class="empty">Nenhum evento agendado no momento.</p>';
-          eventsContainer.classList.add('empty');
+          eventsContainer.innerHTML =
+            '<p class="empty">Nenhum evento agendado no momento.</p>';
+          eventsContainer.classList.add("empty");
         }
         return;
       }
@@ -534,15 +568,14 @@ import Layout from '../layouts/Layout.astro';
 
       // Renderizar eventos com filtro atual
       renderEvents(currentFilter);
-
     } catch (error) {
       if (loadingMessage) {
-        loadingMessage.style.display = 'none';
+        loadingMessage.style.display = "none";
       }
 
       if (!hadCache) {
         if (errorMessage) {
-          errorMessage.style.display = 'block';
+          errorMessage.style.display = "block";
         }
         if (eventsContainer) {
           eventsContainer.innerHTML = `
@@ -557,16 +590,16 @@ import Layout from '../layouts/Layout.astro';
 
   // Configurar botões de filtro
   function setupFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter') || 'todos';
-        
+    const filterButtons = document.querySelectorAll(".filter-btn");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.getAttribute("data-filter") || "todos";
+
         // Atualizar estado dos botões
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
         // Atualizar filtro e renderizar
         currentFilter = filter;
         renderEvents(currentFilter);
