@@ -23,9 +23,33 @@ function getEmbedUrl(url: string): string {
 }
 
 const relacionadas = exposicoes.filter((e) => e.slug !== expo.slug).slice(0, 3);
+
+const canonicalUrl = `https://paradoxocasaatelier.com.br/exposicoes/${expo.slug}`;
+const ogTitle = `${expo.titulo} — Paradoxo Casa Atelier`;
+const ogDescription = (expo.descricao ?? "").slice(0, 160);
+const ogImage = expo.imagem;
 ---
 
-<Layout title={`${expo.titulo} — Paradoxo Casa Atelier`}>
+<Layout title={ogTitle}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalUrl} />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Paradoxo Casa Atelier" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={ogImage} />
+  </Fragment>
+
   <!-- Hero com imagem de fundo -->
   <section class="hero">
     <div class="hero-bg">
@@ -823,154 +847,7 @@ const relacionadas = exposicoes.filter((e) => e.slug !== expo.slug).slice(0, 3);
     background: #a3005a;
   }
 
-  /* ── Responsive ── */
-  @media (max-width: 1024px) {
-    .hero {
-      min-height: 500px;
-    }
-    .hero h1 {
-      font-size: 2rem;
-      max-width: 100%;
-    }
-    .bloco-texto p {
-      font-size: 1rem;
-    }
-
-    .relacionadas-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .container {
-      padding: 0 1.5rem;
-    }
-    .hero {
-      min-height: 420px;
-    }
-    .hero-artista {
-      font-size: 0.85rem;
-      max-width: 100%;
-    }
-    .hero-container {
-      padding: 1.5rem 1.5rem 3rem 1.5rem;
-    }
-    .hero h1 {
-      font-size: 1.8rem;
-      max-width: 100%;
-    }
-    .content-section {
-      padding: 3rem 0;
-    }
-    .bloco h2 {
-      font-size: 1.4rem;
-    }
-    .bloco-texto p {
-      font-size: 1rem;
-      max-width: 100%;
-    }
-    .cta-section {
-      padding: 2rem;
-    }
-    .cta-section h2 {
-      font-size: 1.5rem;
-    }
-    .cta-section p {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .relacionadas-grid {
-      grid-template-columns: 1fr;
-    }
-    .galeria-2,
-    .galeria-3,
-    .galeria-4 {
-      grid-template-columns: 1fr;
-    }
-    .galeria-3 .galeria-item:first-child {
-      grid-column: span 1;
-    }
-    .galeria-item img,
-    .galeria-3 .galeria-item:first-child img {
-      height: 240px;
-    }
-  }
-
-  /* ── Lightbox trigger ── */
-  .lb-trigger {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: zoom-in;
-    overflow: hidden;
-    border-radius: inherit;
-  }
-
-  .lb-trigger img {
-    display: block;
-    width: 100%;
-    transition: transform 0.3s ease;
-  }
-
-  .lb-hint {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0);
-    color: #fff;
-    opacity: 0;
-    transition:
-      opacity 0.2s ease,
-      background 0.2s ease;
-    pointer-events: none;
-  }
-
-  .lb-hint svg {
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-    transform: scale(0.8);
-    transition: transform 0.2s ease;
-  }
-
-  .lb-trigger:hover .lb-hint {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.3);
-  }
-
-  .lb-trigger:hover .lb-hint svg {
-    transform: scale(1);
-  }
-
-  .lb-trigger:hover img {
-    transform: scale(1.03);
-  }
-
-  /* Galeria: o trigger herda a altura do item */
-  .galeria-item .lb-trigger img {
-    height: 280px;
-    object-fit: cover;
-  }
-
-  .galeria-3 .galeria-item:first-child .lb-trigger img {
-    height: 420px;
-  }
-
-  /* Imagem única */
-  .bloco-imagem .lb-trigger img {
-    height: auto;
-    max-height: 620px;
-    object-fit: cover;
-    border-radius: 1rem;
-    border: 2px solid #000;
-  }
-
-  /* ── Lightbox dialog ── */
+  /* ── Lightbox ── */
   #lightbox {
     position: fixed;
     inset: 0;
@@ -978,85 +855,170 @@ const relacionadas = exposicoes.filter((e) => e.slug !== expo.slug).slice(0, 3);
     height: 100%;
     max-width: 100%;
     max-height: 100%;
-    margin: 0;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.92);
+    background: rgba(0, 0, 0, 0);
     border: none;
+    padding: 0;
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    box-sizing: border-box;
-  }
-
-  #lightbox::backdrop {
-    background: transparent;
   }
 
   #lightbox[open] {
     display: flex;
+    background: rgba(0, 0, 0, 0.85);
   }
 
   #lb-close {
-    position: fixed;
+    position: absolute;
     top: 1.25rem;
     right: 1.25rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
     color: #fff;
-    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition:
-      background 0.2s ease,
-      border-color 0.2s ease;
+    cursor: pointer;
+    transition: background 0.2s;
     z-index: 10;
   }
 
   #lb-close:hover {
-    background: #c50066;
-    border-color: #c50066;
+    background: rgba(255, 255, 255, 0.25);
   }
 
   #lb-img-wrap {
+    max-width: 80vw;
+    max-height: 82vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 90vw;
-    max-height: 85vh;
   }
 
   #lb-img {
-    display: block;
-    max-width: 100%;
-    max-height: 85vh;
-    width: auto;
-    height: auto;
-    border-radius: 0.5rem;
+    max-width: 80vw;
+    max-height: 78vh;
     object-fit: contain;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border-radius: 0.5rem;
   }
 
   #lb-caption {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
-    font-weight: 500;
+    margin-top: 0.75rem;
     text-align: center;
-    margin: 0;
-    max-width: 600px;
+  }
+
+  /* Hint de zoom */
+  .lb-hint {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.6rem;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .galeria-item button,
+  .bloco-imagem button {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .galeria-item button:hover .lb-hint,
+  .bloco-imagem button:hover .lb-hint {
+    opacity: 1;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .relacionadas-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      max-width: 100%;
+    }
+
+    .content-section {
+      padding: 3rem 0;
+    }
+
+    .bloco h2 {
+      font-size: 1.5rem;
+    }
+
+    .galeria-3,
+    .galeria-2 {
+      grid-template-columns: 1fr;
+    }
+
+    .galeria-3 .galeria-item:first-child {
+      grid-column: span 1;
+    }
+
+    .galeria-3 .galeria-item:first-child img {
+      height: 280px;
+    }
+
+    .relacionadas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+
+    .cta-section h2 {
+      font-size: 1.5rem;
+    }
   }
 
   @media (max-width: 480px) {
-    #lightbox {
-      padding: 1rem;
+    .container {
+      padding: 0 1rem;
     }
-    #lb-img {
-      max-height: 80vh;
+
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .content-section {
+      padding: 2rem 0;
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+
+    .cta-section {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+    }
+
+    .cta-btn {
+      padding: 0.75rem 2rem;
+      font-size: 0.95rem;
     }
   }
 </style>
