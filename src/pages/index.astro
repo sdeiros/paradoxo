@@ -1,34 +1,75 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import globals from "../styles/globals.css";
+
+const eventos = [
+  {
+    titulo: "Sauna Gay Satanista",
+    tipo: "Exposição",
+    de: "21 FEV",
+    ate: "14 MAR",
+    link: null,
+  },
+];
 ---
 
 <Layout title="Paradoxo - Arte que Nasce do Território">
   <section class="hero">
     <div class="container">
       <h1>
-        Arte que Nasce do Território,<br/>
+        Arte que Nasce do Território,<br />
         Cresce em Comunidade.
       </h1>
       <p class="subtitle">
-        Um Espaço Independente de Arte e Cultura na Zona Norte do Rio de Janeiro.
+        Um Espaço Independente de Arte e Cultura na Zona Norte do Rio de
+        Janeiro.
       </p>
+    </div>
+  </section>
+
+  <section class="cartaz">
+    <div class="container">
+      <p class="cartaz-label">Em cartaz</p>
+      <div class="eventos-lista">
+        {
+          eventos.map((ev) => (
+            <div class="evento">
+              <span class="evento-tipo">{ev.tipo}</span>
+              <p class="evento-titulo">{ev.titulo}</p>
+              <p class="evento-datas">
+                {ev.de === ev.ate ? ev.de : `${ev.de} — ${ev.ate}`}
+              </p>
+              {ev.link && (
+                <a
+                  class="evento-link"
+                  href={ev.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver mais →
+                </a>
+              )}
+            </div>
+          ))
+        }
+      </div>
     </div>
   </section>
 </Layout>
 
 <style>
   .hero {
-    background: #C50066;
-    min-height: calc(100vh - 12vh);
+    background: #c50066;
+    min-height: calc(100vh - 8vh);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
     text-align: left;
   }
 
   .container {
-    max-width: 1400px;
+    max-width: 100vw;
     width: 100%;
     margin: 0 auto;
   }
@@ -51,8 +92,87 @@ import Layout from '../layouts/Layout.astro';
 
   @media (max-width: 768px) {
     .hero {
-      min-height: calc(100vh - 15vh);
+      min-height: calc(100vh - 10vh);
       padding: 2rem 1.5rem;
+    }
+
+  }
+
+  /* ── Em cartaz ── */
+  .cartaz {
+    background: #ffffff;
+    padding: 3rem 2rem;
+  }
+
+  .cartaz-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #c50066;
+    margin-bottom: 1rem;
+  }
+
+  .eventos-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+  }
+
+  .evento {
+    flex: 1 1 260px;
+    padding: 1rem 0;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .evento-tipo {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #000000;
+  }
+
+  .evento-titulo {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 500;
+    color: #c50066;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .evento-datas {
+    font-size: 0.85rem;
+    color: #3b3b3b;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .evento-link {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: #c50066;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+  }
+
+  .evento-link:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .cartaz {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .evento {
+      flex: 1 1 100%;
+      padding-right: 0;
     }
   }
 </style>

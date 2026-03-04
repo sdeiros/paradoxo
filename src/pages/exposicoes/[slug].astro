@@ -116,48 +116,76 @@ const relacionadas = exposicoes.filter((e) => e.slug !== expo.slug).slice(0, 3);
                 )}
 
                 {/* ── GALERIA ── */}
-                {bloco.tipo === "galeria" && (
-                  <div class="bloco bloco-galeria">
-                    {bloco.titulo && <h2>{bloco.titulo}</h2>}
-                    <div
-                      class={`galeria-grid galeria-${Math.min(bloco.imagens.length, 4)}`}
-                    >
-                      {bloco.imagens.map((img: any) => (
-                        <figure class="galeria-item">
-                          <button
-                            class="lb-trigger"
-                            data-src={img.src}
-                            data-alt={img.legenda || ""}
-                            aria-label="Ver imagem ampliada"
+                {bloco.tipo === "galeria" && (() => {
+                  const MAX = 3;
+                  const visiveis = bloco.imagens.slice(0, MAX);
+                  const temMais = bloco.imagens.length > MAX;
+                  return (
+                    <div class="bloco bloco-galeria">
+                      {bloco.titulo && <h2>{bloco.titulo}</h2>}
+                      <div
+                        class={`galeria-grid galeria-${Math.min(visiveis.length, 4)}`}
+                      >
+                        {visiveis.map((img: any) => (
+                          <figure class="galeria-item">
+                            <button
+                              class="lb-trigger"
+                              data-src={img.src}
+                              data-alt={img.legenda || ""}
+                              aria-label="Ver imagem ampliada"
+                            >
+                              <img
+                                src={img.src}
+                                alt={img.legenda || ""}
+                                loading="lazy"
+                              />
+                              <span class="lb-hint" aria-hidden="true">
+                                <svg
+                                  width="22"
+                                  height="22"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                >
+                                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                                </svg>
+                              </span>
+                            </button>
+                            {img.legenda && (
+                              <figcaption>{img.legenda}</figcaption>
+                            )}
+                          </figure>
+                        ))}
+                      </div>
+                      {temMais && (
+                        <div class="galeria-ver-mais">
+                          <a
+                            href={`/exposicoes/${expo.slug}/fotos`}
+                            class="ver-mais-btn"
                           >
-                            <img
-                              src={img.src}
-                              alt={img.legenda || ""}
-                              loading="lazy"
-                            />
-                            <span class="lb-hint" aria-hidden="true">
-                              <svg
-                                width="22"
-                                height="22"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                              </svg>
-                            </span>
-                          </button>
-                          {img.legenda && (
-                            <figcaption>{img.legenda}</figcaption>
-                          )}
-                        </figure>
-                      ))}
+                            Ver todas as fotos
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
 
                 {/* ── VÍDEO ── */}
                 {bloco.tipo === "video" && (
@@ -555,6 +583,32 @@ const relacionadas = exposicoes.filter((e) => e.slug !== expo.slug).slice(0, 3);
 
   .galeria-item:hover img {
     transform: scale(1.03);
+  }
+
+  /* Galeria — ver mais */
+  .galeria-ver-mais {
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .ver-mais-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #000;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.65rem 1.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease;
+  }
+
+  .ver-mais-btn:hover {
+    background: #c50066;
   }
 
   /* Vídeo */
