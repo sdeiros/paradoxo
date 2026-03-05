@@ -19,511 +19,564 @@
 import Layout from "../layouts/Layout.astro";
 
 const SHEETS_URL =
-    "https://script.google.com/macros/s/AKfycbxmYKo9R5HEdVSi97ewmZCMCdc3_08wfVI-KzMAPi7Iwtli0jWXgbu-oJC6beEsWTqv3A/exec";
+  "https://script.google.com/macros/s/AKfycbxmYKo9R5HEdVSi97ewmZCMCdc3_08wfVI-KzMAPi7Iwtli0jWXgbu-oJC6beEsWTqv3A/exec";
 ---
 
 <Layout title="Agenda — Galeria">
-    <style is:global>
-        /* ─── Reset ─────────────────────────────────────── */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style is:global>
+    /* ─── Reset ─────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        :root {
-            --magenta: #c50066;
-            --magenta-dk: #c50066;
-            --navy: #1e1b6b;
-            --gray-text: #555;
-            --border: #e0e0e0;
-            --white: #ffffff;
-            --bg: #c50066;
-            --font: "Inter", system-ui, sans-serif;
-        }
+    :root {
+      --magenta: #c50066;
+      --magenta-dk: #c50066;
+      --navy: #1e1b6b;
+      --gray-text: #555;
+      --border: #e0e0e0;
+      --white: #ffffff;
+      --bg: #c50066;
+      --font: "Inter", system-ui, sans-serif;
+    }
 
-        /* ─── Cabeçalho magenta ─────────────────────────── */
-        .agenda-header {
-            background: var(--magenta);
-            padding: 2.5rem 2rem 1.5rem;
-        }
+    /* ─── Cabeçalho magenta ─────────────────────────── */
+    .agenda-header {
+      background: var(--magenta);
+      padding: 2.5rem 2rem 1.5rem;
+    }
 
-        .agenda-title {
-            font-size: clamp(2.4rem, 6vw, 3.5rem);
-            font-weight: 600;
-            color: var(--white);
-            line-height: 1;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.6rem;
-        }
+    .agenda-title {
+      font-size: clamp(2.4rem, 6vw, 3.5rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
 
-        .agenda-subtitle {
-            font-size: 1.14rem;
-            color: rgba(255, 255, 255, 0.92);
-            max-width: 90vw;
-            margin-bottom: 1.75rem;
-        }
+    .agenda-subtitle {
+      font-size: 1.14rem;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 90vw;
+      margin-bottom: 1.75rem;
+    }
 
-        /* ─── Filtros ───────────────────────────────────── */
-        .filtros {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            align-items: center;
-        }
+    /* ─── Filtros ───────────────────────────────────── */
+    .filtros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
 
-        .filtro-btn {
-            font-family: var(--font);
-            font-size: 0.94rem;
-            font-weight: 600;
-            padding: 0.45rem 1.1rem;
-            border-radius: 8px;
-            border: 2px solid rgba(255, 255, 255, 0.75);
-            background: transparent;
-            color: var(--white);
-            cursor: pointer;
-            transition:
-                background 0.15s,
-                color 0.15s,
-                border-color 0.15s;
-            white-space: nowrap;
-        }
+    .filtro-btn {
+      font-family: var(--font);
+      font-size: 0.94rem;
+      font-weight: 600;
+      padding: 0.45rem 1.1rem;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      background: transparent;
+      color: var(--white);
+      cursor: pointer;
+      transition:
+        background 0.15s,
+        color 0.15s,
+        border-color 0.15s;
+      white-space: nowrap;
+    }
 
-        .filtro-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--white);
-        }
+    .filtro-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--white);
+    }
 
-        .filtro-btn.ativo {
-            background: var(--white);
-            color: var(--magenta);
-            border-color: var(--white);
-        }
+    .filtro-btn.ativo {
+      background: var(--white);
+      color: var(--magenta);
+      border-color: var(--white);
+    }
 
-        /* ─── Filtros placeholder (skeleton) ───────────── */
-        #filtros-placeholder {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
+    /* ─── Filtros placeholder (skeleton) ───────────── */
+    #filtros-placeholder {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
 
-        .filtro-skeleton {
-            height: 36px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.25);
-            animation: pulse 1.4s ease-in-out infinite;
-        }
+    .filtro-skeleton {
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.25);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
 
-        /* ─── Área de conteúdo ──────────────────────────── */
-        .agenda-body {
-            padding: 1rem 2rem 3rem;
-            background: #c50066;
-            max-width: 100vw;
-            margin: 0 auto;
-            width: 100%;
-        }
+    /* ─── Área de conteúdo ──────────────────────────── */
+    .agenda-body {
+      padding: 1rem 2rem 3rem;
+      background: #c50066;
+      max-width: 100vw;
+      margin: 0 auto;
+      width: 100%;
+    }
 
-        /* ─── Estado de carregamento ────────────────────── */
-        #estado-carregando {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1.25rem;
-            padding: 3.5rem 0 4rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
+    /* ─── Estado de carregamento ────────────────────── */
+    #estado-carregando {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      padding: 3.5rem 0 4rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
 
-        .spinner {
-            width: 44px;
-            height: 44px;
-            border: 3.5px solid rgba(255, 255, 255, 0.3);
-            border-top-color: var(--white);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 3.5px solid rgba(255, 255, 255, 0.3);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
 
-        .carregando-texto {
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-        }
+    .carregando-texto {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
 
-        /* ─── Skeletons de card ─────────────────────────── */
-        .skeleton-lista {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+    /* ─── Skeletons de card ─────────────────────────── */
+    .skeleton-lista {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-        .skeleton-card {
-            background: rgba(255, 255, 255, 0.18);
-            border-radius: 12px;
-            height: 110px;
-            animation: pulse 1.4s ease-in-out infinite;
-        }
+    .skeleton-card {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      height: 110px;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
 
-        .skeleton-card:nth-child(2) { animation-delay: 0.15s; }
-        .skeleton-card:nth-child(3) { animation-delay: 0.3s; }
-        .skeleton-card:nth-child(4) { animation-delay: 0.45s; }
+    .skeleton-card:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+    .skeleton-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+    .skeleton-card:nth-child(4) {
+      animation-delay: 0.45s;
+    }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
 
-        /* ─── Lista de eventos ──────────────────────────── */
-        .eventos-lista {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+    /* ─── Lista de eventos ──────────────────────────── */
+    .eventos-lista {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-        .evento-item {
-            background: var(--white);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1.25rem;
-            transition: box-shadow 0.15s;
-        }
+    .evento-item {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      transition: box-shadow 0.15s;
+    }
 
-        .evento-item:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
+    .evento-item:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
 
-        .evento-item[data-visivel="false"] {
-            display: none;
-        }
+    .evento-item[data-visivel="false"] {
+      display: none;
+    }
 
-        .evento-item.passado {
-            opacity: 0.35;
-            order: 999;
-        }
+    .evento-item.passado {
+      opacity: 0.35;
+      order: 999;
+    }
 
-        /* ─── Bloco de data ─────────────────────────────── */
-        .evento-data-bloco {
-            flex-shrink: 0;
-            width: 68px;
-            height: 72px;
-            background: var(--magenta);
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            line-height: 1;
-        }
+    /* ─── Bloco de data ─────────────────────────────── */
+    .evento-data-bloco {
+      flex-shrink: 0;
+      width: 68px;
+      height: 72px;
+      background: var(--magenta);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      line-height: 1;
+    }
 
-        .evento-data-dia {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
+    .evento-data-dia {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
 
-        .evento-data-mes {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-top: 2px;
-            opacity: 0.9;
-        }
+    .evento-data-mes {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2px;
+      opacity: 0.9;
+    }
 
-        /* ─── Conteúdo do evento ────────────────────────── */
-        .evento-conteudo {
-            flex: 1;
-            min-width: 0;
-        }
+    /* ─── Conteúdo do evento ────────────────────────── */
+    .evento-conteudo {
+      flex: 1;
+      min-width: 0;
+    }
 
-        .evento-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 0.2rem 0.65rem;
-            border-radius: 50px;
-            margin-bottom: 0.55rem;
-            color: #333;
-        }
+    .evento-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.65rem;
+      border-radius: 50px;
+      margin-bottom: 0.55rem;
+      color: #333;
+    }
 
-        .evento-nome {
-            font-size: clamp(1.4rem, 2.5vw, 1.25rem);
-            font-weight: 700;
-            color: var(--navy);
-            line-height: 1.25;
-            margin-bottom: 0.4rem;
-            letter-spacing: -0.01em;
-        }
+    .evento-nome {
+      font-size: clamp(1.4rem, 2.5vw, 1.25rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
 
-        .evento-descricao {
-            font-size: 0.95rem;
-            color: var(--gray-text);
-            font-weight: 600;
-            line-height: 1.55;
-        }
+    .evento-descricao {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      font-weight: 600;
+      line-height: 1.55;
+    }
 
-        .evento-link {
-            display: inline-block;
-            margin-top: 0.82rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--magenta);
-            text-decoration: none;
-            transition: opacity 0.15s;
-        }
+    .evento-link {
+      display: inline-block;
+      margin-top: 0.82rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--magenta);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
 
-        .evento-link:hover {
-            opacity: 0.75;
-        }
-        .evento-link::after {
-            content: " →";
-        }
+    .evento-link:hover {
+      opacity: 0.75;
+    }
+    .evento-link::after {
+      content: " →";
+    }
 
-        /* ─── Estado vazio / erro ───────────────────────── */
-        .estado {
-            padding: 4rem 0;
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.85);
-        }
+    /* ─── Estado vazio / erro ───────────────────────── */
+    .estado {
+      padding: 4rem 0;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
 
-        .estado-erro {
-            color: #ffb3b3;
-        }
+    .estado-erro {
+      color: #ffb3b3;
+    }
 
-        /* ─── Botão voltar ao topo ─────────────────────── */
-        .scroll-top-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--magenta);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(12px);
-            transition:
-                opacity 0.25s,
-                visibility 0.25s,
-                transform 0.25s,
-                background 0.15s;
-            z-index: 100;
-        }
+    /* ─── Botão voltar ao topo ─────────────────────── */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--magenta);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition:
+        opacity 0.25s,
+        visibility 0.25s,
+        transform 0.25s,
+        background 0.15s;
+      z-index: 100;
+    }
 
-        .scroll-top-btn.visivel {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+    .scroll-top-btn.visivel {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
 
-        .scroll-top-btn:hover {
-            background: var(--magenta-dk);
-        }
+    .scroll-top-btn:hover {
+      background: var(--magenta-dk);
+    }
 
-        .scroll-top-btn svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
+    .scroll-top-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-        /* ─── Responsivo ────────────────────────────────── */
-        @media (max-width: 560px) {
-            .agenda-header {
-                padding: 2rem 1.25rem 1.25rem;
-            }
-            .agenda-body {
-                padding: 1.25rem 1.25rem 2.5rem;
-            }
+    /* ─── Responsivo ────────────────────────────────── */
+    @media (max-width: 560px) {
+      .agenda-header {
+        padding: 2rem 1.25rem 1.25rem;
+      }
+      .agenda-body {
+        padding: 1.25rem 1.25rem 2.5rem;
+      }
 
-            .evento-item {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
+      .evento-item {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
 
-            .evento-data-bloco {
-                width: 100%;
-                height: auto;
-                flex-direction: row;
-                gap: 0.5rem;
-                padding: 0.5rem 1rem;
-                justify-content: flex-start;
-                border-radius: 8px;
-            }
+      .evento-data-bloco {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        justify-content: flex-start;
+        border-radius: 8px;
+      }
 
-            .evento-data-dia {
-                font-size: 1.4rem;
-            }
-        }
-    </style>
+      .evento-data-dia {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 
-    <!-- ── Cabeçalho ──────────────────────────────────── -->
-    <header class="agenda-header">
-        <h1 class="agenda-title">Agenda</h1>
-        <p class="agenda-subtitle">
-            Confira nossa programação cultural com exposições, oficinas,
-            apresentações e eventos que acontecem no Paradoxo.
-        </p>
+  <!-- ── Cabeçalho ──────────────────────────────────── -->
+  <header class="agenda-header">
+    <meta name="theme-color" content="#C50167" />
 
-        <!-- Filtros: aparecem após o carregamento -->
-        <nav
-            class="filtros"
-            id="filtros"
-            aria-label="Filtrar eventos por tipo"
-            style="display:none"
-        ></nav>
+    <h1 class="agenda-title">Agenda</h1>
+    <p class="agenda-subtitle">
+      Confira nossa programação cultural com exposições, oficinas, apresentações
+      e eventos que acontecem no Paradoxo.
+    </p>
 
-        <!-- Skeletons dos filtros enquanto carrega -->
-        <div id="filtros-placeholder" aria-hidden="true">
-            <div class="filtro-skeleton" style="width:72px"></div>
-            <div class="filtro-skeleton" style="width:96px"></div>
-            <div class="filtro-skeleton" style="width:84px"></div>
-            <div class="filtro-skeleton" style="width:80px"></div>
-        </div>
-    </header>
-
-    <!-- ── Corpo ──────────────────────────────────────── -->
-    <main class="agenda-body">
-
-        <!-- Estado de carregamento (spinner + skeletons) -->
-        <div id="estado-carregando" aria-live="polite" aria-label="Carregando eventos">
-            <div class="spinner" aria-hidden="true"></div>
-            <p class="carregando-texto">Buscando eventos...</p>
-            <ul class="skeleton-lista" aria-hidden="true">
-                <li class="skeleton-card"></li>
-                <li class="skeleton-card"></li>
-                <li class="skeleton-card"></li>
-                <li class="skeleton-card"></li>
-            </ul>
-        </div>
-
-        <!-- Lista real de eventos (preenchida via JS) -->
-        <ul
-            class="eventos-lista"
-            id="lista-eventos"
-            aria-label="Lista de eventos"
-            style="display:none"
-        ></ul>
-
-        <!-- Mensagem de erro ou lista vazia -->
-        <p id="estado-mensagem" class="estado" style="display:none"></p>
-    </main>
-
-    <!-- ── Botão voltar ao topo ──────────────────────── -->
-    <button
-        class="scroll-top-btn"
-        id="scroll-top-btn"
-        aria-label="Voltar ao topo"
+    <!-- Filtros: aparecem após o carregamento -->
+    <nav
+      class="filtros"
+      id="filtros"
+      aria-label="Filtrar eventos por tipo"
+      style="display:none"
     >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
+    </nav>
 
-    <script define:vars={{ SHEETS_URL }}>
-        // ── Helpers de data ────────────────────────────────
-        const mesesAbrevMap = {
-            "0": "JAN", "1": "FEV", "2": "MAR", "3": "ABR",
-            "4": "MAI", "5": "JUN", "6": "JUL", "7": "AGO",
-            "8": "SET", "9": "OUT", "10": "NOV", "11": "DEZ",
+    <!-- Skeletons dos filtros enquanto carrega -->
+    <div id="filtros-placeholder" aria-hidden="true">
+      <div class="filtro-skeleton" style="width:72px"></div>
+      <div class="filtro-skeleton" style="width:96px"></div>
+      <div class="filtro-skeleton" style="width:84px"></div>
+      <div class="filtro-skeleton" style="width:80px"></div>
+    </div>
+  </header>
+
+  <!-- ── Corpo ──────────────────────────────────────── -->
+  <main class="agenda-body">
+    <!-- Estado de carregamento (spinner + skeletons) -->
+    <div
+      id="estado-carregando"
+      aria-live="polite"
+      aria-label="Carregando eventos"
+    >
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="carregando-texto">Buscando eventos...</p>
+      <ul class="skeleton-lista" aria-hidden="true">
+        <li class="skeleton-card"></li>
+        <li class="skeleton-card"></li>
+        <li class="skeleton-card"></li>
+        <li class="skeleton-card"></li>
+      </ul>
+    </div>
+
+    <!-- Lista real de eventos (preenchida via JS) -->
+    <ul
+      class="eventos-lista"
+      id="lista-eventos"
+      aria-label="Lista de eventos"
+      style="display:none"
+    >
+    </ul>
+
+    <!-- Mensagem de erro ou lista vazia -->
+    <p id="estado-mensagem" class="estado" style="display:none"></p>
+  </main>
+
+  <!-- ── Botão voltar ao topo ──────────────────────── -->
+  <button
+    class="scroll-top-btn"
+    id="scroll-top-btn"
+    aria-label="Voltar ao topo"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script define:vars={{ SHEETS_URL }}>
+    // ── Helpers de data ────────────────────────────────
+    const mesesAbrevMap = {
+      "0": "JAN",
+      "1": "FEV",
+      "2": "MAR",
+      "3": "ABR",
+      "4": "MAI",
+      "5": "JUN",
+      "6": "JUL",
+      "7": "AGO",
+      "8": "SET",
+      "9": "OUT",
+      "10": "NOV",
+      "11": "DEZ",
+    };
+
+    const abrevMap = {
+      jan: "JAN",
+      fev: "FEV",
+      mar: "MAR",
+      abr: "ABR",
+      mai: "MAI",
+      jun: "JUN",
+      jul: "JUL",
+      ago: "AGO",
+      set: "SET",
+      out: "OUT",
+      nov: "NOV",
+      dez: "DEZ",
+    };
+
+    const mesesIdx = {
+      jan: 0,
+      fev: 1,
+      mar: 2,
+      abr: 3,
+      mai: 4,
+      jun: 5,
+      jul: 6,
+      ago: 7,
+      set: 8,
+      out: 9,
+      nov: 10,
+      dez: 11,
+    };
+
+    function extrairDiaEMes(dataStr) {
+      const d = new Date(dataStr);
+      if (!isNaN(d.getTime())) {
+        return {
+          dia: String(d.getUTCDate()).padStart(2, "0"),
+          mes: mesesAbrevMap[String(d.getUTCMonth())],
         };
-
-        const abrevMap = {
-            jan: "JAN", fev: "FEV", mar: "MAR", abr: "ABR",
-            mai: "MAI", jun: "JUN", jul: "JUL", ago: "AGO",
-            set: "SET", out: "OUT", nov: "NOV", dez: "DEZ",
+      }
+      const partes = dataStr.trim().split(/[\s\-\/]+/);
+      if (partes.length >= 2) {
+        const diaStr = partes[0].padStart(2, "0");
+        const mesKey = partes[1].toLowerCase().slice(0, 3);
+        return {
+          dia: diaStr,
+          mes: abrevMap[mesKey] ?? partes[1].toUpperCase().slice(0, 3),
         };
+      }
+      return { dia: "—", mes: "—" };
+    }
 
-        const mesesIdx = {
-            jan: 0, fev: 1, mar: 2, abr: 3, mai: 4, jun: 5,
-            jul: 6, ago: 7, set: 8, out: 9, nov: 10, dez: 11,
-        };
-
-        function extrairDiaEMes(dataStr) {
-            const d = new Date(dataStr);
-            if (!isNaN(d.getTime())) {
-                return {
-                    dia: String(d.getUTCDate()).padStart(2, "0"),
-                    mes: mesesAbrevMap[String(d.getUTCMonth())],
-                };
-            }
-            const partes = dataStr.trim().split(/[\s\-\/]+/);
-            if (partes.length >= 2) {
-                const diaStr = partes[0].padStart(2, "0");
-                const mesKey = partes[1].toLowerCase().slice(0, 3);
-                return {
-                    dia: diaStr,
-                    mes: abrevMap[mesKey] ?? partes[1].toUpperCase().slice(0, 3),
-                };
-            }
-            return { dia: "—", mes: "—" };
+    function isPassado(dataStr, hoje) {
+      const iso = new Date(dataStr);
+      if (!isNaN(iso.getTime())) {
+        const d = new Date(iso.toISOString().slice(0, 10) + "T00:00:00");
+        return d < hoje;
+      }
+      const partes = dataStr.trim().split(/[\s\-\/]+/);
+      if (partes.length >= 3) {
+        const mesIdx = mesesIdx[partes[1].toLowerCase().slice(0, 3)];
+        if (mesIdx !== undefined) {
+          const d = new Date(Number(partes[2]), mesIdx, Number(partes[0]));
+          return d < hoje;
         }
+      }
+      return false;
+    }
 
-        function isPassado(dataStr, hoje) {
-            const iso = new Date(dataStr);
-            if (!isNaN(iso.getTime())) {
-                const d = new Date(iso.toISOString().slice(0, 10) + "T00:00:00");
-                return d < hoje;
-            }
-            const partes = dataStr.trim().split(/[\s\-\/]+/);
-            if (partes.length >= 3) {
-                const mesIdx = mesesIdx[partes[1].toLowerCase().slice(0, 3)];
-                if (mesIdx !== undefined) {
-                    const d = new Date(Number(partes[2]), mesIdx, Number(partes[0]));
-                    return d < hoje;
-                }
-            }
-            return false;
-        }
+    const badgeColors = {
+      Karaokê: "#F3D0E0",
+      karaokê: "#F3D0E0",
+      KARAOKÊ: "#F3D0E0",
+      Oficina: "#D4EDDA",
+      Oficinas: "#D4EDDA",
+      OFICINA: "#D4EDDA",
+      Exposição: "#D0E8F3",
+      Exposições: "#D0E8F3",
+      Teatro: "#FDE8D0",
+      Meditação: "#E8D0FD",
+      "Rodas de Conversa": "#FDF3D0",
+    };
 
-        const badgeColors = {
-            "Karaokê": "#F3D0E0", "karaokê": "#F3D0E0", "KARAOKÊ": "#F3D0E0",
-            "Oficina": "#D4EDDA", "Oficinas": "#D4EDDA", "OFICINA": "#D4EDDA",
-            "Exposição": "#D0E8F3", "Exposições": "#D0E8F3",
-            "Teatro": "#FDE8D0",
-            "Meditação": "#E8D0FD",
-            "Rodas de Conversa": "#FDF3D0",
-        };
+    function getBadgeColor(tipo) {
+      return badgeColors[tipo] ?? "#E8E8E8";
+    }
 
-        function getBadgeColor(tipo) {
-            return badgeColors[tipo] ?? "#E8E8E8";
-        }
+    function criarCardEvento(ev, hoje) {
+      const { dia, mes } = extrairDiaEMes(ev.data);
+      const passado = ev.data ? isPassado(ev.data, hoje) : false;
+      const badgeBg = getBadgeColor(ev.tipo);
 
-        function criarCardEvento(ev, hoje) {
-            const { dia, mes } = extrairDiaEMes(ev.data);
-            const passado = ev.data ? isPassado(ev.data, hoje) : false;
-            const badgeBg = getBadgeColor(ev.tipo);
+      const li = document.createElement("li");
+      li.className = "evento-item" + (passado ? " passado" : "");
+      li.dataset.tipo = ev.tipo;
+      li.dataset.visivel = "true";
+      li.dataset.data = ev.data;
 
-            const li = document.createElement("li");
-            li.className = "evento-item" + (passado ? " passado" : "");
-            li.dataset.tipo = ev.tipo;
-            li.dataset.visivel = "true";
-            li.dataset.data = ev.data;
-
-            li.innerHTML = `
+      li.innerHTML = `
                 <time class="evento-data-bloco" datetime="${ev.data}" aria-label="${dia} de ${mes}">
                     <span class="evento-data-dia">${dia}</span>
                     <span class="evento-data-mes">${mes}</span>
@@ -536,111 +589,116 @@ const SHEETS_URL =
                 </div>
             `;
 
-            return li;
+      return li;
+    }
+
+    function montarFiltros(tipos) {
+      const filtrosEl = document.getElementById("filtros");
+      const listaEl = document.getElementById("lista-eventos");
+      if (!filtrosEl || !tipos.length) return;
+
+      const btnTodos = document.createElement("button");
+      btnTodos.className = "filtro-btn ativo";
+      btnTodos.dataset.tipo = "todos";
+      btnTodos.setAttribute("aria-pressed", "true");
+      btnTodos.textContent = "Todos";
+      filtrosEl.appendChild(btnTodos);
+
+      tipos.forEach((tipo) => {
+        const btn = document.createElement("button");
+        btn.className = "filtro-btn";
+        btn.dataset.tipo = tipo;
+        btn.setAttribute("aria-pressed", "false");
+        btn.textContent = tipo;
+        filtrosEl.appendChild(btn);
+      });
+
+      filtrosEl.addEventListener("click", (e) => {
+        const btn = e.target.closest(".filtro-btn");
+        if (!btn) return;
+        const tipo = btn.dataset.tipo ?? "todos";
+
+        filtrosEl.querySelectorAll(".filtro-btn").forEach((b) => {
+          const isActive = b === btn;
+          b.classList.toggle("ativo", isActive);
+          b.setAttribute("aria-pressed", String(isActive));
+        });
+
+        listaEl.querySelectorAll(".evento-item").forEach((item) => {
+          const visivel = tipo === "todos" || item.dataset.tipo === tipo;
+          item.dataset.visivel = String(visivel);
+        });
+      });
+    }
+
+    // ── Fetch e renderização ───────────────────────────
+    async function carregarEventos() {
+      const estadoEl = document.getElementById("estado-carregando");
+      const listaEl = document.getElementById("lista-eventos");
+      const mensagemEl = document.getElementById("estado-mensagem");
+      const filtrosEl = document.getElementById("filtros");
+      const filtrosPlaceholder = document.getElementById("filtros-placeholder");
+
+      try {
+        const res = await fetch(SHEETS_URL);
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const json = await res.json();
+        const eventos = json.eventos ?? [];
+
+        // Oculta o estado de carregamento
+        estadoEl.style.display = "none";
+        filtrosPlaceholder.style.display = "none";
+
+        if (eventos.length === 0) {
+          mensagemEl.textContent = "Nenhum evento encontrado.";
+          mensagemEl.style.display = "block";
+          return;
         }
 
-        function montarFiltros(tipos) {
-            const filtrosEl = document.getElementById("filtros");
-            const listaEl = document.getElementById("lista-eventos");
-            if (!filtrosEl || !tipos.length) return;
+        const hoje = new Date(
+          new Date().toISOString().slice(0, 10) + "T00:00:00",
+        );
 
-            const btnTodos = document.createElement("button");
-            btnTodos.className = "filtro-btn ativo";
-            btnTodos.dataset.tipo = "todos";
-            btnTodos.setAttribute("aria-pressed", "true");
-            btnTodos.textContent = "Todos";
-            filtrosEl.appendChild(btnTodos);
+        // Monta os cards
+        eventos.forEach((ev) => {
+          listaEl.appendChild(criarCardEvento(ev, hoje));
+        });
 
-            tipos.forEach((tipo) => {
-                const btn = document.createElement("button");
-                btn.className = "filtro-btn";
-                btn.dataset.tipo = tipo;
-                btn.setAttribute("aria-pressed", "false");
-                btn.textContent = tipo;
-                filtrosEl.appendChild(btn);
-            });
-
-            filtrosEl.addEventListener("click", (e) => {
-                const btn = e.target.closest(".filtro-btn");
-                if (!btn) return;
-                const tipo = btn.dataset.tipo ?? "todos";
-
-                filtrosEl.querySelectorAll(".filtro-btn").forEach((b) => {
-                    const isActive = b === btn;
-                    b.classList.toggle("ativo", isActive);
-                    b.setAttribute("aria-pressed", String(isActive));
-                });
-
-                listaEl.querySelectorAll(".evento-item").forEach((item) => {
-                    const visivel = tipo === "todos" || item.dataset.tipo === tipo;
-                    item.dataset.visivel = String(visivel);
-                });
-            });
+        // Monta os filtros
+        const tipos = [...new Set(eventos.map((e) => e.tipo).filter(Boolean))];
+        if (tipos.length > 0) {
+          montarFiltros(tipos);
+          filtrosEl.style.display = "flex";
         }
 
-        // ── Fetch e renderização ───────────────────────────
-        async function carregarEventos() {
-            const estadoEl = document.getElementById("estado-carregando");
-            const listaEl = document.getElementById("lista-eventos");
-            const mensagemEl = document.getElementById("estado-mensagem");
-            const filtrosEl = document.getElementById("filtros");
-            const filtrosPlaceholder = document.getElementById("filtros-placeholder");
+        listaEl.style.display = "flex";
+      } catch (e) {
+        estadoEl.style.display = "none";
+        filtrosPlaceholder.style.display = "none";
+        mensagemEl.textContent = `Erro ao carregar a agenda: ${e.message}`;
+        mensagemEl.classList.add("estado-erro");
+        mensagemEl.style.display = "block";
+      }
+    }
 
-            try {
-                const res = await fetch(SHEETS_URL);
+    carregarEventos();
 
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-                const json = await res.json();
-                const eventos = (json.eventos ?? []);
-
-                // Oculta o estado de carregamento
-                estadoEl.style.display = "none";
-                filtrosPlaceholder.style.display = "none";
-
-                if (eventos.length === 0) {
-                    mensagemEl.textContent = "Nenhum evento encontrado.";
-                    mensagemEl.style.display = "block";
-                    return;
-                }
-
-                const hoje = new Date(new Date().toISOString().slice(0, 10) + "T00:00:00");
-
-                // Monta os cards
-                eventos.forEach((ev) => {
-                    listaEl.appendChild(criarCardEvento(ev, hoje));
-                });
-
-                // Monta os filtros
-                const tipos = [...new Set(eventos.map((e) => e.tipo).filter(Boolean))];
-                if (tipos.length > 0) {
-                    montarFiltros(tipos);
-                    filtrosEl.style.display = "flex";
-                }
-
-                listaEl.style.display = "flex";
-
-            } catch (e) {
-                estadoEl.style.display = "none";
-                filtrosPlaceholder.style.display = "none";
-                mensagemEl.textContent = `Erro ao carregar a agenda: ${e.message}`;
-                mensagemEl.classList.add("estado-erro");
-                mensagemEl.style.display = "block";
-            }
-        }
-
-        carregarEventos();
-
-        // ── Botão voltar ao topo ───────────────────────────
-        const scrollBtn = document.getElementById("scroll-top-btn");
-        if (scrollBtn) {
-            const LIMIAR = 300;
-            window.addEventListener("scroll", () => {
-                scrollBtn.classList.toggle("visivel", window.scrollY > LIMIAR);
-            }, { passive: true });
-            scrollBtn.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-        }
-    </script>
+    // ── Botão voltar ao topo ───────────────────────────
+    const scrollBtn = document.getElementById("scroll-top-btn");
+    if (scrollBtn) {
+      const LIMIAR = 300;
+      window.addEventListener(
+        "scroll",
+        () => {
+          scrollBtn.classList.toggle("visivel", window.scrollY > LIMIAR);
+        },
+        { passive: true },
+      );
+      scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  </script>
 </Layout>
