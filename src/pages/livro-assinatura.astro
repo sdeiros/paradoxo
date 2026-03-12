@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Livro de Assinatura - Paradoxo">
@@ -13,51 +13,51 @@ import Layout from '../layouts/Layout.astro';
           <form id="assinaturaForm" class="form">
             <div class="form-group">
               <label for="nome">Seu nome *</label>
-              <input 
-                type="text" 
-                id="nome" 
-                name="nome" 
-                required 
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                required
                 placeholder="Digite seu nome completo"
               />
             </div>
 
             <div class="form-group">
-              <label for="contato">Forma de contato *</label>
-              <input 
-                type="text" 
-                id="contato" 
-                name="contato" 
-                required 
-                placeholder="E-mail, telefone ou Instagram"
+              <label for="email">Seu e-mail *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="seu@email.com"
+                pattern="^[A-Za-z0-9._%+-]{2,}@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+                title="Digite um e-mail válido (ex: nome@email.com)"
               />
             </div>
 
             <div class="form-group">
               <label for="gostou">O que você gostou?</label>
-              <textarea 
-                id="gostou" 
-                name="gostou" 
+              <textarea
+                id="gostou"
+                name="gostou"
                 rows="3"
-                placeholder="Conte o que mais chamou sua atenção..."
-              ></textarea>
+                placeholder="Conte o que mais chamou sua atenção..."></textarea>
             </div>
 
             <div class="form-group">
               <label for="mensagem">Quer deixar uma mensagem?</label>
-              <textarea 
-                id="mensagem" 
-                name="mensagem" 
+              <textarea
+                id="mensagem"
+                name="mensagem"
                 rows="4"
-                placeholder="Deixe sua mensagem para nós..."
-              ></textarea>
+                placeholder="Deixe sua mensagem para nós..."></textarea>
             </div>
 
             <div class="form-group">
               <label for="falar">Quer falar com a gente sobre algo?</label>
-              <textarea 
-                id="falar" 
-                name="falar" 
+              <textarea
+                id="falar"
+                name="falar"
                 rows="3"
                 placeholder="Conte o que você gostaria de conversar..."
               ></textarea>
@@ -65,12 +65,11 @@ import Layout from '../layouts/Layout.astro';
 
             <div class="form-group">
               <label for="pergunta">Quer perguntar alguma coisa?</label>
-              <textarea 
-                id="pergunta" 
-                name="pergunta" 
+              <textarea
+                id="pergunta"
+                name="pergunta"
                 rows="3"
-                placeholder="Faça sua pergunta..."
-              ></textarea>
+                placeholder="Faça sua pergunta..."></textarea>
             </div>
 
             <button type="submit" class="submit-btn">
@@ -79,11 +78,88 @@ import Layout from '../layouts/Layout.astro';
           </form>
 
           <div id="successMessage" class="success-message">
-            <h2>Obrigado!</h2>
-            <p>Sua mensagem foi registrada com sucesso.</p>
-            <a href="/colaboracao" class="colaborar-btn">
-              Colaborar com o Paradoxo
+            <div class="success-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h2>Obrigado pela sua assinatura!</h2>
+            <p class="success-text">
+              Sua mensagem foi registrada com sucesso no nosso livro digital.
+            </p>
+
+            <div class="promo-card">
+              <div class="promo-badge">PRESENTE ESPECIAL</div>
+              <h3>Voce ganhou uma promocao!</h3>
+              <p class="promo-description">
+                Shopee por apenas <strong>R$ 7,00</strong>
+              </p>
+              <div class="promo-instructions">
+                <p>
+                  Apresente esta tela na <strong>cozinha</strong> para resgatar seu
+                  premio!
+                </p>
+              </div>
+              <div class="promo-voucher">
+                <span class="voucher-code">LIVRO-PARADOXO</span>
+                <span class="voucher-value">R$ 7,00</span>
+              </div>
+            </div>
+
+            <div class="action-buttons">
+              <a href="/amigo" class="amigo-btn">
+                Apoiar os Amigos do Paradoxo
+              </a>
+              <a href="/colaboracao" class="colaborar-btn">
+                Colaborar com o Paradoxo
+              </a>
+            </div>
+          </div>
+
+          <div id="duplicateMessage" class="duplicate-message">
+            <div class="duplicate-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h2 id="duplicateTitle">Ops! Voce ja assinou nosso livro!</h2>
+            <p id="duplicateReason" class="duplicate-text">
+              Encontramos um cadastro com esse nome ou e-mail.
+            </p>
+            <p class="duplicate-subtext">
+              Se voce acha que isso e um erro, entre em contato conosco:
+            </p>
+            <a href="mailto:contato@paradoxo.com" class="contact-btn">
+              Entrar em contato
             </a>
+            <div class="duplicate-actions">
+              <a href="/colaboracao" class="colaborar-btn">
+                Colaborar com o Paradoxo
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -97,7 +173,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .form-section {
-    background: #C50066;
+    background: #c50066;
     padding: 4rem 2rem;
     min-height: calc(100vh - 100px);
     display: flex;
@@ -118,7 +194,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   h1 {
-    color: #C50066;
+    color: #c50066;
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
@@ -156,14 +232,14 @@ import Layout from '../layouts/Layout.astro';
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1rem;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     transition: border-color 0.2s;
   }
 
   input:focus,
   textarea:focus {
     outline: none;
-    border-color: #C50066;
+    border-color: #c50066;
   }
 
   textarea {
@@ -172,7 +248,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .submit-btn {
-    background: #C50066;
+    background: #c50066;
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -201,7 +277,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .success-message h2 {
-    color: #C50066;
+    color: #c50066;
     font-size: 2rem;
     margin-bottom: 1rem;
   }
@@ -214,7 +290,7 @@ import Layout from '../layouts/Layout.astro';
 
   .colaborar-btn {
     display: inline-block;
-    background: #C50066;
+    background: #c50066;
     color: white;
     text-decoration: none;
     padding: 1rem 2rem;
@@ -224,10 +300,192 @@ import Layout from '../layouts/Layout.astro';
     transition: all 0.3s;
   }
 
-  .colaborar-btn:hover {
+  .colaborar-btn:hover,
+  .amigo-btn:hover {
     background: #a3004f;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(197, 0, 102, 0.3);
+  }
+
+  .success-icon {
+    color: #22c55e;
+    margin-bottom: 1rem;
+  }
+
+  .success-text {
+    color: #666;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .promo-card {
+    background: linear-gradient(135deg, #fff5f8 0%, #ffe0eb 100%);
+    border: 2px dashed #c50066;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    position: relative;
+  }
+
+  .promo-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #c50066;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .promo-card h3 {
+    color: #c50066;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .promo-description {
+    color: #333;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+
+  .promo-description strong {
+    color: #c50066;
+    font-size: 1.5rem;
+  }
+
+  .promo-instructions {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .promo-instructions p {
+    color: #333;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .promo-instructions strong {
+    color: #c50066;
+  }
+
+  .promo-voucher {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border: 2px solid #c50066;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+  }
+
+  .voucher-code {
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #333;
+  }
+
+  .voucher-value {
+    background: #c50066;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .amigo-btn {
+    display: inline-block;
+    background: #c50066;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+
+  .colaborar-btn {
+    background: transparent;
+    border: 2px solid #c50066;
+    color: #c50066;
+  }
+
+  .colaborar-btn:hover {
+    background: #c50066;
+    color: white;
+  }
+
+  /* Estilos da mensagem de email duplicado */
+  .duplicate-message {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .duplicate-message.show {
+    display: block;
+  }
+
+  .duplicate-icon {
+    color: #f59e0b;
+    margin-bottom: 1rem;
+  }
+
+  .duplicate-message h2 {
+    color: #92400e;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .duplicate-text {
+    color: #666;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .duplicate-subtext {
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-btn {
+    display: inline-block;
+    background: #f59e0b;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+
+  .contact-btn:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  }
+
+  .duplicate-actions {
+    margin-top: 1.5rem;
   }
 
   @media (max-width: 640px) {
@@ -246,65 +504,112 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <script>
-  const form = document.getElementById('assinaturaForm') as HTMLFormElement;
-  const successMessage = document.getElementById('successMessage');
-  const submitBtn = form?.querySelector('.submit-btn') as HTMLButtonElement;
+  const form = document.getElementById("assinaturaForm") as HTMLFormElement;
+  const successMessage = document.getElementById("successMessage");
+  const duplicateMessage = document.getElementById("duplicateMessage");
+  const submitBtn = form?.querySelector(".submit-btn") as HTMLButtonElement;
 
   // CONFIGURAÇÃO - URL do Google Apps Script
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxGEoqHhr97hBOX1qxSfdUwgXwgqiKSYpNb8HD3wxUeDEZpIPoOx3rda6X58O6wbLyb/exec';
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbx953Z5rjwS6UECXA8wGSYEMWcwmmY7TNYY6-jDuR6BAdOVmEKFY53_NBonanBSFRMt/exec";
 
-  form?.addEventListener('submit', async (e) => {
+    
+  // Função para verificar se o nome OU email já existem
+  async function checkUserExists(
+    nome: string,
+    email: string,
+  ): Promise<{ exists: boolean; reason?: string }> {
+    try {
+      const response = await fetch(
+        `${APPS_SCRIPT_URL}?action=checkEmail&nome=${encodeURIComponent(nome)}&email=${encodeURIComponent(email)}`,
+      );
+      const result = await response.json();
+      return { exists: result.exists === true, reason: result.reason };
+    } catch (error) {
+      // Em caso de erro na verificação, permitir o envio
+      return { exists: false };
+    }
+  }
+
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
-
-    // Adicionar timestamp
-    const timestamp = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
-
-    const dataCompleta = {
-      ...data,
-      timestamp
-    };
-
-    console.log('[v0] Preparando envio dos dados:', dataCompleta);
-    console.log('[v0] URL do Apps Script:', APPS_SCRIPT_URL);
+    const nome = data.nome as string;
+    const email = data.email as string;
 
     // Desabilitar botão durante envio
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando...';
+      submitBtn.textContent = "Verificando...";
     }
 
     try {
-      console.log('[v0] Enviando requisição...');
-      
-      // Usar no-cors porque Apps Script não suporta CORS preflight
-      await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataCompleta)
+      // Verificar se o nome OU email já existem
+      const checkResult = await checkUserExists(nome, email);
+
+      if (checkResult.exists) {
+        // Atualizar mensagem baseada no motivo
+        const duplicateTitle = document.getElementById("duplicateTitle");
+        const duplicateReason = document.getElementById("duplicateReason");
+
+        if (checkResult.reason === "nome") {
+          if (duplicateTitle)
+            duplicateTitle.textContent = "Ops! Este nome ja foi cadastrado!";
+          if (duplicateReason)
+            duplicateReason.textContent =
+              "Ja existe uma assinatura com esse nome no nosso livro.";
+        } else if (checkResult.reason === "email") {
+          if (duplicateTitle)
+            duplicateTitle.textContent = "Ops! Este e-mail ja foi cadastrado!";
+          if (duplicateReason)
+            duplicateReason.textContent =
+              "Ja existe uma assinatura com esse e-mail no nosso livro.";
+        }
+
+        // Mostrar mensagem de duplicado
+        form.style.display = "none";
+        duplicateMessage?.classList.add("show");
+        return;
+      }
+
+      // Atualizar texto do botão
+      if (submitBtn) {
+        submitBtn.textContent = "Enviando...";
+      }
+
+      // Adicionar timestamp
+      const timestamp = new Date().toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
       });
 
-      console.log('[v0] Dados enviados para Google Sheets');
+      const dataCompleta = {
+        ...data,
+        timestamp,
+      };
+
+      // Enviar dados para a planilha
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataCompleta),
+      });
 
       // Mostrar mensagem de sucesso
-      form.style.display = 'none';
-      successMessage?.classList.add('show');
-
+      form.style.display = "none";
+      successMessage?.classList.add("show");
     } catch (error) {
-      console.error('[v0] Erro ao enviar:', error);
-      alert('Erro ao enviar. Tente novamente.');
-      
+      alert("Erro ao enviar. Tente novamente.");
+
       // Reabilitar botão
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar Assinatura';
+        submitBtn.textContent = "Enviar Assinatura";
       }
     }
   });
 </script>
-</Layout>
