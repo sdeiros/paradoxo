@@ -25,7 +25,7 @@ function getEmbedUrl(url: string): string {
 const relacionadas = exposicoes.filter((e) => e.slug !== expo.slug).slice(0, 3);
 
 const canonicalUrl = `https://paradoxocasaatelier.com.br/exposicoes/${expo.slug}`;
-const ogTitle = `${expo.titulo} — Paradoxo Casa Atelier`;
+const ogTitle = `${expo.titulo} — Paradoxo`;
 const ogDescription = (expo.descricao ?? "").slice(0, 160);
 const ogImage = expo.imagem;
 ---
