@@ -57,4 +57,23 @@ const { title } = Astro.props;
   main {
     flex: 1;
   }
+
+  .form input,
+  .form textarea {
+    background-color: #f1f1f1; /* estado inicial (opcional) */
+    color: #333;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  /* quando clica ou começa a digitar */
+  .form input:focus,
+  .form textarea:focus,
+  .form input:not(:placeholder-shown),
+  .form textarea:not(:placeholder-shown) {
+    background-color: #fff;
+    color: #000;
+    border-color: #ff2a7f; /* opcional, combina com teu rosa */
+    outline: none;
+  }
 </style>
