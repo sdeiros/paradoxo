@@ -6,10 +6,8 @@ import Layout from "../layouts/Layout.astro";
   <section class="hero">
     <div class="container">
       <h1 class="hero-title">
-        Você já se perguntou como a
-        Arte pode <span class="highlight"
-          >Transformar Vidas e
-          Comunidades</span
+        Você já se perguntou como a Arte pode <span class="highlight"
+          >Transformar Vidas e Comunidades</span
         >?
       </h1>
     </div>
@@ -52,13 +50,28 @@ import Layout from "../layouts/Layout.astro";
       </p>
 
       <div class="carousel-wrapper">
-        <button class="carousel-btn carousel-btn--prev" id="prevBtn" aria-label="Anterior">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <button
+          class="carousel-btn carousel-btn--prev"
+          id="prevBtn"
+          aria-label="Anterior"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><polyline points="15 18 9 12 15 6"></polyline></svg
+          >
         </button>
 
         <div class="carousel-track">
           <div class="pricing-grid" id="pricingGrid">
-           <!-- Plan 3 -->
+            <!-- Plan 1 -->
             <div class="pricing-card">
               <div class="card-header">
                 <h3 class="plan-name">Fomentador<br />de Eventos</h3>
@@ -74,10 +87,14 @@ import Layout from "../layouts/Layout.astro";
                 <span class="price-label">Mensal</span>
                 <span class="price">R$50</span>
               </div>
-              <button class="btn btn-primary">Apoiar Este Plano</button>
+              <button
+                class="btn btn-primary"
+                onclick="window.open('https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=36eb04e8714b46e7a8b64453dc25d7b0', '_blank')"
+                >Apoiar Este Plano</button
+              >
             </div>
 
-            <!-- Plan 1 -->
+            <!-- Plan 2 -->
             <div class="pricing-card">
               <div class="card-header">
                 <h3 class="plan-name">Semeador<br />Criativo</h3>
@@ -92,10 +109,14 @@ import Layout from "../layouts/Layout.astro";
                 <span class="price-label">Mensal</span>
                 <span class="price">R$15</span>
               </div>
-              <button class="btn btn-secondary">Apoiar Este Plano</button>
+              <button
+                class="btn btn-secondary"
+                onclick="window.open('https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=e9aa11c29f1747cabf3bb55c77689d27', '_blank')"
+                >Apoiar Este Plano</button
+              >
             </div>
 
-            <!-- Plan 2 -->
+            <!-- Plan 3 -->
             <div class="pricing-card">
               <div class="card-header">
                 <h3 class="plan-name">Impulsionador<br />de Cultura</h3>
@@ -110,7 +131,11 @@ import Layout from "../layouts/Layout.astro";
                 <span class="price-label">Mensal</span>
                 <span class="price">R$20</span>
               </div>
-              <button class="btn btn-secondary">Apoiar Este Plano</button>
+              <button
+                class="btn btn-secondary"
+                onclick="window.open('https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=b42c15e9519346eeb5360cacfe9f86d3', '_blank')"
+                >Apoiar Este Plano</button
+              >
             </div>
 
             <!-- Plan 4 -->
@@ -131,7 +156,11 @@ import Layout from "../layouts/Layout.astro";
                 <span class="price-label">Mensal</span>
                 <span class="price">R$70</span>
               </div>
-              <button class="btn btn-secondary">Apoiar Este Plano</button>
+              <button
+                class="btn btn-secondary"
+                onclick="window.open('https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=b008776ca5dd438e9898ed0ea8e9266f', '_blank')"
+                >Apoiar Este Plano</button
+              >
             </div>
 
             <!-- Plan 5 -->
@@ -153,14 +182,32 @@ import Layout from "../layouts/Layout.astro";
                 <span class="price-label">Mensal</span>
                 <span class="price">R$100</span>
               </div>
-              <button class="btn btn-secondary">Apoiar Este Plano</button>
+              <button
+                class="btn btn-secondary"
+                onclick="window.open('https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=25377a32df4c4cbb8d164a05fd0f9a9f', '_blank')"
+                >Apoiar Este Plano</button
+              >
             </div>
-
           </div>
         </div>
 
-        <button class="carousel-btn carousel-btn--next" id="nextBtn" aria-label="Próximo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <button
+          class="carousel-btn carousel-btn--next"
+          id="nextBtn"
+          aria-label="Próximo"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><polyline points="9 18 15 12 9 6"></polyline></svg
+          >
         </button>
       </div>
 
@@ -215,7 +262,7 @@ import Layout from "../layouts/Layout.astro";
   /* Content Section */
   .content {
     background-color: #ffffff;
-    padding: 4rem 0;
+    padding: 4rem 0rem;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
     margin-top: -2rem;
@@ -227,7 +274,7 @@ import Layout from "../layouts/Layout.astro";
     font-size: 2rem;
     font-weight: 700;
     color: #000;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     letter-spacing: -0.5px;
   }
 
@@ -236,10 +283,12 @@ import Layout from "../layouts/Layout.astro";
     color: #000;
     font-size: 1.125rem;
     line-height: 1.6;
+    margin-bottom: 0rem;
+    padding: 0rem;
   }
 
   .content-text p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
     font-weight: 600;
   }
 
@@ -256,21 +305,23 @@ import Layout from "../layouts/Layout.astro";
   /* Pricing Section */
   .pricing {
     background-color: #ffffff;
-    padding: 2rem 0 3rem 0;
+    padding: 2rem 0 4rem 0;
   }
 
   .pricing-title {
     font-size: 2rem;
     font-weight: 700;
+    margin-bottom: 0.2rem;
+    margin-top: 0rem;
+    padding-top: 0rem;
     color: #000;
-    margin-bottom: 0.5rem;
     letter-spacing: -0.5px;
   }
 
   .pricing-subtitle {
     color: #000;
     font-size: 1.125rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.6rem;
     font-weight: 600;
   }
 
@@ -294,7 +345,9 @@ import Layout from "../layouts/Layout.astro";
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
     z-index: 10;
   }
 
@@ -342,7 +395,9 @@ import Layout from "../layouts/Layout.astro";
     flex-direction: column;
     flex: 0 0 260px;
     scroll-snap-align: start;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .pricing-card:hover {
@@ -652,14 +707,14 @@ import Layout from "../layouts/Layout.astro";
 </style>
 
 <script>
-  const grid = document.getElementById('pricingGrid') as HTMLElement;
-  const prevBtn = document.getElementById('prevBtn') as HTMLButtonElement;
-  const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
+  const grid = document.getElementById("pricingGrid") as HTMLElement;
+  const prevBtn = document.getElementById("prevBtn") as HTMLButtonElement;
+  const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
 
   let currentIndex = 0;
 
   function getCards(): HTMLElement[] {
-    return Array.from(grid.querySelectorAll('.pricing-card')) as HTMLElement[];
+    return Array.from(grid.querySelectorAll(".pricing-card")) as HTMLElement[];
   }
 
   function getCardWidth(): number {
@@ -672,13 +727,13 @@ import Layout from "../layouts/Layout.astro";
   function scrollToIndex(index: number): void {
     const count = getCards().length;
     currentIndex = ((index % count) + count) % count;
-    grid.scrollTo({ left: currentIndex * getCardWidth(), behavior: 'smooth' });
+    grid.scrollTo({ left: currentIndex * getCardWidth(), behavior: "smooth" });
   }
 
-  nextBtn.addEventListener('click', () => scrollToIndex(currentIndex + 1));
-  prevBtn.addEventListener('click', () => scrollToIndex(currentIndex - 1));
+  nextBtn.addEventListener("click", () => scrollToIndex(currentIndex + 1));
+  prevBtn.addEventListener("click", () => scrollToIndex(currentIndex - 1));
 
-  grid.addEventListener('scrollend', () => {
+  grid.addEventListener("scrollend", () => {
     currentIndex = Math.round(grid.scrollLeft / getCardWidth());
   });
 </script>
