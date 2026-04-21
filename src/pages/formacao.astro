@@ -1750,6 +1750,7 @@ const oficinas = atividades.filter((a) => a.tipo === "oficina");
     }
 
     .atividades-grid {
+      width: 50vw;
       grid-template-columns: 1fr;
     }
 
@@ -1758,7 +1759,8 @@ const oficinas = atividades.filter((a) => a.tipo === "oficina");
     }
 
     .atividade-titulo {
-      font-size: 1.25rem;
+      font-size: 1rem;
+      width-min: 50vw;
     }
 
     .detalhe-header {
@@ -1791,12 +1793,12 @@ const oficinas = atividades.filter((a) => a.tipo === "oficina");
     }
 
     :global(.professor-foto-wrapper) {
-      width: 80px;
+      width: 90px;
       min-width: 80px;
-      max-width: 80px;
-      height: 80px;
-      min-height: 80px;
-      max-height: 80px;
+      max-width: 90px;
+      height: 120px;
+      min-height: 100px;
+      max-height: 280px;
       border-radius: 0.5rem;
     }
 
