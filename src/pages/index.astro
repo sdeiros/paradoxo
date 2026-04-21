@@ -1,178 +1,524 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import globals from "../styles/globals.css";
+import { atividades } from "./formacao.astro";
 
-const eventos = [
-  {
-    titulo: "",
-    tipo: "Exposição",
-    de: "",
-    ate: "",
-    link: null,
-  },
-];
+const atividadesDestaque = atividades.filter((a) => a.status === "aberta").slice(0, 2);
+
+const statusLabels = {
+  aberta: "Inscrições abertas",
+  "em-breve": "Inscrições em breve",
+  encerrada: "Inscrições encerradas",
+};
+
+const nivelLabels = {
+  iniciante: "Iniciante",
+  intermediario: "Intermediário",
+  avancado: "Avançado",
+  todos: "Todos os níveis",
+};
 ---
 
 <Layout title="Paradoxo Casa Atelier">
   <section class="hero">
-    <div class="container">
-      <h1>
-        Arte que Nasce do Território,<br />
-        Cresce em Comunidade.
-      </h1>
-      <p class="subtitle">
-        Um Espaço Independente de Arte e Cultura na Zona Norte do Rio de
-        Janeiro.
+    <div class="hero-container">
+      <h1>Paradoxo Casa Atelier</h1>
+      <p>
+        Um espaço independente de arte e cultura na Zona Norte do Rio de Janeiro.
+        Exposições, cursos e encontros que aproximam arte, território e comunidade.
       </p>
+      <div class="hero-actions">
+        <a href="/formacao" class="btn-primary">Ver Cursos</a>
+        <a href="/sobre" class="btn-secondary">Sobre o Espaço</a>
+      </div>
     </div>
   </section>
 
-  {
-    /* 
-<section class="cartaz">
-  <div class="container">
-    <p class="cartaz-label">Em cartaz</p>
-    <div class="eventos-lista">
-      {
-        eventos.map((ev) => (
-          <div class="evento">
-            <span class="evento-tipo">{ev.tipo}</span>
-            <p class="evento-titulo">{ev.titulo}</p>
-            <p class="evento-datas">
-              {ev.de === ev.ate ? ev.de : `${ev.de} — ${ev.ate}`}
-            </p>
-            {ev.link && (
-              <a
-                class="evento-link"
-                href={ev.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver mais →
-              </a>
-            )}
-          </div>
-        ))
-      }
+  <section class="content-wrapper">
+    <div class="content-section">
+      <div class="container">
+        {atividadesDestaque.length > 0 && (
+          <>
+            <div class="section-header">
+              <h2>Inscrições Abertas</h2>
+              <a href="/formacao" class="ver-todos">Ver todas as atividades</a>
+            </div>
+
+            <div class="cursos-preview">
+              {atividadesDestaque.map((atividade) => (
+                <a href={`/formacao?atividade=${atividade.slug}`} class="curso-card">
+                  <div class="curso-imagem">
+                    <img src={atividade.imagem} alt={atividade.titulo} loading="lazy" />
+                    <div class="curso-badges">
+                      <span class={`curso-status status-${atividade.status}`}>
+                        {statusLabels[atividade.status]}
+                      </span>
+                      <span class={`curso-tipo tipo-${atividade.tipo}`}>
+                        {atividade.tipo === 'curso' ? 'Curso' : 'Oficina'}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="curso-info">
+                    <h3 class="curso-titulo">{atividade.titulo}</h3>
+                    <p class="curso-descricao">{atividade.descricao}</p>
+                    <div class="curso-meta">
+                      <span class={`curso-nivel nivel-${atividade.nivel}`}>
+                        {nivelLabels[atividade.nivel]}
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </>
+        )}
+
+        <div class="cta-section">
+          <h2>A Casa Onde a Arte Acontece</h2>
+          <p>
+            Desde 2022, o Paradoxo é ponto de encontro entre artistas, comunidade
+            e pessoas interessadas em criar, aprender e experimentar a arte.
+          </p>
+          <a href="/sobre" class="cta-btn">Conheça o Paradoxo</a>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-*/
-  }
+  </section>
 </Layout>
 
 <style>
-  .hero {
-    background: #c50066;
-    min-height: calc(100vh - 8vh);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
+  :global(body) {
+    margin: 0;
+    line-height: 1.6;
+    color: #000;
   }
 
   .container {
-    max-width: 1350px;
-    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
-  h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 600;
-    color: white;
-    line-height: 1;
-    letter-spacing: -0.02em;
+  .hero {
+    background-color: #c50066;
+    padding: 10rem 0 6rem 0;
+    min-height: 600px;
   }
 
-  .subtitle {
-    font-size: clamp(1.12rem, 1.4vw, 1.4rem);
-    color: white;
-    font-weight: 300;
-    opacity: 0.95;
+  .hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
-  @media (max-width: 768px) {
-    .hero {
-      min-height: calc(100vh - 10vh);
-      padding: 2rem 1.5rem;
-    }
-  }
-
-  /* ── Em cartaz ── */
-  .cartaz {
-    background: #ffffff;
-    padding: 3rem 2rem;
-  }
-
-  .cartaz-label {
-    font-size: 0.75rem;
+  .hero h1 {
+    color: #fff;
+    font-size: 4rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #c50066;
-    margin-bottom: 1rem;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin: 0 0 1.5rem 0;
+    max-width: 700px;
   }
 
-  .eventos-lista {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1px;
-  }
-
-  .evento {
-    flex: 1 1 260px;
-    padding: 1rem 0;
-    padding-right: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .evento-tipo {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #000000;
-  }
-
-  .evento-titulo {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+  .hero p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.25rem;
     font-weight: 500;
+    max-width: 550px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: #fff;
     color: #c50066;
-    line-height: 1.2;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.875rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.875rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    border: 2px solid #fff;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background: #fff;
+    color: #c50066;
+  }
+
+  .content-wrapper {
+    background-color: #c50066;
+    padding-top: 0;
+  }
+
+  .content-section {
+    background: #fff;
+    border-radius: 2rem 2rem 0 0;
+    margin-top: -2rem;
+    position: relative;
+    z-index: 1;
+    padding: 4rem 0;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: -0.5px;
     margin: 0;
   }
 
-  .evento-datas {
-    font-size: 0.85rem;
-    color: #3b3b3b;
-    margin: 0;
-    font-weight: 300;
-  }
-
-  .evento-link {
-    margin-top: 0.6rem;
-    font-size: 0.8rem;
+  .ver-todos {
+    font-size: 1rem;
+    font-weight: 600;
     color: #c50066;
     text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    transition: opacity 0.15s;
+    transition: opacity 0.2s ease;
   }
 
-  .evento-link:hover {
-    opacity: 0.7;
+  .ver-todos:hover {
+    opacity: 0.8;
+  }
+
+  .cursos-preview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .curso-card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #000;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .curso-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .curso-imagem {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+  }
+
+  .curso-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .curso-card:hover .curso-imagem img {
+    transform: scale(1.03);
+  }
+
+  .curso-badges {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .curso-status {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    background: #c50066;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+
+  .curso-status.status-aberta {
+    background: #16a34a;
+  }
+
+  .curso-status.status-em-breve {
+    background: #f59e0b;
+    color: #111;
+  }
+
+  .curso-status.status-encerrada {
+    background: #dc2626;
+  }
+
+  .curso-tipo {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .tipo-curso {
+    background: #0066cc;
+    color: #fff;
+  }
+
+  .tipo-oficina {
+    background: #00a86b;
+    color: #fff;
+  }
+
+  .curso-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .curso-titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .curso-descricao {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    flex: 1;
+  }
+
+  .curso-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+
+  .curso-nivel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666;
+  }
+
+  .nivel-iniciante {
+    color: #16a34a;
+  }
+
+  .nivel-intermediario {
+    color: #d97706;
+  }
+
+  .nivel-avancado {
+    color: #dc2626;
+  }
+
+  .nivel-todos {
+    color: #2563eb;
+  }
+
+  .curso-preco {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c50066;
+  }
+
+  .cta-section {
+    background: #000;
+    border-radius: 1rem;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.5px;
+  }
+
+  .cta-section p {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0 auto 2rem auto;
+    max-width: 600px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #c50066;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.875rem 2.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: #a3005a;
+  }
+
+  @media (max-width: 1024px) {
+    .hero {
+      padding: 8rem 0 4rem 0;
+      min-height: 500px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+    }
   }
 
   @media (max-width: 768px) {
-    .cartaz {
-      padding: 2.5rem 1.5rem;
+    .container {
+      padding: 0 1.5rem;
     }
 
-    .evento {
-      flex: 1 1 100%;
-      padding-right: 0;
+    .hero {
+      padding: 5rem 0 3rem 0;
+      min-height: 450px;
+    }
+
+    .hero-container {
+      padding: 0 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+    }
+
+    .content-section {
+      padding: 3rem 0;
+    }
+
+    .section-header h2 {
+      font-size: 1.5rem;
+    }
+
+    .cursos-preview {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+
+    .cta-section h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .hero {
+      padding: 4rem 0 2rem 0;
+      min-height: 400px;
+    }
+
+    .hero-container {
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      text-align: center;
+    }
+
+    .content-section {
+      padding: 2rem 0;
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .curso-titulo {
+      font-size: 1.3rem;
+    }
+
+    .cta-section {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+    }
+
+    .cta-section h2 {
+      font-size: 1.25rem;
+    }
+
+    .cta-section p {
+      font-size: 0.95rem;
     }
   }
 </style>

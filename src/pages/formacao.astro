@@ -1,0 +1,1819 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Tipos
+interface Professor {
+  nome: string;
+  foto: string;
+  bio: string;
+}
+
+interface Atividade {
+  slug: string;
+  tipo: "curso" | "oficina";
+  titulo: string;
+  descricao: string;
+  descricaoCompleta: string;
+  horarios: string;
+  duracao: string;
+  vagas: string | number;
+  preco: string;
+  nivel: "iniciante" | "intermediario" | "avancado" | "todos";
+  linkInscricao: string;
+  imagem: string;
+  status: "aberta" | "encerrada" | "em-breve";
+  professores: Professor[];
+}
+
+export const atividades: Atividade[] = [
+  {
+    slug: "processo-criativo",
+    tipo: "curso",
+    titulo: "Processo Criativo",
+    descricao:
+      "O curso Processo Criativo é um ponto de partida para quem quer começar a produzir arte e ainda não sabe por onde ir. Com exercícios práticos, diferentes técnicas e trocas com artistas, você desenvolve seu olhar e sua própria linguagem em um ambiente de experimentação guiado pela artista visual Andréia Guerra, com encontros semanais e uma exposição final dos trabalhos.",
+    descricaoCompleta:
+      "O Curso Processo Criativo chega ao Paradoxo Casa Atelier como ponto de partida para quem sempre quis produzir arte, mas ainda não encontrou o caminho.<br><br>Você conseguirá, através de linguagens acessíveis, exercícios práticos, bibliografia, vivências e conversas com artistas consagrados a desenvolver sua habilidade.<br><br>O curso te colocará em contato com diferentes técnicas e materiais. E ao descobrir o elemento visual com o qual se identifica, sua jornada se iniciará rumo ao seu sonho!<br><br>Conduzido pela artista visual Andréia Guerra, formada pela Escola de Artes Visuais do Parque Lage, o curso oferece um ambiente estruturado para experimentação e aprendizado. A proposta valoriza o processo criativo, estimulando cada participante a desenvolver sua própria linguagem a partir de práticas orientadas.<br><br>Toda semana, Andréia Guerra te levará a produzir e conversar sobre sua produção. E ao final do curso, haverá uma exposição com os trabalhos produzidos.",
+    duracao: "8 semanas",
+    vagas: "Abertas",
+    preco: "R$ 320,00",
+    nivel: "iniciante",
+    linkInscricao: "https://forms.gle/KUfhK1imkkHqQ3C3A",
+    imagem:
+      "https://res.cloudinary.com/ddpvact5z/image/upload/v1776800234/pexels-kampus-8036834_dub90s.jpg",
+    status: "aberta",
+    professores: [
+      {
+        nome: "Andréria Garcia",
+        foto: "https://res.cloudinary.com/ddpvact5z/image/upload/v1776792997/Autorretrato_atualizado_para_novidades_em_breve_Fiquem_ligados_Evo%C3%A9_ewqvev.webp",
+        bio: "Artista plástica formada pela EBA/UFRJ com mais de 15 anos de experiência em pintura. Já expôs em galerias no Rio de Janeiro, São Paulo e Lisboa.",
+      },
+    ],
+    horarios: "Segundas, a partir de 19h<br>Quintas, a partir de 14h",
+  },
+  {
+    slug: "luthieria-basica",
+    tipo: "curso",
+    titulo: "Introdução à Luthieria: A Arte de dar voz à Madeira",
+    descricao:
+      "Descubra o universo da luthieria em um curso introdutório pensado para quem quer entender como a madeira se transforma em som. Aqui, você entra em contato com técnicas, ferramentas e processos básicos de construção de instrumentos de corda, vivendo na prática a relação entre criação, matéria e música dentro de um espaço artístico vivo.",
+    descricaoCompleta:
+      "Agora chegou a vez de explorar um novo universo no nosso espaço: a luthieria. Neste curso de introdução, você vai descobrir como a madeira pode se transformar em som e como técnica e sensibilidade caminham juntas na criação de instrumentos musicais.<br><br>A luthieria é o ofício de construir e reparar instrumentos de corda, como violões, guitarras, cavaquinhos e violinos. Mais do que aprender uma técnica, aqui a proposta é entender o processo por trás de algo que muita gente só consome pronto. É sair do automático e colocar a mão na matéria.<br><br>Nosso objetivo não é formar profissionais em pouco tempo, já que isso leva anos. O foco é despertar o olhar, aproximar você do fazer manual e te conectar com a origem das coisas. Ao longo do curso, você vai entender a estrutura de um instrumento, ter contato com ferramentas e técnicas básicas, participar de etapas práticas de preparo e montagem da madeira e conhecer como diferentes materiais influenciam diretamente o som.<br><br>Tudo isso acontece dentro do nosso espaço cultural, onde diferentes formas de arte coexistem. Aqui, você aprende em um ambiente vivo, cercado por música, criação e troca. Não é uma sala de aula comum, é experiência.<br><br>Esse curso é para quem tem curiosidade, vontade de aprender algo novo e interesse em processos criativos, mesmo sem nenhuma experiência prévia. Se você já se perguntou como nasce o som de um instrumento, esse é o seu ponto de partida.",
+    horarios: "Sextas, das 14h às 17h00",
+    duracao: "4 semanas",
+    vagas: 4,
+    preco: "R$ 320,00",
+    nivel: "iniciante",
+    linkInscricao: "https://forms.google.com/exemplo-fotografia",
+    imagem:
+      "https://res.cloudinary.com/ddpvact5z/image/upload/v1776800049/pexels-olly-3811835_isj9jn.jpg",
+    status: "em-breve",
+    professores: [
+      {
+        nome: "Marcelo Dias",
+        foto: "https://res.cloudinary.com/ddpvact5z/image/upload/v1769562865/Marcelo_nagwtw.jpg",
+        bio: "À frente da coordenação de projetos e produção do Paradoxo Casa Atelier, conduz a realização das exposições, conectando ideias, pessoas e espaço para dar vida às experiências artísticas.",
+      },
+    ],
+  },
+
+  {
+    slug: "criativa",
+    tipo: "oficina",
+    titulo: "Oficina Criativa do Inconsciente",
+    descricao: "Explore a arte em uma tarde criativa.",
+    descricaoCompleta: "teste.",
+    horarios: "Sábado, 16 de Maio, das 10h às 14h",
+    duracao: "4 horas",
+    vagas: 10,
+    preco: "R$ 150,00",
+    nivel: "todos",
+    linkInscricao: "https://forms.google.com/exemplo-colagem",
+    imagem:
+      "https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=1200&h=900&fit=crop",
+    status: "em-breve",
+    professores: [
+      {
+        nome: "Thiago Amaral",
+        foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+        bio: "Artista visual e designer gráfico. Seu trabalho com colagem já foi publicado em diversas revistas internacionais de arte.",
+      },
+      {
+        nome: "Juliana Reis",
+        foto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
+        bio: "Artista multimídia com foco em colagem digital. Ministra workshops de arte desde 2015.",
+      },
+      {
+        nome: "Pedro Machado",
+        foto: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
+        bio: "Collagista e curador. Fundador do coletivo 'Corte & Cola' dedicado à arte da colagem.",
+      },
+    ],
+  },
+];
+
+const nivelLabels = {
+  iniciante: "Iniciante",
+  intermediario: "Intermediário",
+  avancado: "Avançado",
+  todos: "Todos os níveis",
+};
+
+const nivelDescricao = {
+  iniciante: "Não é necessária experiência prévia",
+  intermediario: "Requer conhecimentos básicos na área",
+  avancado: "Para quem já tem experiência na área",
+  todos: "Aberto a todos, independente do nível",
+};
+
+const statusLabels = {
+  aberta: "Inscrições abertas",
+  "em-breve": "Inscrições em breve",
+  encerrada: "Inscrições encerradas",
+};
+
+const cursos = atividades.filter((a) => a.tipo === "curso");
+const oficinas = atividades.filter((a) => a.tipo === "oficina");
+---
+
+<Layout title="Formação — Paradoxo">
+  <main class="main-content" id="main-content">
+    <!-- Lista de atividades -->
+    <section class="lista-view" id="lista-view">
+      <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+          <p class="hero-kicker" style="font-size: 0.9rem;">
+            Cursos e oficinas
+          </p>
+          <h1>Formação Artística</h1>
+          <p>
+            Experiências de aprendizado para quem quer começar do zero ou
+            aprofundar a prática criativa.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="content-section">
+          <div class="container">
+            <p class="intro">
+              Nossos cursos e oficinas foram pensados para criar uma experiência
+              de aprendizado mais próxima, prática e transformadora. Turmas
+              pequenas, professores dedicados e um ambiente que inspira a
+              criatividade.
+            </p>
+
+            <div class="filtros-area">
+              <label class="busca-field" for="busca-atividades">
+                <span>Buscar por curso ou professor</span>
+                <input
+                  id="busca-atividades"
+                  type="search"
+                  placeholder="Digite um nome, título ou palavra-chave"
+                  autocomplete="off"
+                />
+              </label>
+
+              <div
+                class="niveis-filtros"
+                role="tablist"
+                aria-label="Filtrar por nível"
+              >
+                <button
+                  class="nivel-chip active"
+                  type="button"
+                  data-filtro-nivel="todos">Todos</button
+                >
+                <button
+                  class="nivel-chip"
+                  type="button"
+                  data-filtro-nivel="iniciante">Iniciante</button
+                >
+                <button
+                  class="nivel-chip"
+                  type="button"
+                  data-filtro-nivel="intermediario">Intermediário</button
+                >
+                <button
+                  class="nivel-chip"
+                  type="button"
+                  data-filtro-nivel="avancado">Avançado</button
+                >
+              </div>
+            </div>
+
+            <p class="sem-resultados" id="sem-resultados" hidden>
+              Nenhum curso ou oficina bateu com essa busca.
+            </p>
+
+            <!-- Cursos -->
+            <section class="bloco-atividades" data-bloco="cursos">
+              <div class="section-header">
+                <div>
+                  <h2>Cursos</h2>
+                  <span class="section-desc"
+                    >Formação continuada com encontros regulares</span
+                  >
+                </div>
+              </div>
+
+              <div class="atividades-grid">
+                {
+                  cursos.map((atividade) => (
+                    <button
+                      class="atividade-card"
+                      data-slug={atividade.slug}
+                      data-level={atividade.nivel}
+                      data-search={`${atividade.titulo} ${atividade.descricao} ${atividade.professores
+                        .map((p) => p.nome)
+                        .join(" ")}`.toLowerCase()}
+                      type="button"
+                    >
+                      <div class="atividade-imagem">
+                        <img
+                          src={atividade.imagem}
+                          alt={atividade.titulo}
+                          loading="lazy"
+                        />
+                        <span
+                          class={`atividade-status status-${atividade.status}`}
+                        >
+                          {statusLabels[atividade.status]}
+                        </span>
+                        <span
+                          class={`atividade-nivel nivel-${atividade.nivel}`}
+                        >
+                          {nivelLabels[atividade.nivel]}
+                        </span>
+                      </div>
+                      <div class="atividade-info">
+                        <span class="atividade-tipo">Curso</span>
+                        <h3 class="atividade-titulo">{atividade.titulo}</h3>
+                        <p class="atividade-professor-resumo">
+                          com{" "}
+                          {atividade.professores.map((p) => p.nome).join(" · ")}
+                        </p>
+                        <p class="atividade-descricao">{atividade.descricao}</p>
+                      </div>
+                    </button>
+                  ))
+                }
+              </div>
+            </section>
+
+            <!-- Oficinas -->
+            <section class="bloco-atividades" data-bloco="oficinas">
+              <div class="section-header">
+                <div>
+                  <h2>Oficinas</h2>
+                  <span class="section-desc"
+                    >Encontros pontuais e imersivos</span
+                  >
+                </div>
+              </div>
+
+              <div class="atividades-grid">
+                {
+                  oficinas.map((atividade) => (
+                    <button
+                      class="atividade-card oficina-card"
+                      data-slug={atividade.slug}
+                      data-level={atividade.nivel}
+                      data-search={`${atividade.titulo} ${atividade.descricao} ${atividade.professores
+                        .map((p) => p.nome)
+                        .join(" ")}`.toLowerCase()}
+                      type="button"
+                    >
+                      <div class="atividade-imagem">
+                        <img
+                          src={atividade.imagem}
+                          alt={atividade.titulo}
+                          loading="lazy"
+                        />
+                        <span
+                          class={`atividade-status status-${atividade.status}`}
+                        >
+                          {statusLabels[atividade.status]}
+                        </span>
+                        <span
+                          class={`atividade-nivel nivel-${atividade.nivel}`}
+                        >
+                          {nivelLabels[atividade.nivel]}
+                        </span>
+                      </div>
+                      <div class="atividade-info">
+                        <span class="atividade-tipo oficina">Oficina</span>
+                        <h3 class="atividade-titulo">{atividade.titulo}</h3>
+                        <p class="atividade-professor-resumo">
+                          com{" "}
+                          {atividade.professores.map((p) => p.nome).join(" · ")}
+                        </p>
+                        <p class="atividade-descricao">{atividade.descricao}</p>
+                        <div class="atividade-meta">
+                          <span class="atividade-horario">
+                            {atividade.horarios}
+                          </span>
+                          <span class="atividade-preco">{atividade.preco}</span>
+                        </div>
+                      </div>
+                    </button>
+                  ))
+                }
+              </div>
+            </section>
+
+            <div class="cta-section">
+              <h2>Não Encontrou o que Procura?</h2>
+              <p>
+                Entre em contato conosco para saber sobre novas turmas,
+                professores e oficinas que estão sendo planejados.
+              </p>
+              <a href="mailto:paradoxo.casa.atelier@gmail.com" class="cta-btn">
+                Fale Conosco
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detalhes da atividade -->
+    <section class="detalhe-view" id="detalhe-view" aria-hidden="true">
+      <div class="detalhe-header">
+        <button class="btn-voltar" id="btn-voltar" type="button">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar
+        </button>
+        <button
+          class="btn-compartilhar-header"
+          id="btn-compartilhar"
+          type="button"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          Compartilhar
+        </button>
+      </div>
+
+      <div class="detalhe-hero">
+        <img class="detalhe-imagem" id="detalhe-imagem" src="" alt="" />
+        <div class="detalhe-hero-overlay"></div>
+        <div class="detalhe-hero-content">
+          <span class="detalhe-tipo" id="detalhe-tipo">Curso</span>
+          <h1 class="detalhe-titulo" id="detalhe-titulo"></h1>
+          <p class="detalhe-professores-hero" id="detalhe-professores-hero"></p>
+        </div>
+      </div>
+
+      <div class="detalhe-body">
+        <div class="detalhe-container">
+          <div class="detalhe-main">
+            <div class="detalhe-badges">
+              <span class="badge badge-status" id="detalhe-status"></span>
+              <span class="badge badge-nivel" id="detalhe-nivel-badge"></span>
+            </div>
+
+            <div class="nivel-info" id="nivel-info">
+              <div class="nivel-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </div>
+              <div class="nivel-text">
+                <span class="nivel-label" id="detalhe-nivel-label"></span>
+                <span class="nivel-desc" id="detalhe-nivel-desc"></span>
+              </div>
+            </div>
+
+            <div class="detalhe-descricao">
+              <h2>Sobre</h2>
+              <p id="detalhe-descricao"></p>
+            </div>
+
+            <div class="detalhe-professores">
+              <h2 id="professores-titulo">Professor</h2>
+              <div class="professores-lista" id="professores-lista"></div>
+            </div>
+          </div>
+
+          <div class="detalhe-sidebar">
+            <div class="sidebar-card">
+              <div class="sidebar-preco" id="detalhe-preco"></div>
+
+              <div class="sidebar-info">
+                <div class="info-item">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"
+                    ></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <div>
+                    <span class="info-label">Horários</span>
+                    <span class="info-valor" id="detalhe-horarios"></span>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <div>
+                    <span class="info-label">Duração</span>
+                    <span class="info-valor" id="detalhe-duracao"></span>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <div>
+                    <span class="info-label">Vagas</span>
+                    <span class="info-valor" id="detalhe-vagas"></span>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                class="btn-inscricao"
+                id="detalhe-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Fazer Inscrição
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compartilhar-feedback" id="compartilhar-feedback">
+        Link copiado!
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script define:vars={{ atividades, nivelLabels, nivelDescricao, statusLabels }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const listaView = document.getElementById("lista-view");
+    const detalheView = document.getElementById("detalhe-view");
+    const btnVoltar = document.getElementById("btn-voltar");
+    const btnCompartilhar = document.getElementById("btn-compartilhar");
+    const compartilharFeedback = document.getElementById(
+      "compartilhar-feedback",
+    );
+    const buscaInput = document.getElementById("busca-atividades");
+    const semResultados = document.getElementById("sem-resultados");
+    const filterButtons = document.querySelectorAll("[data-filtro-nivel]");
+
+    let atividadeAtual = null;
+    let filtroNivelAtual = "todos";
+    let termoBuscaAtual = "";
+
+    // Elementos de detalhe
+    const detalheImagem = document.getElementById("detalhe-imagem");
+    const detalheTipo = document.getElementById("detalhe-tipo");
+    const detalheTitulo = document.getElementById("detalhe-titulo");
+    const detalheProfessoresHero = document.getElementById(
+      "detalhe-professores-hero",
+    );
+    const detalheNivelBadge = document.getElementById("detalhe-nivel-badge");
+    const detalheNivelLabel = document.getElementById("detalhe-nivel-label");
+    const detalheNivelDesc = document.getElementById("detalhe-nivel-desc");
+    const detalheDescricao = document.getElementById("detalhe-descricao");
+    const professoresTitulo = document.getElementById("professores-titulo");
+    const professoresLista = document.getElementById("professores-lista");
+    const detalheHorarios = document.getElementById("detalhe-horarios");
+    const detalheDuracao = document.getElementById("detalhe-duracao");
+    const detalheVagas = document.getElementById("detalhe-vagas");
+    const detalhePreco = document.getElementById("detalhe-preco");
+    const detalheLink = document.getElementById("detalhe-link");
+    const detalheStatus = document.getElementById("detalhe-status");
+
+    const cards = Array.from(document.querySelectorAll(".atividade-card"));
+    const blocos = Array.from(document.querySelectorAll(".bloco-atividades"));
+
+    function normalizarTexto(valor) {
+      return (valor || "")
+        .toString()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function atualizarSemResultados() {
+      const visiveis = cards.some((card) => card.style.display !== "none");
+      semResultados.hidden = visiveis;
+    }
+
+    function aplicarFiltros() {
+      const termo = normalizarTexto(termoBuscaAtual);
+
+      cards.forEach((card) => {
+        const nivel = card.dataset.level || "todos";
+        const texto = normalizarTexto(card.dataset.search || "");
+        const combinaNivel =
+          filtroNivelAtual === "todos" || filtroNivelAtual === nivel;
+        const combinaBusca = !termo || texto.includes(termo);
+        card.style.display = combinaNivel && combinaBusca ? "" : "none";
+      });
+
+      blocos.forEach((bloco) => {
+        const cardsVisiveis = bloco.querySelectorAll(
+          '.atividade-card:not([style*="display: none"])',
+        );
+        bloco.style.display = cardsVisiveis.length > 0 ? "" : "none";
+      });
+
+      atualizarSemResultados();
+    }
+
+    function marcarFiltroAtivo(nivel) {
+      filterButtons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.filtroNivel === nivel);
+      });
+    }
+
+    function abrirDetalhe(slug, empurrarHistorico = true) {
+      const atividade = atividades.find((a) => a.slug === slug);
+      if (!atividade) return;
+
+      atividadeAtual = atividade;
+
+      detalheImagem.src = atividade.imagem;
+      detalheImagem.alt = atividade.titulo;
+      detalheTipo.textContent =
+        atividade.tipo === "curso" ? "Curso" : "Oficina";
+      detalheTipo.className = `detalhe-tipo ${atividade.tipo}`;
+      detalheTitulo.textContent = atividade.titulo;
+
+      const professorNomes = atividade.professores
+        .map((p) => p.nome)
+        .join(" · ");
+      detalheProfessoresHero.textContent = `com ${professorNomes}`;
+
+      detalheNivelBadge.textContent = nivelLabels[atividade.nivel];
+      detalheNivelBadge.className = `badge badge-nivel nivel-${atividade.nivel}`;
+      detalheStatus.textContent = statusLabels[atividade.status];
+      detalheStatus.className = `badge badge-status status-${atividade.status}`;
+      detalheNivelLabel.textContent = nivelLabels[atividade.nivel];
+      detalheNivelDesc.textContent = nivelDescricao[atividade.nivel];
+
+      detalheDescricao.innerHTML = atividade.descricaoCompleta;
+      detalheHorarios.innerHTML = atividade.horarios;
+      detalheDuracao.textContent = atividade.duracao;
+      detalheVagas.textContent = `${atividade.vagas}`;
+      detalhePreco.textContent = atividade.preco;
+      detalheLink.href = atividade.linkInscricao;
+
+      professoresTitulo.textContent =
+        atividade.professores.length > 1 ? "Professores" : "Responsável";
+
+      // Função para adicionar transformações do Cloudinary na URL
+      function getCloudinaryUrl(url, size = 150) {
+        if (url.includes("res.cloudinary.com") && url.includes("/upload/")) {
+          return url.replace(
+            "/upload/",
+            `/upload/w_${size},h_${size},c_fill,g_face,q_auto,f_auto/`,
+          );
+        }
+        return url;
+      }
+
+      professoresLista.innerHTML = atividade.professores
+        .map(
+          (professor) => `
+            <article class="professor-card" style="display: flex; flex-direction: row; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; background: #f8f8f8; border-radius: 1rem;">
+              <div class="professor-foto-wrapper" style="flex-shrink: 0; width: 120px; min-width: 120px; height: 120px; border-radius: 0.75rem; overflow: hidden; position: relative;">
+                <img class="professor-foto" src="${getCloudinaryUrl(professor.foto, 150)}" alt="${professor.nome}" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top;" />
+              </div>
+              <div class="professor-info" style="display: flex; flex-direction: column; color: #111; gap: 0.35rem; flex: 1; min-width: 0; justify-content: center;">
+                <div class="professor-head" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;">
+                  <h3 class="professor-nome" style="font-size: 1.1rem; font-weight: 700; color: #111; margin: 0;">${professor.nome}</h3>
+                  <span class="professor-tag" style="font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #c50066; background: rgba(197, 0, 102, 0.08); padding: 0.25rem 0.55rem; border-radius: 999px;">Artista</span>
+                </div>
+                <p class="professor-bio" style="font-size: 0.95rem; font-weight: 500; line-height: 1.55; color: #444; margin: 0;">${professor.bio}</p>
+              </div>
+            </article>
+          `,
+        )
+        .join("");
+
+      listaView.classList.add("hidden");
+      detalheView.classList.add("active");
+      detalheView.setAttribute("aria-hidden", "false");
+      window.scrollTo(0, 0);
+
+      if (empurrarHistorico) {
+        window.history.pushState(
+          { atividade: slug },
+          "",
+          `/formacao?atividade=${slug}`,
+        );
+      }
+    }
+
+    function fecharDetalhe() {
+      atividadeAtual = null;
+      listaView.classList.remove("hidden");
+      detalheView.classList.remove("active");
+      detalheView.setAttribute("aria-hidden", "true");
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete("atividade");
+      window.history.replaceState(
+        {},
+        "",
+        `${url.pathname}${url.search}${url.hash}`,
+      );
+    }
+
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const slug = card.dataset.slug;
+        abrirDetalhe(slug, true);
+      });
+    });
+
+    btnVoltar.addEventListener("click", fecharDetalhe);
+
+    btnCompartilhar.addEventListener("click", async () => {
+      if (!atividadeAtual) return;
+
+      const shareUrl = `${window.location.origin}/formacao?atividade=${atividadeAtual.slug}`;
+      const shareData = {
+        title: atividadeAtual.titulo,
+        text: `Confira "${atividadeAtual.titulo}" no Paradoxo Casa Atelier!`,
+        url: shareUrl,
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(shareUrl);
+          compartilharFeedback.classList.add("show");
+          setTimeout(() => compartilharFeedback.classList.remove("show"), 2000);
+        }
+      } catch (_err) {
+        try {
+          await navigator.clipboard.writeText(shareUrl);
+          compartilharFeedback.classList.add("show");
+          setTimeout(() => compartilharFeedback.classList.remove("show"), 2000);
+        } catch (_clipboardErr) {
+          // sem feedback adicional
+        }
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && detalheView.classList.contains("active")) {
+        fecharDetalhe();
+      }
+    });
+
+    window.addEventListener("popstate", (e) => {
+      if (e.state && e.state.atividade) {
+        abrirDetalhe(e.state.atividade, false);
+      } else {
+        listaView.classList.remove("hidden");
+        detalheView.classList.remove("active");
+        detalheView.setAttribute("aria-hidden", "true");
+        atividadeAtual = null;
+      }
+    });
+
+    buscaInput.addEventListener("input", (e) => {
+      termoBuscaAtual = e.target.value || "";
+      aplicarFiltros();
+    });
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filtroNivelAtual = btn.dataset.filtroNivel || "todos";
+        marcarFiltroAtivo(filtroNivelAtual);
+        aplicarFiltros();
+      });
+    });
+
+    aplicarFiltros();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const atividadeParam = urlParams.get("atividade");
+    if (atividadeParam) {
+      abrirDetalhe(atividadeParam, false);
+    }
+  });
+</script>
+
+<style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  :global(body) {
+    margin: 0;
+    background: #fff;
+  }
+
+  .main-content {
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .lista-view {
+    display: block;
+  }
+
+  .lista-view.hidden {
+    display: none;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 420px;
+    overflow: hidden;
+    background: #c50066;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .hero-container {
+    position: relative;
+    font-size: 0.2rem;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 7rem 2rem 4.5rem;
+    width: 100%;
+  }
+
+  .hero-kicker {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-kicker p {
+    font-size: 0.2rem;
+  }
+
+  .hero h1 {
+    color: #fff;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin: 0 0 1rem 0;
+    max-width: 700px;
+    text-wrap: balance;
+  }
+
+  .hero p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    font-weight: 500;
+    max-width: 600px;
+  }
+
+  .content-wrapper {
+    background-color: #c50066;
+  }
+
+  .content-section {
+    background: #fff;
+    border-radius: 2rem 2rem 0 0;
+    margin-top: -2rem;
+    position: relative;
+    z-index: 1;
+    padding: 4rem 0 4.5rem;
+  }
+
+  .intro {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.65;
+    color: #111;
+    margin-bottom: 2rem;
+    max-width: 860px;
+  }
+
+  .filtros-area {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background: #f7f7f7;
+    border: 1px solid #ececec;
+    border-radius: 1.25rem;
+  }
+
+  .busca-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .busca-field span {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .busca-field input {
+    width: 100%;
+    min-height: 52px;
+    border: 1.5px solid #d7d7d7;
+    border-radius: 999px;
+    padding: 0 1rem;
+    font: inherit;
+    font-size: 1rem;
+    outline: none;
+    background: #fff;
+    color: #111;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .busca-field input:focus {
+    border-color: #c50066;
+    color: #111;
+    box-shadow: 0 0 0 4px rgba(197, 0, 102, 0.12);
+  }
+
+  .niveis-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .nivel-chip {
+    appearance: none;
+    border: 1px solid #d8d8d8;
+    background: #fff;
+    color: #111;
+    border-radius: 999px;
+    padding: 0.72rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease,
+      color 0.18s ease,
+      border-color 0.18s ease;
+  }
+
+  .nivel-chip:hover {
+    transform: translateY(-1px);
+  }
+
+  .nivel-chip.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
+
+  .sem-resultados {
+    margin: 0 0 1.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    background: #fff4d6;
+    color: #6d4b00;
+    font-weight: 600;
+  }
+
+  .bloco-atividades {
+    margin-bottom: 3rem;
+  }
+
+  .section-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  .section-header h2 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.04em;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+  }
+
+  .atividades-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .atividade-card {
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid #111;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    background: #fff;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+    text-align: left;
+    padding: 0;
+    font-family: inherit;
+  }
+
+  .atividade-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+    border-color: #000;
+  }
+
+  .atividade-imagem {
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+    background: #ddd;
+  }
+
+  .atividade-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .atividade-card:hover .atividade-imagem img {
+    transform: scale(1.04);
+  }
+
+  .atividade-status {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    background: #c50066;
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+
+  .atividade-status.status-aberta,
+  .badge-status.status-aberta {
+    background: #16a34a;
+    color: #fff;
+  }
+
+  .atividade-status.status-em-breve,
+  .badge-status.status-em-breve {
+    background: #f59e0b;
+    color: #111;
+  }
+
+  .atividade-status.status-encerrada,
+  .badge-status.status-encerrada {
+    background: #dc2626;
+    color: #fff;
+  }
+
+  .atividade-nivel {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: #000;
+    color: #fff;
+  }
+
+  .atividade-nivel.nivel-iniciante {
+    background: #22c55e;
+    color: #fff;
+  }
+
+  .atividade-nivel.nivel-intermediario {
+    background: #eab308;
+    color: #000;
+  }
+
+  .atividade-nivel.nivel-avancado {
+    background: #ef4444;
+    color: #fff;
+  }
+
+  .atividade-nivel.nivel-todos {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  .atividade-info {
+    padding: 1.4rem 1.4rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .atividade-tipo {
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #c50066;
+    margin-bottom: 0.4rem;
+  }
+
+  .atividade-tipo.oficina {
+    color: #7c3aed;
+  }
+
+  .atividade-titulo {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #111;
+    width: 100%;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .atividade-professor-resumo {
+    margin: 0 0 0.9rem;
+    color: #666;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .atividade-descricao {
+    font-size: 0.97rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.55;
+    margin: 0 0 1rem;
+    flex: 1;
+  }
+
+  .atividade-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+
+  .atividade-horario {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #666;
+  }
+
+  .atividade-preco {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c50066;
+    white-space: nowrap;
+  }
+
+  .oficina-card .atividade-preco {
+    color: #7c3aed;
+  }
+
+  .cta-section {
+    background: #111;
+    border-radius: 1.25rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.9rem;
+    letter-spacing: -0.04em;
+  }
+
+  .cta-section p {
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: #d1d1d1;
+    line-height: 1.65;
+    margin: 0 auto 1.8rem;
+    max-width: 650px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #c50066;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 0.95rem 2.2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .cta-btn:hover {
+    background: #a3005a;
+    transform: translateY(-1px);
+  }
+
+  .detalhe-view {
+    display: none;
+    min-height: 100vh;
+    background: #fff;
+  }
+
+  .detalhe-view.active {
+    display: block;
+  }
+
+  .detalhe-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid #ececec;
+  }
+
+  .btn-voltar,
+  .btn-compartilhar-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .btn-voltar {
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.75rem;
+    transition: background 0.18s ease;
+  }
+
+  .btn-voltar:hover {
+    background: #f2f2f2;
+  }
+
+  .btn-compartilhar-header {
+    border: 1.5px solid #111;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #111;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    transition:
+      background 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .btn-compartilhar-header:hover {
+    background: #111;
+    color: #fff;
+  }
+
+  .detalhe-hero {
+    position: relative;
+    height: clamp(420px, 68vh, 760px);
+    overflow: hidden;
+    background: #111;
+    padding-top: 72px;
+  }
+
+  .detalhe-imagem {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .detalhe-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.38) 62%,
+      rgba(0, 0, 0, 0.78) 100%
+    );
+  }
+
+  .detalhe-hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 0.55rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .detalhe-tipo {
+    display: inline-flex;
+    width: fit-content;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: #c50066;
+    padding: 0.38rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .detalhe-tipo.oficina {
+    background: #7c3aed;
+  }
+
+  .detalhe-titulo {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    text-wrap: balance;
+    max-width: 1000px;
+  }
+
+  .detalhe-professores-hero {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .detalhe-body {
+    padding: 3rem 0 6rem;
+  }
+
+  .detalhe-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: 3.5rem;
+  }
+
+  .detalhe-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .detalhe-badges {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .badge-status {
+    background: #c50066;
+    color: #fff;
+  }
+
+  .badge-status.status-aberta {
+    background: #16a34a;
+    color: #fff;
+  }
+
+  .badge-status.status-em-breve {
+    background: #f59e0b;
+    color: #111;
+  }
+
+  .badge-status.status-encerrada {
+    background: #dc2626;
+    color: #fff;
+  }
+
+  .badge-nivel {
+    background: #000;
+    color: #fff;
+  }
+
+  .badge-nivel.nivel-iniciante {
+    background: #22c55e;
+  }
+
+  .badge-nivel.nivel-intermediario {
+    background: #eab308;
+    color: #000;
+  }
+
+  .badge-nivel.nivel-avancado {
+    background: #ef4444;
+  }
+
+  .badge-nivel.nivel-todos {
+    background: #3b82f6;
+  }
+
+  .nivel-info {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem 1.25rem;
+    background: #f8f8f8;
+    border-radius: 1rem;
+    border-left: 4px solid #c50066;
+  }
+
+  .nivel-icon {
+    flex-shrink: 0;
+    color: #c50066;
+  }
+
+  .nivel-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .nivel-label {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #111;
+  }
+
+  .nivel-desc {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #666;
+  }
+
+  .detalhe-descricao h2,
+  .detalhe-professores h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 1rem;
+  }
+
+  .detalhe-descricao p {
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.75;
+    color: #333;
+    margin: 0;
+  }
+
+  .professores-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  :global(.professor-card) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: #f8f8f8;
+    border-radius: 1rem;
+  }
+
+  :global(.professor-foto-wrapper) {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    aspect-ratio: 1 / 1;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  :global(.professor-foto) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  :global(.professor-info) {
+    display: flex;
+    flex-direction: column;
+    color: #111;
+    gap: 0.35rem;
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  :global(.professor-head) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  :global(.professor-nome) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+  }
+
+  :global(.professor-tag) {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #c50066;
+    background: rgba(197, 0, 102, 0.08);
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+  }
+
+  :global(.professor-bio) {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.55;
+    color: #444;
+    margin: 0;
+  }
+
+  .detalhe-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+
+  .sidebar-card {
+    border: 1.5px solid #111;
+    border-radius: 1.2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sidebar-preco {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #c50066;
+    text-align: center;
+  }
+
+  .sidebar-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.2rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+
+  .info-item svg {
+    flex-shrink: 0;
+    color: #666;
+    margin-top: 2px;
+  }
+
+  .info-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .info-label {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .info-valor {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .btn-inscricao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c50066;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 800;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-inscricao:hover {
+    background: #a3005a;
+    transform: translateY(-1px);
+  }
+
+  .compartilhar-feedback {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    padding: 1rem 1.5rem;
+    background: #111;
+    color: #fff;
+    font-size: 0.98rem;
+    font-weight: 700;
+    border-radius: 999px;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      visibility 0.3s ease;
+    z-index: 1000;
+  }
+
+  .compartilhar-feedback.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 1024px) {
+    .detalhe-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .detalhe-sidebar {
+      position: static;
+    }
+
+    .hero {
+      min-height: 380px;
+    }
+
+    .hero-container {
+      padding-top: 6.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1.2rem;
+    }
+
+    .hero {
+      min-height: 360px;
+    }
+
+    .hero-container {
+      padding: 6rem 1.2rem 3.2rem;
+    }
+
+    .content-section {
+      padding: 2.5rem 0 4rem;
+    }
+
+    .intro {
+      font-size: 1rem;
+    }
+
+    .filtros-area {
+      padding: 1rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.5rem;
+    }
+
+    .atividades-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .atividade-imagem {
+      height: 210px;
+    }
+
+    .atividade-titulo {
+      font-size: 1.25rem;
+    }
+
+    .detalhe-header {
+      padding: 0.85rem 1rem;
+    }
+
+    .detalhe-hero {
+      min-height: 460px;
+      height: 66vh;
+      padding-top: 64px;
+    }
+
+    .detalhe-hero-content {
+      padding: 2rem 1.2rem;
+    }
+
+    .detalhe-body {
+      padding: 2rem 0 4rem;
+    }
+
+    .detalhe-container {
+      padding: 0 1.2rem;
+    }
+
+    :global(.professor-card) {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    :global(.professor-foto-wrapper) {
+      width: 80px;
+      min-width: 80px;
+      max-width: 80px;
+      height: 80px;
+      min-height: 80px;
+      max-height: 80px;
+      border-radius: 0.5rem;
+    }
+
+    .sidebar-card {
+      padding: 1.4rem;
+    }
+
+    .sidebar-preco {
+      font-size: 1.8rem;
+    }
+
+    .cta-section {
+      padding: 2rem 1.2rem;
+    }
+
+    .cta-section h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
