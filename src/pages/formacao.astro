@@ -134,9 +134,22 @@ const statusLabels = {
 
 const cursos = atividades.filter((a) => a.tipo === "curso");
 const oficinas = atividades.filter((a) => a.tipo === "oficina");
+
+const atividadeSlug = Astro.url.searchParams.get("atividade");
+
+const atividadeAtual = atividades.find((a) => a.slug === atividadeSlug);
+
+// 👇 aqui você usa exatamente o que já existe no array
+const titulo = atividadeAtual?.titulo ?? "Formação Artística";
+const descricao =
+  atividadeAtual?.descricao ?? "Cursos e oficinas no Paradoxo Casa Atelier.";
+
+const imagem = atividadeAtual?.imagem ?? "https://seudominio.com/default.jpg";
+
+const url = Astro.url.href;
 ---
 
-<Layout title="Formação — Paradoxo">
+<Layout title={titulo} description={descricao} image={imagem} url={url}>
   <main class="main-content" id="main-content">
     <!-- Lista de atividades -->
     <section class="lista-view" id="lista-view">
@@ -720,7 +733,7 @@ const oficinas = atividades.filter((a) => a.tipo === "oficina");
       const shareUrl = `${window.location.origin}/formacao?atividade=${atividadeAtual.slug}`;
       const shareData = {
         title: atividadeAtual.titulo,
-        text: `Confira "${atividadeAtual.titulo}" no Paradoxo Casa Atelier!`,
+        text: `Confira "${atividadeAtual.titulo}" no Paradoxo Casa Atelier.`,
         url: shareUrl,
       };
 
