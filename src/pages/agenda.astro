@@ -11,15 +11,18 @@
  * Colunas da planilha:
  *   A — Nome do evento
  *   B — Descrição
- *   C — Data (formato livre, ex: "15 Mar 2025" ou "2025-03-15")
+ *   C — Data de início (formato livre, ex: "15 Mar 2025" ou "2025-03-15")
  *   D — Tipo (Exposição, Oficina, Karaokê…)
  *   E — Link (opcional)
+ *   F — Data fim (opcional — para eventos com duração, ex: exposições)
+ *         Enquanto hoje estiver entre Data e Data fim, o evento aparece
+ *         como "Em andamento" e NÃO some da lista.
  */
 
 import Layout from "../layouts/Layout.astro";
 
 const SHEETS_URL =
-  "https://script.google.com/macros/s/AKfycbxmYKo9R5HEdVSi97ewmZCMCdc3_08wfVI-KzMAPi7Iwtli0jWXgbu-oJC6beEsWTqv3A/exec";
+  "https://script.google.com/macros/s/AKfycbw2bkQQURcaBa6CFanoAWXcEaPa2i0K3FmjP07GncMQTqLb9P7J4F_rZi68608npdkNBg/exec";
 ---
 
 <Layout title="Agenda — Paradoxo">
@@ -224,6 +227,39 @@ const SHEETS_URL =
       order: 999;
     }
 
+    .evento-item.em-andamento {
+      border: 2px solid var(--magenta);
+      box-shadow: 0 0 0 3px rgba(197, 0, 102, 0.08);
+    }
+
+    /* ─── Badges row ────────────────────────────────── */
+    .evento-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .evento-badge-andamento {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.65rem;
+      border-radius: 50px;
+      background: var(--magenta);
+      color: #fff;
+    }
+
+    .evento-periodo {
+      font-size: 0.82rem;
+      color: #888;
+      font-weight: 600;
+      margin-top: 0.35rem;
+    }
+
     /* ─── Bloco de data ─────────────────────────────── */
     .evento-data-bloco {
       flex-shrink: 0;
@@ -237,6 +273,20 @@ const SHEETS_URL =
       justify-content: center;
       color: var(--white);
       line-height: 1;
+    }
+
+    .evento-data-bloco--andamento {
+      background: #1e1b6b;
+      height: 82px;
+    }
+
+    .evento-data-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 2px;
     }
 
     .evento-data-dia {
@@ -528,21 +578,41 @@ const SHEETS_URL =
       return { dia: "—", mes: "—" };
     }
 
-    function isPassado(dataStr, hoje) {
+    function parseDataStr(dataStr) {
+      if (!dataStr) return null;
       const iso = new Date(dataStr);
       if (!isNaN(iso.getTime())) {
-        const d = new Date(iso.toISOString().slice(0, 10) + "T00:00:00");
-        return d < hoje;
+        return new Date(iso.toISOString().slice(0, 10) + "T00:00:00");
       }
       const partes = dataStr.trim().split(/[\s\-\/]+/);
       if (partes.length >= 3) {
         const mesIdx = mesesIdx[partes[1].toLowerCase().slice(0, 3)];
         if (mesIdx !== undefined) {
-          const d = new Date(Number(partes[2]), mesIdx, Number(partes[0]));
-          return d < hoje;
+          return new Date(Number(partes[2]), mesIdx, Number(partes[0]));
         }
       }
+      if (partes.length >= 2) {
+        const mesIdx = mesesIdx[partes[1].toLowerCase().slice(0, 3)];
+        if (mesIdx !== undefined) {
+          return new Date(new Date().getFullYear(), mesIdx, Number(partes[0]));
+        }
+      }
+      return null;
+    }
+
+    function isPassado(dataStr, dataFimStr, hoje) {
+      // Se tem data_fim, o evento só é passado quando data_fim < hoje
+      const dataRef = dataFimStr ? parseDataStr(dataFimStr) : parseDataStr(dataStr);
+      if (dataRef) return dataRef < hoje;
       return false;
+    }
+
+    function isEmAndamento(dataStr, dataFimStr, hoje) {
+      if (!dataFimStr) return false;
+      const dataInicio = parseDataStr(dataStr);
+      const dataFim = parseDataStr(dataFimStr);
+      if (!dataInicio || !dataFim) return false;
+      return dataInicio <= hoje && dataFim >= hoje;
     }
 
     const badgeColors = {
@@ -565,24 +635,44 @@ const SHEETS_URL =
 
     function criarCardEvento(ev, hoje) {
       const { dia, mes } = extrairDiaEMes(ev.data);
-      const passado = ev.data ? isPassado(ev.data, hoje) : false;
+      const passado = ev.data ? isPassado(ev.data, ev.data_fim ?? null, hoje) : false;
+      const emAndamento = ev.data ? isEmAndamento(ev.data, ev.data_fim ?? null, hoje) : false;
       const badgeBg = getBadgeColor(ev.tipo);
 
+      // Bloco de data: se em andamento, mostra "até DD MÊS"
+      let dataBloco = "";
+      if (emAndamento && ev.data_fim) {
+        const fim = extrairDiaEMes(ev.data_fim);
+        dataBloco = `
+          <time class="evento-data-bloco evento-data-bloco--andamento" datetime="${ev.data}" aria-label="Em andamento até ${fim.dia} de ${fim.mes}">
+            <span class="evento-data-label">até</span>
+            <span class="evento-data-dia">${fim.dia}</span>
+            <span class="evento-data-mes">${fim.mes}</span>
+          </time>`;
+      } else {
+        dataBloco = `
+          <time class="evento-data-bloco" datetime="${ev.data}" aria-label="${dia} de ${mes}">
+            <span class="evento-data-dia">${dia}</span>
+            <span class="evento-data-mes">${mes}</span>
+          </time>`;
+      }
+
       const li = document.createElement("li");
-      li.className = "evento-item" + (passado ? " passado" : "");
+      li.className = "evento-item" + (passado ? " passado" : "") + (emAndamento ? " em-andamento" : "");
       li.dataset.tipo = ev.tipo;
       li.dataset.visivel = "true";
       li.dataset.data = ev.data;
 
       li.innerHTML = `
-                <time class="evento-data-bloco" datetime="${ev.data}" aria-label="${dia} de ${mes}">
-                    <span class="evento-data-dia">${dia}</span>
-                    <span class="evento-data-mes">${mes}</span>
-                </time>
+                ${dataBloco}
                 <div class="evento-conteudo">
-                    ${ev.tipo ? `<span class="evento-badge" style="background:${badgeBg}">${ev.tipo}</span>` : ""}
+                    <div class="evento-badges-row">
+                      ${ev.tipo ? `<span class="evento-badge" style="background:${badgeBg}">${ev.tipo}</span>` : ""}
+                      ${emAndamento ? `<span class="evento-badge-andamento">● Em andamento</span>` : ""}
+                    </div>
                     <h2 class="evento-nome">${ev.nome}</h2>
                     ${ev.descricao ? `<p class="evento-descricao">${ev.descricao}</p>` : ""}
+                    ${ev.data_fim && !emAndamento ? `<p class="evento-periodo">De ${dia} ${mes} até ${extrairDiaEMes(ev.data_fim).dia} ${extrairDiaEMes(ev.data_fim).mes}</p>` : ""}
                     ${ev.link ? `<a class="evento-link" href="${ev.link}" target="_blank" rel="noopener noreferrer" aria-label="Saiba mais sobre ${ev.nome}">Saiba mais</a>` : ""}
                 </div>
             `;

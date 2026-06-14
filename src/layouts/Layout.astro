@@ -52,6 +52,27 @@ const { title, description, image, url } = Astro.props;
       <slot />
     </main>
     <Footer />
+
+    <!-- Modal de programação: surge em background após fetch, em qualquer página -->
+    <div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" class="modal-oculto">
+      <div id="modal-box">
+        <button id="modal-fechar" aria-label="Fechar">✕</button>
+
+        <div id="modal-loading">
+          <div class="modal-spinner"></div>
+          <p>Buscando programação…</p>
+        </div>
+
+        <div id="modal-conteudo" class="modal-oculto">
+          <p id="modal-label">Na Programação</p>
+          <h2 id="modal-titulo">O Que Está Rolando</h2>
+          <ul id="modal-lista"></ul>
+          <div id="modal-rodape">
+            <a href="/agenda" id="modal-agenda-link">Ver Agenda Completa →</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 
@@ -67,9 +88,381 @@ const { title, description, image, url } = Astro.props;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    line-height: 1.6;
+    color: #000;
   }
 
   main {
     flex: 1;
   }
+
+  /* ── Utilitário de ocultação ─────────────────────── */
+  .modal-oculto {
+    display: none !important;
+  }
+
+  /* ── Modal overlay ───────────────────────────────── */
+  #modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 1.5rem;
+  }
+
+  #modal-overlay.modal-aberto {
+    opacity: 1;
+  }
+
+  #modal-box {
+    background: #fff;
+    border-radius: 1.5rem;
+    width: 100%;
+    max-width: 560px;
+    padding: 2rem 2rem 2.5rem;
+    position: relative;
+    transform: scale(0.94) translateY(12px);
+    transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+    max-height: 85dvh;
+    overflow-y: auto;
+  }
+
+  #modal-overlay.modal-aberto #modal-box {
+    transform: scale(1) translateY(0);
+  }
+
+  #modal-fechar {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.25rem;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    transition: background 0.15s;
+    line-height: 1;
+  }
+  #modal-fechar:hover { background: #ddd; }
+
+  /* ── Spinner ─────────────────────────────────────── */
+  #modal-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2.5rem 0;
+    color: #777;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .modal-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e0e0e0;
+    border-top-color: #c50066;
+    border-radius: 50%;
+    animation: modal-spin 0.75s linear infinite;
+  }
+
+  @keyframes modal-spin { to { transform: rotate(360deg); } }
+
+  /* ── Header do modal ─────────────────────────────── */
+  #modal-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #c50066;
+    margin: 0 0 0.25rem;
+  }
+
+  #modal-titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0 0 1.5rem;
+    color: #000;
+    padding-right: 2rem;
+  }
+
+  /* ── Lista ───────────────────────────────────────── */
+  #modal-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .mi-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem 1.1rem;
+    border-radius: 0.85rem;
+    border: 1.5px solid #e8e8e8;
+  }
+
+  .mi-card--live {
+    border-color: #c50066;
+    background: #fff5fa;
+  }
+
+  .mi-data {
+    flex-shrink: 0;
+    width: 52px;
+    min-height: 58px;
+    background: #c50066;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .mi-data--live { background: #1e1b6b; }
+
+  .mi-ate {
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+    margin-bottom: 1px;
+  }
+
+  .mi-dia {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .mi-mes {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.9;
+    margin-top: 1px;
+  }
+
+  .mi-info { flex: 1; min-width: 0; }
+
+  .mi-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .mi-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 50px;
+    color: #333;
+  }
+
+  .mi-badge--live { background: #c50066; color: #fff; }
+  .mi-badge--soon { background: #efefef; color: #555; }
+
+  .mi-nome {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 0.2rem;
+    line-height: 1.25;
+  }
+
+  .mi-desc {
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── Rodapé do modal ─────────────────────────────── */
+  #modal-rodape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  #modal-agenda-link {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #c50066;
+    text-decoration: none;
+  }
+  #modal-agenda-link:hover { opacity: 0.75; }
 </style>
+
+<script>
+  const SHEETS_URL = "https://script.google.com/macros/s/AKfycbw2bkQQURcaBa6CFanoAWXcEaPa2i0K3FmjP07GncMQTqLb9P7J4F_rZi68608npdkNBg/exec";
+
+  const mesesAbrevMap = {"0":"JAN","1":"FEV","2":"MAR","3":"ABR","4":"MAI","5":"JUN","6":"JUL","7":"AGO","8":"SET","9":"OUT","10":"NOV","11":"DEZ"};
+  const abrevMap = {jan:"JAN",fev:"FEV",mar:"MAR",abr:"ABR",mai:"MAI",jun:"JUN",jul:"JUL",ago:"AGO",set:"SET",out:"OUT",nov:"NOV",dez:"DEZ"};
+  const mesesIdx = {jan:0,fev:1,mar:2,abr:3,mai:4,jun:5,jul:6,ago:7,set:8,out:9,nov:10,dez:11};
+
+  function extrairDiaEMes(s) {
+    if (!s) return {dia:"—",mes:"—"};
+    const d = new Date(s);
+    if (!isNaN(d.getTime())) return {dia:String(d.getUTCDate()).padStart(2,"0"),mes:mesesAbrevMap[String(d.getUTCMonth())]};
+    const p = s.trim().split(/[\s\-\/]+/);
+    if (p.length >= 2) return {dia:p[0].padStart(2,"0"),mes:abrevMap[p[1].toLowerCase().slice(0,3)]??p[1].toUpperCase().slice(0,3)};
+    return {dia:"—",mes:"—"};
+  }
+
+  function parseData(s) {
+    if (!s) return null;
+    const iso = new Date(s);
+    if (!isNaN(iso.getTime())) return new Date(iso.toISOString().slice(0,10)+"T00:00:00");
+    const p = s.trim().split(/[\s\-\/]+/);
+    if (p.length >= 3) {const m=mesesIdx[p[1].toLowerCase().slice(0,3)];if(m!==undefined)return new Date(Number(p[2]),m,Number(p[0]));}
+    if (p.length >= 2) {const m=mesesIdx[p[1].toLowerCase().slice(0,3)];if(m!==undefined)return new Date(new Date().getFullYear(),m,Number(p[0]));}
+    return null;
+  }
+
+  const badgeColors = {
+    Karaokê:"#F3D0E0",karaokê:"#F3D0E0",KARAOKÊ:"#F3D0E0",
+    Oficina:"#D4EDDA",Oficinas:"#D4EDDA",OFICINA:"#D4EDDA",
+    Exposição:"#D0E8F3",Exposições:"#D0E8F3",
+    Teatro:"#FDE8D0",Meditação:"#E8D0FD","Rodas de Conversa":"#FDF3D0",
+  };
+
+  function criarItem(ev, hoje) {
+    const ativo = ev._inicio <= hoje;
+    const {dia, mes} = extrairDiaEMes(ev.data);
+    const badgeBg = badgeColors[ev.tipo] ?? "#E8E8E8";
+    let diaEx = dia, mesEx = mes, ate = false;
+    if (ativo && ev.data_fim) {
+      const f = extrairDiaEMes(ev.data_fim);
+      diaEx = f.dia; mesEx = f.mes; ate = true;
+    }
+    const li = document.createElement("li");
+    li.className = "mi-card" + (ativo ? " mi-card--live" : "");
+    li.innerHTML = `
+      <div class="mi-data${ativo?" mi-data--live":""}">
+        ${ate?'<span class="mi-ate">até</span>':""}
+        <span class="mi-dia">${diaEx}</span>
+        <span class="mi-mes">${mesEx}</span>
+      </div>
+      <div class="mi-info">
+        <div class="mi-badges">
+          ${ev.tipo?`<span class="mi-badge" style="background:${badgeBg}">${ev.tipo}</span>`:""}
+          ${ativo
+            ?'<span class="mi-badge mi-badge--live">● Em andamento</span>'
+            :'<span class="mi-badge mi-badge--soon">Em breve</span>'}
+        </div>
+        <h3 class="mi-nome">${ev.nome}</h3>
+        ${ev.descricao?`<p class="mi-desc">${ev.descricao}</p>`:""}
+      </div>`;
+    return li;
+  }
+
+  function fecharModal() {
+    const ov = document.getElementById("modal-overlay");
+    ov.classList.remove("modal-aberto");
+    setTimeout(() => {
+      ov.classList.add("modal-oculto");
+      document.body.style.overflow = "";
+    }, 300);
+  }
+
+  function abrirModal() {
+    const ov     = document.getElementById("modal-overlay");
+    const fechar = document.getElementById("modal-fechar");
+
+    ov.classList.remove("modal-oculto");
+    ov.getBoundingClientRect();
+    ov.classList.add("modal-aberto");
+    document.body.style.overflow = "hidden";
+
+    fechar.addEventListener("click", fecharModal, { once: true });
+    ov.addEventListener("click", (e) => { if (e.target === ov) fecharModal(); }, { once: true });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") fecharModal(); }, { once: true });
+  }
+
+  async function buscarEventosEmBackground() {
+    // Só dispara na página inicial
+    if (window.location.pathname !== "/") return;
+
+    const loading  = document.getElementById("modal-loading");
+    const conteudo = document.getElementById("modal-conteudo");
+    const lista    = document.getElementById("modal-lista");
+    const label    = document.getElementById("modal-label");
+
+    try {
+      const res = await fetch(SHEETS_URL);
+      if (!res.ok) throw new Error();
+      const json = await res.json();
+      const eventos = json.eventos ?? [];
+
+      const hoje = new Date(new Date().toISOString().slice(0,10)+"T00:00:00");
+      const em30 = new Date(hoje); em30.setDate(hoje.getDate()+30);
+
+      const ativos=[], proximos=[];
+      eventos.forEach(ev => {
+        const ini = parseData(ev.data);
+        const fim = ev.data_fim ? parseData(ev.data_fim) : null;
+        if (!ini) return;
+        const df = fim ?? ini;
+        if (df < hoje) return;
+        if (ini <= hoje && df >= hoje) ativos.push({...ev,_inicio:ini,_fim:df});
+        else if (ini > hoje && ini <= em30) proximos.push({...ev,_inicio:ini,_fim:df});
+      });
+
+      if (!ativos.length && !proximos.length) return;
+
+      if (ativos.length && !proximos.length) label.textContent = "Acontecendo agora";
+      else if (!ativos.length) label.textContent = "Em breve no Paradoxo";
+      else label.textContent = "Na programação";
+
+      const ativosOrdenados   = ativos.sort((a,b)=>a._fim-b._fim).slice(0,2);
+      const proximosOrdenados = proximos.sort((a,b)=>a._inicio-b._inicio);
+      const final = [
+        ...ativosOrdenados,
+        ...proximosOrdenados.slice(0, 2 - ativosOrdenados.length),
+      ];
+
+      final.forEach(ev => lista.appendChild(criarItem(ev,hoje)));
+
+      loading.classList.add("modal-oculto");
+      conteudo.classList.remove("modal-oculto");
+      abrirModal();
+
+    } catch(e) {
+      // Erro silencioso — página continua normalmente
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", buscarEventosEmBackground);
+  } else {
+    buscarEventosEmBackground();
+  }
+</script>
