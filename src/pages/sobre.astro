@@ -4,251 +4,281 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Sobre — Paradoxo">
   <section class="hero">
-    <div class="hero-container">
-      <h1>
-        A casa Onde a Arte Acontece:<br />
-        História, propósito e pessoas que constroem o Paradoxo.
+    <div class="container">
+      <h1 class="hero-title">
+        A casa Onde a Arte Acontece: <span class="highlight">História, Propósito e Pessoas</span> que constroem o Paradoxo
       </h1>
     </div>
   </section>
 
-  <section class="content-wrapper">
-    <div class="content-section">
-      <div class="container">
-        <h2>A CASA, A FUNDAÇÃO E O TERRITÓRIO</h2>
+  <section class="content">
+    <div class="container">
+      <h2 class="fade-left">A CASA, A FUNDAÇÃO E O TERRITÓRIO</h2>
 
-        <p>
-          O Paradoxo Casa Atelier é um espaço independente de arte e cultura
-          localizado na Zona Norte do Rio de Janeiro. Instalado em um sobrado
-          histórico na região da Usina, entre a Tijuca e o Alto da Boa Vista, o
-          Paradoxo se afirma como uma casa aberta, onde a arte acontece de forma
-          próxima, acessível e viva.
-        </p>
+      <p class="fade-up">
+        O Paradoxo Casa Atelier é um espaço independente de arte e cultura
+        localizado na Zona Norte do Rio de Janeiro. Instalado em um sobrado
+        histórico na região da Usina, entre a Tijuca e o Alto da Boa Vista, o
+        Paradoxo se afirma como uma casa aberta, onde a arte acontece de forma
+        próxima, acessível e viva.
+      </p>
 
-        <p>
-          Fundado em 2022, o espaço nasce da percepção de que, apesar da
-          potência cultural da Zona Norte, ainda são poucos os lugares dedicados
-          às artes visuais no território. O Paradoxo surge para preencher essa
-          lacuna, aproximando artistas, comunidade e pessoas interessadas em
-          criar, aprender e experimentar a arte.
-        </p>
+      <p class="fade-up" style="transition-delay: 0.1s">
+        Fundado em 2022, o espaço nasce da percepção de que, apesar da
+        potência cultural da Zona Norte, ainda são poucos os lugares dedicados
+        às artes visuais no território. O Paradoxo surge para preencher essa
+        lacuna, aproximando artistas, comunidade e pessoas interessadas em
+        criar, aprender e experimentar a arte.
+      </p>
 
-        <figure class="section-image">
-          <img
-            src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562903/A_exposi%C3%A7%C3%A3o_acabou_mas_cada_hist%C3%B3ria_que_a_gente_viveu_juntos_fica._Gratid%C3%A3o_a_todos_que_senti_3_r3fcbm.webp"
-            alt="Pessoa observando arte"
-            loading="lazy"
-          />
-        </figure>
+      <figure class="section-image">
+        <img
+          src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562903/A_exposi%C3%A7%C3%A3o_acabou_mas_cada_hist%C3%B3ria_que_a_gente_viveu_juntos_fica._Gratid%C3%A3o_a_todos_que_senti_3_r3fcbm.webp"
+          alt="Pessoa observando arte"
+          loading="lazy"
+        />
+      </figure>
 
-        <h2>O QUE NOS MOVE</h2>
+      <h2 class="fade-left">O QUE NOS MOVE</h2>
 
-        <p>
-          O propósito do Paradoxo Casa Atelier é ampliar o acesso às artes
-          visuais e fortalecer artistas independentes, criando um espaço de
-          encontro entre arte, território e comunidade. A casa existe para
-          acolher processos criativos, promover trocas e tornar a arte mais
-          próxima, possível e presente no cotidiano das pessoas.
-        </p>
+      <p class="fade-up">
+        O propósito do Paradoxo Casa Atelier é ampliar o acesso às artes
+        visuais e fortalecer artistas independentes, criando um espaço de
+        encontro entre arte, território e comunidade. A casa existe para
+        acolher processos criativos, promover trocas e tornar a arte mais
+        próxima, possível e presente no cotidiano das pessoas.
+      </p>
 
-        <p>
-          Acreditamos na arte como ferramenta de escuta, vínculo e transformação
-          social, capaz de construir experiências coletivas, valorizar a
-          diversidade e gerar impacto real nos territórios onde atua.
-        </p>
+      <p class="fade-up" style="transition-delay: 0.1s">
+        Acreditamos na arte como ferramenta de escuta, vínculo e transformação
+        social, capaz de construir experiências coletivas, valorizar a
+        diversidade e gerar impacto real nos territórios onde atua.
+      </p>
 
-        <h2>QUEM FAZ O PARADOXO</h2>
+      <h2 class="fade-left">QUEM FAZ O PARADOXO</h2>
 
-        <p>
-          O Paradoxo é feito por pessoas que acreditam na arte como encontro,
-          cuidado e construção coletiva.
-        </p>
+      <p class="fade-up">
+        O Paradoxo é feito por pessoas que acreditam na arte como encontro,
+        cuidado e construção coletiva.
+      </p>
 
-        <div class="team-cards-wrapper">
-          <button class="nav-arrow nav-arrow-left" aria-label="Anterior">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          
-          <div class="team-cards">
-          <div class="card">
-            <div class="card-photo">
-              <img
-                src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562992/WhatsApp_Image_2026-01-14_at_23.21.12_hnuefe.jpg"
-                alt="Manny Bernabé"
-                loading="lazy"
-              />
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-btn--prev" id="prevBtn" aria-label="Anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <div class="carousel-track">
+          <div class="team-cards" id="teamGrid">
+
+            <div class="card">
+              <div class="card-photo">
+                <img src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562992/WhatsApp_Image_2026-01-14_at_23.21.12_hnuefe.jpg" alt="Manny Bernabé" loading="lazy" />
+              </div>
+              <div class="card-content">
+                <h3>Manny Bernabé</h3>
+                <div class="card-tag">Fundadora e Gestora</div>
+                <p class="card-description">Idealizadora e fundadora do Paradoxo Casa Atelier. Artista e agente cultural, atua na criação, curadoria e gestão do espaço, desenvolvendo projetos que aproximam arte, território e comunidade.</p>
+              </div>
             </div>
-            <div class="card-content">
-              <h3>Manny Bernabé</h3>
-              <p class="card-description">
-                Idealizadora e fundadora do Paradoxo Casa Atelier. Artista e
-                agente cultural, atua na criação, curadoria e gestão do espaço,
-                desenvolvendo projetos que aproximam arte, território e
-                comunidade.
-              </p>
-              <div class="card-tag">Fundadora e Gestora</div>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-photo">
-              <img
-                src="https://res.cloudinary.com/ddpvact5z/image/upload/v1775012883/IMG_20260401_000250.jpg_maazoj.jpg"
-                alt="Davi Medeiros"
-                loading="lazy"
-              />
+            <div class="card">
+              <div class="card-photo">
+                <img src="https://res.cloudinary.com/ddpvact5z/image/upload/v1775012883/IMG_20260401_000250.jpg_maazoj.jpg" alt="Davi Medeiros" loading="lazy" />
+              </div>
+              <div class="card-content">
+                <h3>Davi Medeiros</h3>
+                <div class="card-tag">Comunicação</div>
+                <p class="card-description">Artista e estudante de Psicologia, integra a equipe do Paradoxo Casa Atelier atuando na comunicação, mediação cultural e construção de vínculos entre arte, espaço e comunidade.</p>
+              </div>
             </div>
-            <div class="card-content">
-              <h3>Davi Medeiros</h3>
-              <p class="card-description">
-                Artista e estudante de Psicologia, integra a equipe do Paradoxo
-                Casa Atelier atuando na comunicação, mediação cultural e
-                construção de vínculos entre arte, espaço e comunidade.
-              </p>
-              <div class="card-tag">Comunicação</div>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-photo">
-              <img
-                src="https://res.cloudinary.com/ddpvact5z/image/upload/v1772301565/WhatsApp_Image_2026-02-28_at_14.59.14_fpyswo.jpg"
-                alt="Hugo Bernabé"
-                loading="lazy"
-              />
+            <div class="card">
+              <div class="card-photo">
+                <img src="https://res.cloudinary.com/ddpvact5z/image/upload/v1772301565/WhatsApp_Image_2026-02-28_at_14.59.14_fpyswo.jpg" alt="Hugo Bernabé" loading="lazy" />
+              </div>
+              <div class="card-content">
+                <h3>Hugo Bernabé</h3>
+                <div class="card-tag">Montagem de Exposições</div>
+                <p class="card-description">Atua na montagem das exposições do Paradoxo Casa Atelier, contribuindo para a organização do espaço, a materialização dos projetos expográficos e o cuidado com as obras e com o ambiente expositivo.</p>
+              </div>
             </div>
-            <div class="card-content">
-              <h3>Hugo Bernabé</h3>
-              <p class="card-description">
-                Atua na montagem das exposições do Paradoxo Casa Atelier,
-                contribuindo para a organização do espaço, a materialização dos
-                projetos expográficos e o cuidado com as obras e com o ambiente
-                expositivo.
-              </p>
-              <div class="card-tag">Montagem de Exposições</div>
-            </div>
-          </div>
 
-<div class="card">
-            <div class="card-photo">
-              <img
-                src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562865/Marcelo_nagwtw.jpg"
-                alt="Marcelo Dias"
-                loading="lazy"
-              />
+            <div class="card">
+              <div class="card-photo">
+                <img src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562865/Marcelo_nagwtw.jpg" alt="Marcelo Dias" loading="lazy" />
+              </div>
+              <div class="card-content">
+                <h3>Marcelo Dias</h3>
+                <div class="card-tag">Coordenador de Projeto e Produtor</div>
+                <p class="card-description">À frente da coordenação de projetos e produção do Paradoxo Casa Atelier, conduz a realização das exposições, conectando ideias, pessoas e espaço para dar vida às experiências artísticas.</p>
+              </div>
             </div>
-            <div class="card-content">
-              <h3>Marcelo Dias</h3>
-              <p class="card-description">
-  À frente da coordenação de projetos e produção do Paradoxo Casa Atelier, conduz a realização das exposições, conectando ideias, pessoas e espaço para dar vida às experiências artísticas.
-</p>
-              <div class="card-tag">Coordenador de Projeto e Produtor</div>
-            </div>
-          </div>
 
+            <div class="card">
+              <div class="card-photo">
+                <img src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562991/E_que_abram_as_portas_da_correria_%C3%9Altimo_dia._mondialdelabiere_motimcervejaria_soiqpb.jpg" alt="Rodrigo Silveira" loading="lazy" />
+              </div>
+              <div class="card-content">
+                <h3>Rodrigo Silveira</h3>
+                <div class="card-tag">Curadoria e Experiências</div>
+                <p class="card-description">Responsável pela criação dos menus e pela organização da cozinha do Paradoxo Casa Atelier, contribuindo para a experiência de convivência e cuidado que atravessa os encontros, eventos e atividades da casa.</p>
+              </div>
+            </div>
 
-          <div class="card">
-            <div class="card-photo">
-              <img
-                src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562991/E_que_abram_as_portas_da_correria_%C3%9Altimo_dia._mondialdelabiere_motimcervejaria_soiqpb.jpg"
-                alt="Rodrigo Silveira"
-                loading="lazy"
-              />
+            <div class="card">
+              <div class="card-photo">
+                <img src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562990/Passeio_de_fim_de_semana_em_paqueta_riodejaneiro_janlud.jpg" alt="Peterson Barbosa" loading="lazy" />
+              </div>
+              <div class="card-content">
+                <h3>Peterson Barbosa</h3>
+                <div class="card-tag">Música e Ambientação</div>
+                <p class="card-description">Atua na criação da ambientação musical do Paradoxo Casa Atelier, contribuindo para a atmosfera dos eventos e encontros, fortalecendo a experiência sensorial e coletiva do espaço.</p>
+              </div>
             </div>
-            <div class="card-content">
-              <h3>Rodrigo Silveira</h3>
-              <p class="card-description">
-                Responsável pela criação dos menus e pela organização da cozinha
-                do Paradoxo Casa Atelier, contribuindo para a experiência de
-                convivência e cuidado que atravessa os encontros, eventos e
-                atividades da casa.
-              </p>
-              <div class="card-tag">Curadoria e Experiências</div>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-photo">
-              <img
-                src="https://res.cloudinary.com/ddpvact5z/image/upload/v1769562990/Passeio_de_fim_de_semana_em_paqueta_riodejaneiro_janlud.jpg"
-                alt="Peterson Barbosa"
-                loading="lazy"
-              />
-            </div>
-            <div class="card-content">
-              <h3>Peterson Barbosa</h3>
-              <p class="card-description">
-                Atua na criação da ambientação musical do Paradoxo Casa Atelier,
-                contribuindo para a atmosfera dos eventos e encontros,
-                fortalecendo a experiência sensorial e coletiva do espaço.
-              </p>
-              <div class="card-tag">Música e Ambientação</div>
-            </div>
           </div>
         </div>
-        
-        <button class="nav-arrow nav-arrow-right" aria-label="Próximo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
+
+        <button class="carousel-btn carousel-btn--next" id="nextBtn" aria-label="Próximo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
       </div>
+
+      <div class="dots" id="dots">
+        <button class="dot dot--ativo" aria-label="Ir para membro 1" data-index="0"></button>
+        <button class="dot" aria-label="Ir para membro 2" data-index="1"></button>
+        <button class="dot" aria-label="Ir para membro 3" data-index="2"></button>
+        <button class="dot" aria-label="Ir para membro 4" data-index="3"></button>
+        <button class="dot" aria-label="Ir para membro 5" data-index="4"></button>
+        <button class="dot" aria-label="Ir para membro 6" data-index="5"></button>
       </div>
+
     </div>
   </section>
 </Layout>
 
-<style>
-  /* ── Base ── */
-  body {
-    line-height: 1.6;
-    color: #000;
-  }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Manny Bernabé",
+      "jobTitle": "Fundadora e Gestora",
+      "description": "Idealizadora e fundadora do Paradoxo Casa Atelier. Artista e agente cultural, atua na criação, curadoria e gestão do espaço, desenvolvendo projetos que aproximam arte, território e comunidade.",
+      "image": "https://res.cloudinary.com/ddpvact5z/image/upload/v1769562992/WhatsApp_Image_2026-01-14_at_23.21.12_hnuefe.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Paradoxo Casa Atelier",
+        "url": "https://paradoxocasaatelier.com.br"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Davi Medeiros",
+      "jobTitle": "Comunicação",
+      "description": "Artista e estudante de Psicologia, integra a equipe do Paradoxo Casa Atelier atuando na comunicação, mediação cultural e construção de vínculos entre arte, espaço e comunidade.",
+      "image": "https://res.cloudinary.com/ddpvact5z/image/upload/v1775012883/IMG_20260401_000250.jpg_maazoj.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Paradoxo Casa Atelier",
+        "url": "https://paradoxocasaatelier.com.br"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Hugo Bernabé",
+      "jobTitle": "Montagem de Exposições",
+      "description": "Atua na montagem das exposições do Paradoxo Casa Atelier, contribuindo para a organização do espaço, a materialização dos projetos expográficos e o cuidado com as obras e com o ambiente expositivo.",
+      "image": "https://res.cloudinary.com/ddpvact5z/image/upload/v1772301565/WhatsApp_Image_2026-02-28_at_14.59.14_fpyswo.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Paradoxo Casa Atelier",
+        "url": "https://paradoxocasaatelier.com.br"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Marcelo Dias",
+      "jobTitle": "Coordenador de Projeto e Produtor",
+      "description": "À frente da coordenação de projetos e produção do Paradoxo Casa Atelier, conduz a realização das exposições, conectando ideias, pessoas e espaço para dar vida às experiências artísticas.",
+      "image": "https://res.cloudinary.com/ddpvact5z/image/upload/v1769562865/Marcelo_nagwtw.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Paradoxo Casa Atelier",
+        "url": "https://paradoxocasaatelier.com.br"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Rodrigo Silveira",
+      "jobTitle": "Curadoria e Experiências",
+      "description": "Responsável pela criação dos menus e pela organização da cozinha do Paradoxo Casa Atelier, contribuindo para a experiência de convivência e cuidado que atravessa os encontros, eventos e atividades da casa.",
+      "image": "https://res.cloudinary.com/ddpvact5z/image/upload/v1769562991/E_que_abram_as_portas_da_correria_%C3%9Altimo_dia._mondialdelabiere_motimcervejaria_soiqpb.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Paradoxo Casa Atelier",
+        "url": "https://paradoxocasaatelier.com.br"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Peterson Barbosa",
+      "jobTitle": "Música e Ambientação",
+      "description": "Atua na criação da ambientação musical do Paradoxo Casa Atelier, contribuindo para a atmosfera dos eventos e encontros, fortalecendo a experiência sensorial e coletiva do espaço.",
+      "image": "https://res.cloudinary.com/ddpvact5z/image/upload/v1769562990/Passeio_de_fim_de_semana_em_paqueta_riodejaneiro_janlud.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Paradoxo Casa Atelier",
+        "url": "https://paradoxocasaatelier.com.br"
+      }
+    }
+  ]
+}
+</script>
 
+<style>
   .container {
     max-width: 1350px;
     margin: 0 auto;
-    padding: 0rem;
+    padding: 0 2rem;
   }
 
   /* ── Hero ── */
   .hero {
     background-color: #c50066;
-    padding: 8rem 0 0rem 0;
+    padding: 8rem 0 4rem;
     min-height: 500px;
   }
 
-  .hero-container {
-    max-width: 1450px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  .hero .container {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
   }
 
-  .hero h1 {
-    color: #fff;
-    font-size: 3.5rem;
+  .hero-title {
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -1px;
+    color: #fff;
+    max-width: 60%;
     margin: 0;
-    max-width: 820px;
   }
 
-  /* ── Content wrapper ── */
-  .content-wrapper {
-    background-color: #c50066;
-    padding-top: 0;
+  .highlight {
+    color: #ffed00;
   }
 
-  .content-section {
+  /* ── Content ── */
+  .content {
     background: #fff;
     border-radius: 2rem 2rem 0 0;
     margin-top: -2rem;
     position: relative;
     z-index: 1;
-    padding: 4rem 0;
+    padding: 4rem 0 5rem;
   }
 
   /* ── Headings & paragraphs ── */
@@ -256,7 +286,7 @@ import Layout from "../layouts/Layout.astro";
     font-size: 2rem;
     font-weight: 700;
     color: #000;
-    margin: 2rem 0 0.5rem 0;
+    margin: 2.5rem 0 0.75rem;
     letter-spacing: -0.5px;
   }
 
@@ -267,14 +297,14 @@ import Layout from "../layouts/Layout.astro";
   p {
     color: #000;
     font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    font-weight: 500;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
   }
 
   /* ── Section image ── */
   .section-image {
-    margin: 1.5rem 0 2rem 0;
+    margin: 1.5rem 0 2.5rem;
   }
 
   .section-image img {
@@ -284,18 +314,19 @@ import Layout from "../layouts/Layout.astro";
     display: block;
   }
 
-  /* ── Team carousel ── */
-  .team-cards-wrapper {
+  /* ── Carousel ── */
+  .carousel-wrapper {
     position: relative;
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
-  .nav-arrow {
+  .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
     border-radius: 50%;
     border: 2px solid #000;
     background: #fff;
@@ -304,22 +335,22 @@ import Layout from "../layouts/Layout.astro";
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
     z-index: 10;
+    flex-shrink: 0;
   }
 
-  .nav-arrow:hover {
+  .carousel-btn--prev { left: -1.25rem; }
+  .carousel-btn--next { right: -1.25rem; }
+
+  .carousel-btn:hover {
     background: #c50066;
     color: #fff;
     border-color: #c50066;
   }
 
-  .nav-arrow-left {
-    left: 0.5rem;
-  }
-
-  .nav-arrow-right {
-    right: 0.5rem;
+  .carousel-track {
+    overflow: hidden;
   }
 
   .team-cards {
@@ -327,10 +358,9 @@ import Layout from "../layouts/Layout.astro";
     gap: 1.25rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 4px;
+    padding-bottom: 6px;
   }
 
   .team-cards::-webkit-scrollbar {
@@ -339,201 +369,333 @@ import Layout from "../layouts/Layout.astro";
 
   /* ── Team card ── */
   .card {
-    border: 2px solid #000;
-    border-radius: 1rem;
+    border: 2px solid #e8e8e8;
+    border-radius: 1.25rem;
     background: #fff;
     display: flex;
     flex-direction: column;
-    flex: 0 0 280px;
+    flex: 0 0 320px;
     scroll-snap-align: start;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
   .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    border-color: #c50066;
+  }
+
+  .card-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
   .card-photo img {
-    width: calc(100% - 2rem);
-    margin: 1rem 0 0 1rem;
-    height: 280px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
-    border: 2px solid #000;
-    border-radius: 0.5rem;
+    transition: transform 0.4s ease;
+  }
+
+  .card:hover .card-photo img {
+    transform: scale(1.04);
   }
 
   .card-content {
-    padding: 1rem;
+    padding: 1.25rem 1.25rem 1rem;
     display: flex;
     flex-direction: column;
     flex: 1;
+    border-top: 2px solid #f0f0f0;
   }
 
   .card-content h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
+    margin: 0 0 0.4rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: #000;
     letter-spacing: -0.5px;
   }
 
-  .card-description {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #000;
-    line-height: 1.5;
-    margin-bottom: 0.75rem;
-  }
-
   .card-tag {
     display: inline-block;
-    margin-top: auto;
-    text-align: right;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: #c50066;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #c50066;
+    padding: 0.25rem 0.65rem;
+    border-radius: 2rem;
+    margin-bottom: 0.85rem;
+    align-self: flex-start;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #444;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Animations ── */
+
+  /* Hero title word-by-word reveal */
+  .hero-title .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: wordReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes wordReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scroll-triggered fade-ins */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .fade-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Section image reveal with clip-path */
+  .section-image {
+    overflow: hidden;
+  }
+
+  .section-image img {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: scale(1.06);
+  }
+
+  .section-image.visible img {
+    clip-path: inset(0% 0 0 0);
+    transform: scale(1);
+  }
+
+  /* Staggered cards */
+  .card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+  }
+
+  .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* h2 underline draw */
+  h2 {
+    position: relative;
+    display: inline-block;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #c50066;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  h2.visible::after {
+    width: 100%;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up, .fade-left, .card, h2::after { transition: none; }
+    .section-image img { clip-path: none; transform: none; transition: none; }
+    .hero-title .word { animation: none; opacity: 1; transform: none; }
+  }
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .dot--ativo {
+    background: #c50066;
+    transform: scale(1.25);
   }
 
   /* ── Responsive ── */
   @media (max-width: 1024px) {
-    .hero {
-      padding: 6rem 0 4rem 0;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-    }
+    .hero { padding: 6rem 0 3.5rem; }
   }
 
   @media (max-width: 768px) {
-    .container {
-      padding: 0 1.5rem;
-    }
+    .container { padding: 0 1.25rem; }
 
-    .hero {
-      padding: 4rem 0 3rem 0;
-      min-height: 400px;
-    }
+    .hero { padding: 6rem 0 3rem; min-height: 380px; }
+    .hero-title { max-width: 100%; }
 
-    .hero-container {
-      padding: 0 1.5rem;
-    }
+    .content { padding: 2.5rem 0 4rem; margin-top: -1.5rem; }
 
-    .hero h1 {
-      font-size: 2.25rem;
-    }
+    h2 { font-size: 1.5rem; }
+    p { font-size: 1rem; }
 
-    .content-section {
-      padding: 3rem 0;
-    }
+    .carousel-btn--prev { left: -0.75rem; }
+    .carousel-btn--next { right: -0.75rem; }
 
-    h2 {
-      font-size: 1.5rem;
-    }
-
-    p {
-      font-size: 1rem;
-    }
-
-    .card {
-      flex: 0 0 260px;
-    }
-
-    .card-photo img {
-      height: 240px;
-    }
+    .card { flex: 0 0 calc(80vw - 1.5rem); }
   }
 
   @media (max-width: 480px) {
-    .container {
-      padding: 0 1rem;
-    }
+    .container { padding: 0 1rem; }
 
-    .hero {
-      padding: 3rem 0 2rem 0;
-      min-height: 350px;
-    }
+    .hero { padding: 5rem 0 2.5rem; min-height: 320px; }
 
-    .hero-container {
-      padding: 0 1rem;
-    }
+    .content { border-radius: 1.5rem 1.5rem 0 0; padding: 2rem 0 3rem; }
 
-    .hero h1 {
-      font-size: 1.75rem;
-      letter-spacing: -0.5px;
-    }
+    h2 { font-size: 1.25rem; }
+    p { font-size: 0.95rem; margin-bottom: 1rem; }
 
-    .content-section {
-      padding: 2rem 0;
-      border-radius: 1.5rem 1.5rem 0 0;
-    }
+    .carousel-btn { display: none; }
 
-    h2 {
-      font-size: 1.25rem;
-    }
+    .card { flex: 0 0 calc(100vw - 3.5rem); }
 
-    p {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    .team-cards {
-      gap: 0.875rem;
-    }
-
-    .card {
-      flex: 0 0 calc(85vw - 2rem);
-    }
-
-    .card-photo img {
-      height: 200px;
-    }
-
-    .card-content h3 {
-      font-size: 1.3rem;
-    }
+    .card-content h3 { font-size: 1.3rem; }
   }
 
   @media (max-width: 360px) {
-    .hero h1 {
-      font-size: 1.5rem;
-    }
-
-    h2 {
-      font-size: 1.1rem;
-    }
-
-    p {
-      font-size: 0.9rem;
-    }
+    h2 { font-size: 1.1rem; }
+    p { font-size: 0.9rem; }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const teamCards = document.querySelector('.team-cards');
-    const leftArrow = document.querySelector('.nav-arrow-left');
-    const rightArrow = document.querySelector('.nav-arrow-right');
-
-    if (!teamCards || !leftArrow || !rightArrow) return;
-
-    const scrollAmount = 340; // card width + gap
-
-    leftArrow.addEventListener('click', () => {
-      teamCards.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
-      });
+  // ── Hero title: split into words and animate each ──
+  const heroTitle = document.querySelector('.hero-title') as HTMLElement;
+  if (heroTitle) {
+    const html = heroTitle.innerHTML;
+    // Split text nodes into word spans, preserve HTML tags
+    heroTitle.innerHTML = html.replace(/(<[^>]+>)|([^<>\s]+)/g, (match, tag, word) => {
+      if (tag) return tag;
+      return `<span class="word">${word}</span> `;
     });
-
-    rightArrow.addEventListener('click', () => {
-      teamCards.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
+    const words = heroTitle.querySelectorAll('.word');
+    words.forEach((w, i) => {
+      (w as HTMLElement).style.animationDelay = `${i * 0.07}s`;
     });
+  }
+
+  // ── IntersectionObserver for scroll animations ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up, .fade-left, .section-image, h2.fade-left').forEach(el => {
+    observer.observe(el);
+  });
+
+  // ── Cards: staggered entrance ──
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, i) => {
+          setTimeout(() => card.classList.add('visible'), i * 80);
+        });
+        cardObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  const firstCard = document.querySelector('.card');
+  if (firstCard) cardObserver.observe(firstCard);
+
+  // ── Carousel ──
+  const grid = document.getElementById("teamGrid") as HTMLElement;
+  const prevBtn = document.getElementById("prevBtn") as HTMLButtonElement;
+  const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
+  const dotBtns = Array.from(document.querySelectorAll(".dot")) as HTMLButtonElement[];
+
+  let currentIndex = 0;
+
+  function getCards(): HTMLElement[] {
+    return Array.from(grid.querySelectorAll(".card")) as HTMLElement[];
+  }
+
+  function getCardWidth(): number {
+    const cards = getCards();
+    if (!cards.length) return 280;
+    const gap = parseFloat(getComputedStyle(grid).gap) || 20;
+    return cards[0].offsetWidth + gap;
+  }
+
+  function atualizarDots(index: number) {
+    dotBtns.forEach((d, i) => d.classList.toggle("dot--ativo", i === index));
+  }
+
+  function scrollToIndex(index: number): void {
+    const count = getCards().length;
+    currentIndex = ((index % count) + count) % count;
+    grid.scrollTo({ left: currentIndex * getCardWidth(), behavior: "smooth" });
+    atualizarDots(currentIndex);
+  }
+
+  nextBtn?.addEventListener("click", () => scrollToIndex(currentIndex + 1));
+  prevBtn?.addEventListener("click", () => scrollToIndex(currentIndex - 1));
+
+  dotBtns.forEach((btn, i) => btn.addEventListener("click", () => scrollToIndex(i)));
+
+  grid.addEventListener("scrollend", () => {
+    currentIndex = Math.round(grid.scrollLeft / getCardWidth());
+    atualizarDots(currentIndex);
   });
 </script>
